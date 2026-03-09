@@ -1,0 +1,184 @@
+================================================================================
+SREE VIGNAN PUBLIC SCHOOL WEBSITE - QUICK START
+================================================================================
+
+WHAT YOU HAVE:
+Complete school website with 5 pages - Ready to deploy in 15 minutes!
+
+================================================================================
+5-MINUTE QUICK START
+================================================================================
+
+1. EXTRACT PROJECT
+   Unzip the file to your preferred location
+
+2. OPEN IN VS CODE
+   - Open VS Code
+   - File > Open Folder
+   - Select "sree-vignan-school" folder
+   - Click "Trust folder" if asked
+
+3. INSTALL DEPENDENCIES
+   - Open Terminal: Ctrl + `
+   - Type: npm install
+   - Wait 2-3 minutes
+
+4. RUN LOCALLY
+   - Type: npm run dev
+   - Open: http://localhost:3000
+   - You should see the school website!
+
+5. EDIT YOUR INFORMATION
+   - File: src/lib/constants.ts
+   - Update:
+     * School name
+     * Phone number (YOUR number!)
+     * Email
+     * Address
+     * WhatsApp number
+   - Save, page refreshes automatically
+
+================================================================================
+WHAT TO CHANGE - 5 THINGS ONLY!
+================================================================================
+
+File: src/lib/constants.ts
+
+1. name: "Sree Vignan Public School" → YOUR school name
+2. phone: "+91-9542560328" → YOUR phone
+3. whatsapp: "919542560328" → YOUR WhatsApp (without +91)
+4. email: "info@sreevignanschool.com" → YOUR email
+5. address: {...} → YOUR address details
+
+That's it! Everything else works automatically.
+
+================================================================================
+5 PAGES INCLUDED
+================================================================================
+
+✅ Home (/home)
+   - Hero section
+   - Programs
+   - Facilities
+   - Why choose us
+   - Testimonials
+   - Location
+
+✅ About (/about)
+   - Mission & vision
+   - Core values
+   - School history
+
+✅ Academics (/academics)
+   - Curriculum
+   - Teaching methodology
+   - Examination system
+
+✅ Gallery (/gallery)
+   - Photo grid
+   - Categorized images
+
+✅ Contact (/contact)
+   - Contact form
+   - Phone, email, address
+   - WhatsApp button
+
+================================================================================
+DEPLOY (CHOOSE ONE - ALL FREE!)
+================================================================================
+
+VERCEL (EASIEST - 5 MINUTES):
+  1. Push code to GitHub
+  2. Go to vercel.com
+  3. Import project
+  4. Deploy
+  Done! Site is live
+
+NETLIFY (EASY - 5 MINUTES):
+  1. Push code to GitHub
+  2. Go to netlify.com
+  3. Connect Git
+  4. Deploy
+  Done! Site is live
+
+OTHER OPTIONS:
+  - AWS Amplify (10 min)
+  - DigitalOcean ($4/month)
+  - Any Node.js hosting
+
+================================================================================
+IMPORTANT COMMANDS
+================================================================================
+
+npm install          → Install dependencies
+npm run dev         → Run locally (http://localhost:3000)
+npm run build       → Build for production
+npm start           → Start production server
+npm audit           → Check security
+
+Press Ctrl+C to stop server
+
+================================================================================
+COLOR SCHEME
+================================================================================
+
+Primary Blue:    #1565C0
+Accent Yellow:   #FBC02D
+Sky Blue:        #E3F2FD
+Light Gray:      #F5F5F5
+
+Edit these in: tailwind.config.js
+
+================================================================================
+FEATURES INCLUDED
+================================================================================
+
+✅ 5 Complete Pages
+✅ Mobile Responsive (100%)
+✅ Contact Form
+✅ WhatsApp Integration
+✅ Call-to-action Buttons
+✅ SEO Optimized
+✅ School Schema Markup
+✅ Fast Loading
+✅ Professional Design
+✅ Easy to Customize
+
+================================================================================
+FOLDER STRUCTURE
+================================================================================
+
+sree-vignan-school/
+├── src/
+│   ├── app/              → Pages (5 pages)
+│   ├── components/       → Reusable components (6)
+│   ├── lib/
+│   │   ├── constants.ts  → School info (EDIT THIS!)
+│   │   └── seo.ts       → SEO schemas
+│   └── globals.css       → Styles
+├── public/               → Images folder
+├── package.json          → Dependencies
+├── tailwind.config.js    → Colors config
+└── README.md             → Full documentation
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. ✅ Extract zip
+2. ✅ Open in VS Code
+3. ✅ Run: npm install
+4. ✅ Run: npm run dev
+5. ✅ Edit src/lib/constants.ts with YOUR info
+6. ✅ Test at http://localhost:3000
+7. ✅ Deploy using Vercel/Netlify
+8. ✅ Get domain ($1-15/year)
+9. ✅ Your school website is LIVE! 🎉
+
+================================================================================
+TOTAL TIME: 30 minutes from download to live!
+COST: FREE hosting + domain
+
+YOU'RE READY! 🚀
+
+Questions? Check README.md file
