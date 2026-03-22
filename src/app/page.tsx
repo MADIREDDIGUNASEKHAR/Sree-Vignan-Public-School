@@ -4,6 +4,11 @@ import { Star, BookOpen, Award, Users, Heart, Lock, Lightbulb, Palette, Zap, Mon
 import { Button } from '@/components/Button';
 import { SCHOOL, PROGRAMS, FACILITIES, WHY_CHOOSE, TESTIMONIALS } from '@/lib/constants';
 import Image from "next/image";
+import HeroSlider from '@/components/HeroSlider';
+import StatsSection from '@/components/StatsSection';
+import ProgramsSection from '@/components/ProgramsSection';
+import FacilitiesSection from '@/components/FacilitiesSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
 
 export const metadata: Metadata = {
   title: 'Home | Sree Vignan Public School',
@@ -28,56 +33,7 @@ const iconMap: { [key: string]: React.ReactNode } = {
 };
 
 // Hero Section
-function HeroSection() {
-  return (
-    <section className="relative pt-12 md:pt-20 pb-16 md:pb-32 overflow-hidden bg-gradient-to-br from-purple-50 to-white">
-      <div className="container-safe">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-6 animate-fade-in">
-            <div className="inline-block px-4 py-2 rounded-full bg-purple-100 text-primary-purple font-semibold text-sm">
-              📚 Admissions Open 2026-27
-            </div>
 
-            <h1 className="text-heading-xl text-gray-900">
-              Empowering Young Minds for a Bright Future
-            </h1>
-
-            <p className="text-subheading text-gray-600">
-              Quality Education in Chodavaram. Focus on academic excellence and holistic development.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button href="/contact">Enroll Now</Button>
-              <Button href="#about" variant="secondary">Learn More</Button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-300">
-              <div>
-                <p className="text-3xl font-bold text-primary-purple">1000+</p>
-                <p className="text-sm text-gray-600 font-medium">Happy Students</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-primary-purple">50+</p>
-                <p className="text-sm text-gray-600 font-medium">Dedicated Teachers</p>
-              </div>
-            </div>
-          </div>
-
-                {/* Right Image Placeholder */}
-                <div className="relative h-96 md:h-full min-h-96 rounded-2xl overflow-hidden shadow-soft-lg">
-        <img
-          src="/gallery/image13.png"
-          alt="Sree Vignan School Classroom Learning"
-          className="w-full h-full object-cover"
-        />
-      </div>
-              </div>
-      </div>
-    </section>
-  );
-}
 
 // About Section
 function AboutSection() {
@@ -108,65 +64,7 @@ function AboutSection() {
   );
 }
 
-// Programs Section
-function ProgramsSection() {
-  return (
-    <section className="section-padding bg-cream-light">
-      <div className="container-safe">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-heading-lg mb-4">Our Programs</h2>
-          <p className="text-subheading text-gray-600 max-w-2xl mx-auto">
-            Comprehensive educational programs designed to develop students holistically
-          </p>
-        </div>
 
-        <div className="grid-responsive-2 lg:grid-responsive-4 gap-6">
-          {PROGRAMS.map((program) => (
-            <div key={program.id} className="card-premium">
-              <div className="mb-4">
-                {iconMap[program.icon] || <BookOpen size={32} />}
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{program.name}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{program.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Facilities Section
-function FacilitiesSection() {
-  return (
-    <section className="section-padding bg-white">
-      <div className="container-safe">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-heading-lg mb-4">Modern Facilities</h2>
-          <p className="text-subheading text-gray-600 max-w-2xl mx-auto">
-            State-of-the-art infrastructure for holistic development
-          </p>
-        </div>
-
-        <div className="grid-responsive-3">
-          {FACILITIES.map((facility) => (
-            <div key={facility.id} className="card-premium">
-              <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
-                  {iconMap[facility.icon] || <Trophy size={32} />}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">{facility.name}</h3>
-                  <p className="text-gray-600 text-sm">{facility.description}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // Why Choose Us Section
 function WhyChooseSection() {
@@ -247,40 +145,6 @@ function GallerySection() {
   );
 }
 
-// Testimonials Section
-function TestimonialsSection() {
-  return (
-    <section className="section-padding bg-cream-light">
-      <div className="container-safe">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-heading-lg mb-4">Parent Testimonials</h2>
-          <p className="text-subheading text-gray-600 max-w-2xl mx-auto">
-            What parents say about our school
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((testimonial, i) => (
-            <div key={i} className="card-premium">
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, j) => (
-                  <Star key={j} size={18} className="fill-accent-gold text-accent-gold" />
-                ))}
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-4 italic">
-                "{testimonial.content}"
-              </p>
-              <div className="border-t border-gray-200 pt-4">
-                <p className="font-semibold text-gray-900 text-sm">{testimonial.name}</p>
-                <p className="text-xs text-gray-600">{testimonial.relation}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // CTA Section
 function CTASection() {
@@ -378,8 +242,8 @@ function LocationSection() {
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <AboutSection />
+      <HeroSlider />
+      <StatsSection />
       <ProgramsSection />
       <FacilitiesSection />
       <WhyChooseSection />

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { SCHOOL } from '@/lib/constants';
+import AnnouncementTicker from '@/components/AnnouncementTicker';
 import { generateSchoolSchema } from '@/lib/seo';
 import '@/globals.css';
 
@@ -53,6 +53,7 @@ export default function RootLayout({
       </head>
       <body className="bg-white">
         <Header />
+        <AnnouncementTicker />
         <main className="min-h-screen">{children}</main>
         <Footer />
         <WhatsAppButton />
