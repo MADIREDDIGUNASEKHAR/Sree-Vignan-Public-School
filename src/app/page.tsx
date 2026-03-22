@@ -9,6 +9,10 @@ import StatsSection from '@/components/StatsSection';
 import ProgramsSection from '@/components/ProgramsSection';
 import FacilitiesSection from '@/components/FacilitiesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import GallerySection from '@/components/GallerySection';
+import ClassXResultsSection from '@/components/Classxresultssection';
+import CTASection from '@/components/CTASection';
+import FeaturesSection from '@/components/FeaturesSection';
 
 export const metadata: Metadata = {
   title: 'Home | Sree Vignan Public School',
@@ -98,70 +102,7 @@ function WhyChooseSection() {
   );
 }
 
-// Gallery Section
-function GallerySection() {
-  const galleryItems = [
-  { id: 1, title: 'Classroom Learning', category: 'Academics', image: '/gallery/image1.jpg' },
-  { id: 2, title: 'Sports Day', category: 'Activities', image: '/gallery/image2.jpg' },
-  { id: 3, title: 'School Event', category: 'Events', image: '/gallery/image3.jpg' },
-  { id: 4, title: 'Student Projects', category: 'Academics', image: '/gallery/image4.jpg' },
-  { id: 5, title: 'Cultural Program', category: 'Activities', image: '/gallery/image5.jpg' },
-  { id: 6, title: 'Awards Ceremony', category: 'Events', image: '/gallery/image6.jpg' },
-];
 
-  return (
-    <section className="section-padding bg-white">
-      <div className="container-safe">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-heading-lg mb-4">School Gallery</h2>
-          <p className="text-subheading text-gray-600 max-w-2xl mx-auto">
-            Moments from school activities and achievements
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryItems.map((item) => (
-            <div key={item.id} className="relative rounded-xl overflow-hidden shadow-soft-lg hover:shadow-soft-xl transition-all duration-300 group">
-              <div className="relative w-full h-64 overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="badge bg-accent-gold/90 text-royal-navy">{item.category}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Button href="/gallery" variant="secondary">View Full Gallery</Button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-// CTA Section
-function CTASection() {
-  return (
-    <section className="section-padding bg-gradient-to-r from-primary-purple to-purple-700 text-white">
-      <div className="container-safe text-center">
-        <h2 className="text-heading-lg mb-4">Admissions Open for 2026-27</h2>
-        <p className="text-xl text-purple-100 max-w-2xl mx-auto mb-8">
-          Give your child the best education with Sree Vignan Public School
-        </p>
-        <Button href="/contact" className="bg-accent-gold text-royal-navy hover:bg-yellow-400">
-          Enroll Your Child Now
-        </Button>
-      </div>
-    </section>
-  );
-}
 
 // Location Section
 function LocationSection() {
@@ -244,77 +185,17 @@ export default function HomePage() {
     <>
       <HeroSlider />
       <StatsSection />
+      <ClassXResultsSection />
       <ProgramsSection />
       <FacilitiesSection />
       <WhyChooseSection />
       <GallerySection />
       <TestimonialsSection />
       <FeaturesSection />
-      <CTASection />
       <LocationSection />
+      <CTASection />
+      
     </>
   );
 }
 
-// New Features Section
-function FeaturesSection() {
-  return (
-    <section className="section-padding bg-cream-light">
-      <div className="container-safe">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-heading-lg mb-4">Explore More Features</h2>
-          <p className="text-subheading text-gray-600 max-w-2xl mx-auto">
-            Discover our comprehensive online services designed for parents and students
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              icon: '📰',
-              title: 'Latest News',
-              description: 'Stay updated with school news, achievements, and announcements',
-              href: '/news',
-              btnText: 'Read News',
-            },
-            {
-              icon: '📋',
-              title: 'Online Admission',
-              description: 'Apply for admission online and track your application status',
-              href: '/admission',
-              btnText: 'Apply Now',
-            },
-            {
-              icon: '👨‍🏫',
-              title: 'Faculty',
-              description: 'Meet our experienced and dedicated team of educators',
-              href: '/faculty',
-              btnText: 'View Faculty',
-            },
-            {
-              icon: '❓',
-              title: 'FAQ',
-              description: 'Find answers to common questions about admissions and school policies',
-              href: '/faq',
-              btnText: 'Read FAQ',
-            },
-          ].map((feature, i) => (
-            <div key={i} className="card-premium hover:shadow-soft-xl transition-all group">
-              <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary-purple transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600 text-sm mb-6">{feature.description}</p>
-              <a
-                href={feature.href}
-                className="inline-flex items-center text-primary-purple font-semibold hover:gap-2 transition-all"
-              >
-                {feature.btnText} →
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
