@@ -236,7 +236,8 @@ export default function ProgramsSection() {
 
   return (
     <section
-      className="relative overflow-hidden"
+      id="academics"
+      className="relative overflow-hidden scroll-mt-28"
       style={{ background: '#fdf6e8', paddingTop: '80px', paddingBottom: '80px' }}
     >
       {/* Watercolor wash background */}
@@ -320,7 +321,7 @@ export default function ProgramsSection() {
             (scrollRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
             if (el) { el.addEventListener('scroll', checkScroll); checkScroll(); }
           }}
-          className="flex gap-5 overflow-x-auto pb-6 px-6 md:px-12"
+          className="programs-scroll flex gap-5 overflow-x-auto pb-6 px-6 md:px-12 xl:justify-center"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
@@ -404,9 +405,6 @@ export default function ProgramsSection() {
               </div>
             </div>
           ))}
-
-          {/* End spacer */}
-          <div className="flex-shrink-0 w-6" />
         </div>
 
         {/* Scroll dots indicator */}

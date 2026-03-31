@@ -96,7 +96,7 @@ export default function CTASection() {
           {[
             '✦ CBSE Affiliated',
             '✦ 1000+ Students',
-            '✦ 14+ Years of Excellence',
+            '✦ 34+ Years of Excellence',
             '✦ Expert Faculty',
           ].map((item, i) => (
             <span

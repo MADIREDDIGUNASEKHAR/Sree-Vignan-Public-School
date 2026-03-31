@@ -263,7 +263,7 @@ export default function ClassXResultsSection() {
             gridTemplateColumns:"repeat(auto-fill,minmax(88px,1fr))",
             gap:7,marginBottom:20,
           }}>
-            {RANKERS.map(r => <SmallCard key={r.rank} r={r}/>)}
+            {RANKERS.map((r, idx) => <SmallCard key={`${r.rank}-${r.name}-${idx}`} r={r}/>)}
           </div>
 
           {/* ── STATS BAR ── */}

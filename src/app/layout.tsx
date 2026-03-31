@@ -9,8 +9,8 @@ import '@/globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://sreevignanschool.com'),
   title: {
-    default: 'Sree Vignan Public School | Best School in Chodavaram',
-    template: '%s | Sree Vignan Public School',
+    default: 'Sree Vignan School | Best School in Chodavaram',
+    template: '%s | Sree Vignan School',
   },
   description: 'Leading private school in Chodavaram providing quality education with focus on academic excellence and holistic development. Admissions open for 2026-27.',
   keywords: [
@@ -19,18 +19,23 @@ export const metadata: Metadata = {
     'Top School in Chodavaram',
     'English Medium School',
   ],
-  authors: [{ name: 'Sree Vignan Public School' }],
+  authors: [{ name: 'Sree Vignan School' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://sreevignanschool.com',
-    siteName: 'Sree Vignan Public School',
-    title: 'Sree Vignan Public School | Quality Education in Chodavaram',
+    siteName: 'Sree Vignan School',
+    title: 'Sree Vignan School | Quality Education in Chodavaram',
     description: 'Leading school providing quality education with academic excellence and holistic development.',
   },
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: '/gallery/LOGO.png',
+    shortcut: '/gallery/LOGO.png',
+    apple: '/gallery/LOGO.png',
   },
 };
 
@@ -49,12 +54,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <meta name="theme-color" content="#1565C0" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/gallery/LOGO.jpeg" />
       </head>
       <body className="bg-white">
         <Header />
         <AnnouncementTicker />
-        <main className="min-h-screen">{children}</main>
+        <main className="pt-[108px]">{children}</main>
         <Footer />
         <WhatsAppButton />
       </body>

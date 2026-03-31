@@ -174,7 +174,7 @@ export default function FacilitiesSection() {
   }, [TOTAL]);
 
   return (
-    <section className="overflow-hidden" style={{ background: '#5b21b6' }}>
+    <section className="overflow-hidden" style={{ background: '#f5d5ab' }}>
 
       {/* ── Purple header ── */}
       <div className="relative px-8 md:px-16 pt-16 pb-16 overflow-hidden">
@@ -182,49 +182,50 @@ export default function FacilitiesSection() {
         {/* Deco circles */}
         <div className="absolute pointer-events-none" style={{
           width: 340, height: 340, borderRadius: '50%',
-          background: 'rgba(212,175,55,0.10)', top: -100, right: -80,
+          background: 'rgba(135,14,5,0.10)', top: -100, right: -80,
         }}/>
         <div className="absolute pointer-events-none" style={{
           width: 180, height: 180, borderRadius: '50%',
-          background: 'rgba(255,255,255,0.05)', bottom: 60, left: '30%',
+          background: 'rgba(135,14,5,0.06)', bottom: 60, left: '30%',
         }}/>
         <div className="absolute pointer-events-none" style={{
           width: 90, height: 90, borderRadius: '50%',
-          background: 'rgba(212,175,55,0.18)', bottom: 90, right: '28%',
+          background: 'rgba(135,14,5,0.14)', bottom: 90, right: '28%',
         }}/>
         <div className="absolute pointer-events-none" style={{
           width: 50, height: 50, borderRadius: '50%',
-          background: 'rgba(255,255,255,0.08)', top: 40, left: '18%',
+          background: 'rgba(135,14,5,0.08)', top: 40, left: '18%',
         }}/>
 
         <div className="mb-5">
           <span
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase"
             style={{
-              background: 'rgba(255,255,255,0.12)',
-              border: '1px solid rgba(255,255,255,0.22)',
-              color: 'rgba(255,255,255,0.9)',
+              background: 'rgba(135,14,5,0.08)',
+              border: '1px solid rgba(135,14,5,0.18)',
+              color: '#870e05',
             }}
           >
-            <span className="w-2 h-2 rounded-full inline-block" style={{ background: '#D4AF37' }} />
+            <span className="w-2 h-2 rounded-full inline-block" style={{ background: '#870e05' }} />
             Infrastructure
           </span>
         </div>
 
         <h2
-          className="text-white font-black leading-none mb-5"
+          className="font-black leading-none mb-5"
           style={{
             fontSize: 'clamp(36px, 6vw, 68px)',
             letterSpacing: '-0.03em',
             maxWidth: 720,
+            color: '#870e05',
           }}
         >
           A school built for<br />
-          <span style={{ color: '#D4AF37' }}>your child's best.</span>
+          <span style={{ color: '#870e05' }}>your child's best.</span>
         </h2>
         <p
           className="text-sm leading-relaxed max-w-md"
-          style={{ color: 'rgba(255,255,255,0.55)' }}
+          style={{ color: 'rgba(135,14,5,0.72)' }}
         >
           State-of-the-art facilities designed so every student can learn, grow, play, and thrive every single day.
         </p>
@@ -255,11 +256,11 @@ export default function FacilitiesSection() {
         {/* Fade edges — purple */}
         <div
           className="absolute inset-y-0 left-0 w-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, #5b21b6, transparent)' }}
+          style={{ background: 'linear-gradient(to right, #f5d5ab, transparent)' }}
         />
         <div
           className="absolute inset-y-0 right-0 w-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, #5b21b6, transparent)' }}
+          style={{ background: 'linear-gradient(to left, #f5d5ab, transparent)' }}
         />
       </div>
 
@@ -268,13 +269,13 @@ export default function FacilitiesSection() {
         <Link
           href="/about"
           className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-bold transition-all hover:opacity-90 hover:scale-105"
-          style={{ background: '#D4AF37', color: '#1a0050' }}
+          style={{ background: '#870e05', color: '#f5d5ab' }}
         >
           View All Facilities
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path
               d="M3 8h10M8 3l5 5-5 5"
-              stroke="#1a0050"
+              stroke="#f5d5ab"
               strokeWidth="1.8"
               strokeLinecap="round"
               strokeLinejoin="round"

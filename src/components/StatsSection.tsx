@@ -21,10 +21,10 @@ function useCountUp(target: number, duration = 2000, start = false) {
 }
 
 const stats = [
-  { id: 'students', num: 1000, suffix: '+', label: 'Students Enrolled',  sub: 'Growing family across all grades',    accent: '#7C3AED', dur: 2000 },
+  { id: 'students', num: 1000, suffix: '+', label: 'Students Enrolled',  sub: 'Growing family across all grades',    accent: '#9c0b0b', dur: 2000 },
   { id: 'pass',     num: 100,  suffix: '%', label: 'Board Pass Rate',     sub: 'Class 10 & 12 excellence',            accent: '#b5921e', dur: 1800 },
-  { id: 'teachers', num: 50,   suffix: '+', label: 'Dedicated Teachers',  sub: 'Committed to every child',            accent: '#9333EA', dur: 1600 },
-  { id: 'years',    num: 14,   suffix: '+', label: 'Years of Excellence', sub: 'Serving Chodavaram since 2010',       accent: '#1C3A47', dur: 1400 },
+  { id: 'teachers', num: 50,   suffix: '+', label: 'Dedicated Teachers',  sub: 'Committed to every child',            accent: '#9c0b0b', dur: 1600 },
+  { id: 'years',    num: 34,   suffix: '+', label: 'Years of Excellence', sub: 'Serving Chodavaram since 1992',       accent: '#1C3A47', dur: 1400 },
 ];
 
 function StatCard({
@@ -35,19 +35,20 @@ function StatCard({
   const count = useCountUp(stat.num, stat.dur, visible);
   return (
     <div
-      className="relative rounded-2xl p-5 overflow-hidden"
+      className="relative rounded-md p-5 overflow-hidden"
       style={{
-        background: 'rgba(255,255,255,0.82)',
-        border: '1px solid rgba(255,255,255,0.95)',
+        background: 'rgba(255,255,255,0.88)',
+        border: '1px solid rgba(156,11,11,0.15)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
+        boxShadow: '0 2px 12px rgba(156,11,11,0.07)',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(24px)',
         transition: `opacity 0.65s ease ${index * 120}ms, transform 0.65s ease ${index * 120}ms`,
       }}
     >
       {/* Top accent bar */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl" style={{ background: stat.accent }} />
+      <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-md" style={{ background: stat.accent }} />
       <p className="font-black leading-none mb-1" style={{ fontSize: 32, letterSpacing: '-0.02em', color: stat.accent }}>
         {count}{stat.suffix}
       </p>
@@ -73,7 +74,7 @@ export default function StatsSection() {
   return (
     <section
       className="relative overflow-hidden section-padding"
-      style={{ background: '#fdf6e8' }}
+      style={{ background: '#fffbcc' }}
     >
       {/* ── Watercolor wash background ── */}
       <svg
@@ -194,17 +195,32 @@ export default function StatsSection() {
           {/* Right — stats */}
           <div ref={ref} className="flex flex-col gap-5">
             <div>
+              {/* Badge — matches header pill style */}
               <span
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
-                style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid #d8c4f0', color: '#6b21a8' }}
+                style={{
+                  background: '#9c0b0b',
+                  color: '#fffbcc',
+                  border: '1px solid rgba(156,11,11,0.3)',
+                }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-primary-purple inline-block" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#fffbcc] inline-block" />
                 Our Impact in Numbers
               </span>
-              <h2 className="text-heading-lg text-gray-900 mb-2">
-                Sree Vignan <span className="text-primary-purple">Over the Years</span>
+
+              {/* Heading — mirrors header's school name style */}
+              <h2 className="text-heading-lg font-bold text-gray-900 mb-2">
+                Sree Vignan{' '}
+                <span style={{ color: '#9c0b0b' }}>Over the Years</span>
               </h2>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-md">
+
+              {/* Divider line — echoes header's top strip gradient */}
+              <div
+                className="h-[3px] w-16 rounded-full mb-3"
+                style={{ background: 'linear-gradient(to right, #b91c1c, #ca8a04, #16a34a)' }}
+              />
+
+              <p className="text-gray-600 text-sm leading-relaxed max-w-md">
                 A decade of nurturing young minds in Chodavaram — with results that speak louder than words.
               </p>
             </div>
@@ -215,15 +231,17 @@ export default function StatsSection() {
               ))}
             </div>
 
+            {/* CTA — matches header's "APPLY NOW" button exactly */}
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 w-fit px-6 py-3 rounded-full text-white text-xs font-bold tracking-widest uppercase"
-              style={{ background: '#7C3AED' }}
+              className="inline-flex items-center gap-2 w-fit px-6 py-2 rounded-md text-white text-xs font-bold tracking-widest uppercase hover:scale-105 transition"
+              style={{ background: '#9c0b0b' }}
             >
-              <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse inline-block" />
+              <span className="w-2 h-2 rounded-full bg-[#fffbcc] animate-pulse inline-block" />
               Enrolling Now — 2026-27
             </Link>
           </div>
+
         </div>
       </div>
     </section>

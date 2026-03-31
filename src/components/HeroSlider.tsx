@@ -7,28 +7,43 @@ import Link from 'next/link';
 const slides = [
   {
     id: 1,
-    image: '/gallery/image13.png',
+    image: '/gallery/HERO/image1.jpeg',
+    imagePosition: 'center 30%',
     headline: 'Empowering Young Minds',
     subline: 'Quality Education in Chodavaram since 2010',
     cta: { label: 'Enroll Now', href: '/contact' },
   },
   {
     id: 2,
-    image: '/gallery/image1.jpg',
+    image: '/gallery/HERO/image8.jpg',
     headline: 'Excellence in Academics',
     subline: '100% results — nurturing future leaders every year',
     cta: { label: 'Our Programs', href: '/academics' },
   },
   {
     id: 3,
-    image: '/gallery/image2.jpg',
+    image:'/gallery/HERO/image3.jpeg',
     headline: 'Beyond the Classroom',
     subline: 'Sports, arts, and activities for holistic growth',
     cta: { label: 'View Gallery', href: '/gallery' },
   },
   {
     id: 4,
-    image: '/gallery/image3.jpg',
+    image:  '/gallery/HERO/image4.jpeg',
+    headline: 'A Campus Built for Learners',
+    subline: 'State-of-the-art facilities designed for modern education',
+    cta: { label: 'Explore More', href: '/about' },
+  },
+  {
+    id: 5,
+    image:  '/gallery/HERO/image5.jpeg',
+    headline: 'A Campus Built for Learners',
+    subline: 'State-of-the-art facilities designed for modern education',
+    cta: { label: 'Explore More', href: '/about' },
+  },
+  {
+    id: 6,
+    image:  '/gallery/HERO/image6.jpeg',
     headline: 'A Campus Built for Learners',
     subline: 'State-of-the-art facilities designed for modern education',
     cta: { label: 'Explore More', href: '/about' },
@@ -60,7 +75,7 @@ export default function HeroSlider() {
   }, [next]);
 
   return (
-    <div className="relative w-full h-[90vh] min-h-[560px] max-h-[800px] overflow-hidden bg-black">
+    <section id="home" className="relative w-full h-[calc(100vh-108px)] overflow-hidden bg-black scroll-mt-28">
 
       {/* Slides */}
       {slides.map((slide, i) => (
@@ -76,25 +91,24 @@ export default function HeroSlider() {
             fill
             priority={i === 0}
             className="object-cover scale-105"
+            style={slide.imagePosition ? { objectPosition: slide.imagePosition } : undefined}
             sizes="100vw"
           />
-          {/* Dark overlay */}
+          {/* Dark overlay (UNCHANGED) */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
         </div>
       ))}
 
-      {/* Branding block — bottom left like DPS */}
-      <div className="absolute bottom-0 left-0 z-20 bg-primary-purple px-8 py-6 min-w-[260px]">
-        <p className="text-accent-gold text-xs font-bold tracking-[0.2em] uppercase mb-1">
+      {/* Branding block */}
+      <div className="absolute bottom-0 left-0 z-20 bg-[#9c0b0b] px-4 py-4 min-w-[180px] md:px-8 md:py-6 md:min-w-[260px]">
+        <p className="text-[#fffbcc] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-1">
           Sree Vignan
         </p>
-        <p className="text-white text-3xl font-black leading-none tracking-tight">
-          PUBLIC
+        <p className="text-white text-xl md:text-3xl font-black leading-none tracking-tight">
+          school
         </p>
-        <p className="text-white text-3xl font-black leading-none tracking-tight">
-          SCHOOL
-        </p>
+       
       </div>
 
       {/* Slide text content */}
@@ -119,7 +133,7 @@ export default function HeroSlider() {
                   </p>
                   <Link
                     href={slide.cta.href}
-                    className="inline-block bg-accent-gold text-royal-navy font-bold text-sm px-6 py-3 rounded-full hover:bg-yellow-400 transition-colors"
+                    className="inline-block bg-[#fffbcc] text-[#9c0b0b] font-bold text-sm px-6 py-3 rounded-full hover:bg-yellow-200 transition-colors"
                   >
                     {slide.cta.label} →
                   </Link>
@@ -159,7 +173,7 @@ export default function HeroSlider() {
             aria-label={`Go to slide ${i + 1}`}
             className={`transition-all duration-300 rounded-full ${
               i === current
-                ? 'w-6 h-2 bg-accent-gold'
+                ? 'w-6 h-2 bg-[#fffbcc]'
                 : 'w-2 h-2 bg-white/50 hover:bg-white/80'
             }`}
           />
@@ -170,15 +184,15 @@ export default function HeroSlider() {
       <div className="absolute bottom-0 left-0 right-0 z-30 h-[3px] bg-white/10">
         <div
           key={current}
-          className="h-full bg-accent-gold"
+          className="h-full bg-[#fffbcc]"
           style={{ animation: 'progress 5s linear forwards' }}
         />
       </div>
 
-      {/* Enquire Now — right side vertical tab like DPS */}
+      {/* Enquire Now */}
       <Link
         href="/contact"
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-primary-purple text-white text-xs font-bold tracking-widest px-2 py-4 writing-mode-vertical hover:bg-purple-800 transition-colors"
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-[#9c0b0b] text-white text-xs font-bold tracking-widest px-2 py-4 writing-mode-vertical hover:bg-red-800 transition-colors"
         style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
       >
         ENQUIRE NOW
@@ -190,6 +204,6 @@ export default function HeroSlider() {
           to   { width: 100% }
         }
       `}</style>
-    </div>
+    </section>
   );
 }

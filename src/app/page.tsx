@@ -55,7 +55,7 @@ function AboutSection() {
           {[
             { number: '1000+', label: 'Students Enrolled' },
             { number: '50+', label: 'Dedicated Teachers' },
-            { number: '14+', label: 'Years of Excellence' },
+            { number: '34+', label: 'Years of Excellence' },
           ].map((stat, i) => (
             <div key={i} className="card-premium text-center">
               <p className="text-4xl font-bold text-primary-purple mb-2">{stat.number}</p>
@@ -73,7 +73,7 @@ function AboutSection() {
 // Why Choose Us Section
 function WhyChooseSection() {
   return (
-    <section className="section-padding bg-cream-light">
+    <section id="why-choose" className="section-padding bg-cream-light scroll-mt-28">
       <div className="container-safe">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-heading-lg mb-4">Why Choose Sree Vignan?</h2>

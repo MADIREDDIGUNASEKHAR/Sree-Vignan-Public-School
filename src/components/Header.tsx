@@ -1,178 +1,145 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { SCHOOL } from '@/lib/constants';
-import { Button } from './Button';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [exploreOpen, setExploreOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const mainNavLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Academics', href: '/academics' },
-    { label: 'Gallery', href: '/gallery' },
-    { label: 'Contact', href: '/contact' },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const exploreLinks = [
-    { label: 'News', href: '/news' },
-    { label: 'Faculty', href: '/faculty' },
+  const exploreItems = [
+    { label: 'News & Updates', href: '/news' },
     { label: 'Events', href: '/events' },
-    { label: 'Clubs', href: '/clubs' },
+    { label: 'Faculty', href: '/faculty' },
     { label: 'FAQ', href: '/faq' },
   ];
 
-  const quickLinks = [
-    { label: 'Admission', href: '/admission' },
+  const navItems = [
+    { label: 'HOME', href: '/#home' },
+    { label: 'ABOUT', href: '/#why-choose' },
+    { label: 'ACADEMICS', href: '/#academics' },
+    { label: 'GALLERY', href: '/#gallery' },
+    { label: 'CONTACT', href: '/contact' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-soft">
-      <nav className="container-safe flex items-center justify-between py-3">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-10 h-10 bg-gradient-to-br from-primary-purple to-purple-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">SV</span>
-          </div>
-          <div className="hidden sm:block">
-            <p className="text-sm font-bold text-primary-purple">Sree Vignan</p>
-            <p className="text-xs text-gray-500">School</p>
-          </div>
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#fffbcc]/90 backdrop-blur-md shadow-md">
+
+      {/* TOP STRIP */}
+      <div className="h-[4px] w-full bg-gradient-to-r from-red-700 via-yellow-500 to-green-600" />
+
+      {/* NAVBAR */}
+      <nav className="h-[72px] flex items-center justify-between px-4 sm:px-6 lg:px-10">
+
+        {/* LOGO */}
+        <Link href="/#home" className="flex items-center gap-3">
+          <img
+            src="/gallery/LOGO.png"
+            alt="logo"
+            className={`transition-all ${scrolled ? 'w-10 h-10' : 'w-12 h-12'}`}
+          />
+          <div className="leading-tight">
+  <h1 className="text-[#9c0b0b] font-bold">Sree Vignan School</h1>
+
+  <div className="flex items-center gap-2 whitespace-nowrap">
+    <p className="text-xs">English Medium</p>
+
+    <span className="text-[10px] px-2 py-[2px] rounded-full bg-[#9c0b0b]/10 text-[#9c0b0b] border border-[#9c0b0b]/20 shrink-0">
+      Est. 1992
+    </span>
+  </div>
+</div>
         </Link>
 
-        {/* Desktop Main Navigation */}
-        <div className="hidden md:flex items-center gap-6">
-          {mainNavLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="text-gray-700 font-medium hover:text-primary-purple transition-colors text-sm"
-            >
-              {link.label}
+        {/* DESKTOP NAV */}
+        <div className="hidden md:flex items-center gap-6 text-sm font-semibold">
+
+          {navItems.map((item) => (
+            <Link key={item.label} href={item.href} className="relative group cursor-pointer">
+              {item.label}
+              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#9c0b0b] transition-all group-hover:w-full"></span>
             </Link>
           ))}
 
-          {/* Explore Dropdown */}
+          {/* EXPLORE DROPDOWN */}
           <div className="relative group">
-            <button className="flex items-center gap-1 text-gray-700 font-medium hover:text-primary-purple transition-colors text-sm">
-              Explore <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-            </button>
-            <div className="absolute left-0 mt-0 w-40 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all py-2">
-              {exploreLinks.map((link) => (
+            <span className="flex items-center gap-1 cursor-pointer">
+              EXPLORE <ChevronDown size={14} />
+            </span>
+
+            <div className="absolute top-8 left-0 w-52 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+              {exploreItems.map((item) => (
                 <Link
-                  key={link.label}
-                  href={link.href}
-                  className="block px-4 py-2 text-gray-700 hover:text-primary-purple hover:bg-purple-50 transition-colors text-sm"
+                  key={item.label}
+                  href={item.href}
+                  className="block px-4 py-2 text-sm hover:bg-[#fffbcc] hover:text-[#9c0b0b]"
                 >
-                  {link.label}
+                  {item.label}
                 </Link>
               ))}
             </div>
           </div>
+
         </div>
 
-        {/* Desktop CTA Section */}
-        <div className="hidden md:flex items-center gap-3">
-          <Button href="/admission" size="sm">
-            Apply Now
-          </Button>
-          
-          {/* More Options Dropdown */}
-          <div className="relative group">
-            <button className="px-3 py-1.5 text-sm font-semibold text-primary-purple hover:bg-purple-100 rounded-lg transition-all">
-              ⋮
-            </button>
-            <div className="absolute right-0 mt-0 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all py-2">
-              {quickLinks.slice(1).map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="block px-4 py-2 text-gray-700 hover:text-primary-purple hover:bg-purple-50 transition-colors text-sm"
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <a
-                href={`tel:${SCHOOL.phone}`}
-                className="block px-4 py-2 text-gray-700 hover:text-primary-purple hover:bg-purple-50 transition-colors text-sm border-t border-gray-200 mt-2 pt-3"
-              >
-                📞 {SCHOOL.phone}
-              </a>
-            </div>
-          </div>
+        {/* APPLY BUTTON */}
+        <div className="hidden md:flex gap-3">
+          <Link href="/contact" className="bg-[#9c0b0b] text-white px-4 py-2 rounded-md hover:scale-105 transition">
+            APPLY NOW
+          </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden p-2 hover:bg-purple-100 rounded-lg transition-colors"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        {/* MOBILE BUTTON */}
+        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X /> : <Menu />}
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* 🔥 MOBILE MENU */}
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
-          <div className="container-safe py-4 space-y-2">
-            {mainNavLinks.map((link) => (
+        <div className="md:hidden bg-[#fffbcc] px-4 pb-4 space-y-3 border-t">
+
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="block text-gray-800 font-medium cursor-pointer"
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+
+          {/* EXPLORE MOBILE */}
+          <div className="border-t pt-3 mt-3">
+            <p className="text-sm font-semibold text-gray-600 mb-2">
+              Explore
+            </p>
+
+            {exploreItems.map((item) => (
               <Link
-                key={link.label}
-                href={link.href}
-                className="block px-3 py-2 text-gray-700 font-medium hover:text-primary-purple hover:bg-purple-50 rounded-lg transition-colors"
+                key={item.label}
+                href={item.href}
+                className="block text-sm text-gray-700 py-1"
                 onClick={() => setMenuOpen(false)}
               >
-                {link.label}
+                {item.label}
               </Link>
             ))}
-
-            {/* Mobile Explore */}
-            <button
-              onClick={() => setExploreOpen(!exploreOpen)}
-              className="w-full text-left px-3 py-2 text-gray-700 font-medium hover:text-primary-purple hover:bg-purple-50 rounded-lg transition-colors flex items-center justify-between"
-            >
-              Explore
-              <ChevronDown
-                size={16}
-                className={`transition-transform ${exploreOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
-            {exploreOpen && (
-              <div className="space-y-1 ml-4">
-                {exploreLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="block px-3 py-2 text-sm text-gray-700 hover:text-primary-purple hover:bg-purple-50 rounded-lg transition-colors"
-                    onClick={() => {
-                      setMenuOpen(false);
-                      setExploreOpen(false);
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-
-            {/* Mobile CTA */}
-            <div className="pt-4 space-y-3 border-t border-gray-200 mt-4">
-              <Button href="/admission" className="w-full">
-                Apply for Admission
-              </Button>
-              <a
-                href={`tel:${SCHOOL.phone}`}
-                className="block px-4 py-2 text-center text-sm font-semibold text-primary-purple bg-purple-100 hover:bg-primary-purple hover:text-white rounded-lg transition-all"
-              >
-                📞 Call Us
-              </a>
-            </div>
           </div>
+
+          <Link href="/contact" className="block w-full mt-3 bg-[#9c0b0b] text-white py-2 rounded text-center" onClick={() => setMenuOpen(false)}>
+            APPLY NOW
+          </Link>
         </div>
       )}
     </header>
