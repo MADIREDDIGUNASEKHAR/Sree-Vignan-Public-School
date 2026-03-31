@@ -56,7 +56,7 @@ const PALETTE = [
   ["#880e4f","#fce4ec"],["#e65100","#fff3e0"],
 ] as const;
 
-function avatarColors(name: string): [string, string] {
+function avatarColors(name: string): readonly [string, string] {
   const idx = ((name.charCodeAt(0) ?? 0) + (name.charCodeAt(1) ?? 0)) % PALETTE.length;
   return PALETTE[idx];
 }
