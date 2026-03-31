@@ -129,6 +129,24 @@ export const TESTIMONIALS = [
     content: 'Best school in Chodavaram. The discipline, facilities, and teaching quality are top-notch.',
     rating: 5,
   },
+  {
+    name: 'Rajesh Kumar',
+    relation: 'Parent',
+    content: 'Sree Vignan has given my child an excellent education. The teachers are very caring and the campus is very safe. Highly recommended!',
+    rating: 5,
+  },
+  {
+    name: 'Priya Sharma',
+    relation: 'Parent',
+    content: 'The curriculum is comprehensive and the focus on all-around development is commendable. My child loves coming to school!',
+    rating: 5,
+  },
+  {
+    name: 'Anil Patel',
+    relation: 'Parent',
+    content: 'Best school in Chodavaram. The discipline, facilities, and teaching quality are top-notch.',
+    rating: 5,
+  },
 ];
 
 // SEO Keywords
