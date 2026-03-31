@@ -9,7 +9,7 @@ import StatsSection from '@/components/StatsSection';
 import ProgramsSection from '@/components/ProgramsSection';
 import FacilitiesSection from '@/components/FacilitiesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
-import GallerySection from '@/components/GallerySection';
+import GallerySection from '@/app/gallery/page';
 import ClassXResultsSection from '@/components/Classxresultssection';
 import CTASection from '@/components/CTASection';
 import FeaturesSection from '@/components/FeaturesSection';
