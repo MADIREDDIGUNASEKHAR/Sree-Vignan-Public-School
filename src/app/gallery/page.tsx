@@ -210,7 +210,8 @@ export default function GallerySection() {
 
   return (
     <section
-      className="relative overflow-hidden"
+      id="gallery"
+      className="relative overflow-hidden scroll-mt-[108px]"
       style={{ background: '#6B21E8' }}
     >
       {/* Blob decorations */}

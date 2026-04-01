@@ -1,16 +1,16 @@
 // School information and content
 export const SCHOOL = {
   name: 'Sree Vignan Public School',
-  nameLocal: 'శ్రీ విజ్ఞాన్ పబ్లిక్ పాఠశాల',
-  phone: '+91-9542560328', // Replace with actual
-  whatsapp: '919542560328', // Without +91
+  nameLocal: 'శ్రీ విజ్ఞాన్ పాఠశాల',
+  phone: '+91-9441944489', // Replace with actual
+  whatsapp: '9441944489', // Without +91
   email: 'info@sreevignanschool.com',
   address: {
     street: 'Chodavaram',
     city: 'Visakhapatnam',
     state: 'Andhra Pradesh',
     pincode: '531036',
-    fullAddress: 'Chodavaram, Visakhapatnam, Andhra Pradesh 531036',
+    fullAddress: 'Sree Vignan School, Shanti Nagar,Chodavaram, Visakhapatnam, Andhra Pradesh 531036',
   },
   maps: 'https://maps.app.goo.gl/qBpxYC4vNHvCR9426',
   hours: 'Mon-Sat: 9:00 AM - 4:00 PM, Sunday: Closed',

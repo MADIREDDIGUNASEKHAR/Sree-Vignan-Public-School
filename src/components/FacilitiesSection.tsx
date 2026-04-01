@@ -11,9 +11,10 @@ const facilities = [
     tag: 'Academics',
     description: 'Interactive boards and tech-enabled digital learning tools for every grade level.',
     image: '/gallery/image1.jpg',
-    accent: '#7C3AED',
-    light: '#EDE9FE',
-    tagText: '#6b21a8',
+    accent: '#e67e22',
+    light: '#fdebd0',
+    tagText: '#c0580a',
+    titleColor: '#1a3a5c',
     stat: '14 Classrooms',
   },
   {
@@ -22,9 +23,10 @@ const facilities = [
     tag: 'Resources',
     description: '5000+ books and digital resources designed to spark curiosity in every student.',
     image: '/gallery/image2.jpg',
-    accent: '#D4AF37',
-    light: '#FEF9C3',
-    tagText: '#713f12',
+    accent: '#f39c12',
+    light: '#fff4dc',
+    tagText: '#a85a0a',
+    titleColor: '#1a3a5c',
     stat: '5000+ Books',
   },
   {
@@ -33,9 +35,10 @@ const facilities = [
     tag: 'Sports',
     description: 'Cricket, football, kabaddi, and athletics — nurturing fitness and team spirit.',
     image: '/gallery/image3.jpg',
-    accent: '#0D9488',
-    light: '#CCFBF1',
-    tagText: '#0f5132',
+    accent: '#1C3A47',
+    light: '#e7ecef',
+    tagText: '#1a3a5c',
+    titleColor: '#1a3a5c',
     stat: '2 Acre Ground',
   },
   {
@@ -44,9 +47,10 @@ const facilities = [
     tag: 'Digital',
     description: 'Fully equipped with modern hardware, software, and high-speed internet access.',
     image: '/gallery/image4.jpg',
-    accent: '#EC4899',
-    light: '#FCE7F3',
-    tagText: '#831843',
+    accent: '#e67e22',
+    light: '#fdebd0',
+    tagText: '#c0580a',
+    titleColor: '#1a3a5c',
     stat: '40 Computers',
   },
   {
@@ -55,9 +59,10 @@ const facilities = [
     tag: 'Safety',
     description: 'CCTV surveillance and trained security personnel protecting your child 24/7.',
     image: '/gallery/image5.jpg',
-    accent: '#6366f1',
-    light: '#E0E7FF',
-    tagText: '#1e3a5f',
+    accent: '#1C3A47',
+    light: '#e7ecef',
+    tagText: '#1a3a5c',
+    titleColor: '#1a3a5c',
     stat: '24/7 Security',
   },
   {
@@ -66,9 +71,10 @@ const facilities = [
     tag: 'Nutrition',
     description: 'Hygienic, nutritious meals prepared fresh daily — so students recharge well.',
     image: '/gallery/image6.jpg',
-    accent: '#9333EA',
-    light: '#F3E8FF',
-    tagText: '#581c87',
+    accent: '#f39c12',
+    light: '#fff4dc',
+    tagText: '#a85a0a',
+    titleColor: '#1a3a5c',
     stat: 'Fresh Daily',
   },
 ];
@@ -80,53 +86,100 @@ function FacilityCard({ f }: { f: typeof facilities[0] }) {
     <div
       className="flex-shrink-0 flex flex-col group"
       style={{
-        width: 290,
-        background: 'white',
-        borderRadius: 20,
+        width: 280,
+        borderRadius: 24,
         overflow: 'hidden',
-        boxShadow: '0 20px 60px rgba(0,0,0,0.25), 0 4px 16px rgba(0,0,0,0.12)',
+        background: '#fff',
+        border: '1px solid rgba(26,58,92,0.07)',
+        boxShadow: '0 16px 40px rgba(26,58,92,0.08)',
+        transition: 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease',
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px)';
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 40px rgba(26,58,92,0.12)';
+        (e.currentTarget as HTMLElement).style.borderColor = 'rgba(243,156,18,0.25)';
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 40px rgba(26,58,92,0.08)';
+        (e.currentTarget as HTMLElement).style.borderColor = 'rgba(26,58,92,0.07)';
       }}
     >
+      {/* ── Full-bleed photo ── */}
       <div className="relative overflow-hidden flex-shrink-0" style={{ height: 188 }}>
         <Image
           src={f.image}
           alt={f.name}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="290px"
+          sizes="280px"
         />
+
+        {/* Colour wash on hover */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{ background: `${f.accent}22` }}
+          style={{ background: `${f.accent}28` }}
         />
+
+        {/* Number badge — top-left, ProgramsSection style */}
+        <div
+          className="absolute top-3 left-3 w-7 h-7 rounded-full flex items-center justify-center text-xs font-black z-10"
+          style={{
+            background: 'rgba(255,255,255,0.92)',
+            color: f.accent,
+            border: `1.5px solid ${f.accent}55`,
+            backdropFilter: 'blur(6px)',
+          }}
+        >
+          {f.id}
+        </div>
+
+        {/* Stat pill — bottom right over photo */}
+        <div
+          className="absolute bottom-3 right-3 z-10 px-3 py-1 rounded-full text-xs font-bold"
+          style={{
+            background: 'rgba(255,255,255,0.90)',
+            color: f.accent,
+            border: `1.5px solid ${f.accent}44`,
+            backdropFilter: 'blur(6px)',
+          }}
+        >
+          {f.stat}
+        </div>
       </div>
 
-      <div className="px-5 py-5 flex flex-col flex-1">
+      {/* ── Card body ── */}
+      <div className="px-5 py-4 flex flex-col flex-1">
+        {/* Tag pill — same `accent18` formula as ProgramsSection */}
         <span
-          className="inline-block text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full w-fit mb-3"
-          style={{ background: f.light, color: f.tagText }}
+          className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 w-fit"
+          style={{ background: `${f.accent}18`, color: f.tagText }}
         >
           {f.tag}
         </span>
+
         <h3
-          className="font-black text-gray-900 mb-1.5"
-          style={{ fontSize: 17, lineHeight: 1.2 }}
+          className="font-black mb-1.5"
+          style={{ fontSize: 17, lineHeight: 1.15, color: f.titleColor }}
         >
           {f.name}
         </h3>
-        <p className="text-gray-500 text-xs leading-relaxed flex-1">
+
+        <p className="text-[12px] leading-relaxed flex-1" style={{ color: '#7a6a55' }}>
           {f.description}
         </p>
+
+        {/* Footer — dashed divider matching ProgramsSection card rhythm */}
         <div
-          className="flex items-center justify-between mt-4 pt-4"
-          style={{ borderTop: '1px solid #f3f4f6' }}
+          className="flex items-center justify-between mt-3 pt-3"
+          style={{ borderTop: `1.5px dashed ${f.accent}28` }}
         >
-          <span className="text-xs font-bold" style={{ color: f.accent }}>
-            {f.stat}
+          <span className="text-[11px] font-bold" style={{ color: f.accent }}>
+            Learn more
           </span>
           <div
             className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-            style={{ background: f.light }}
+            style={{ background: `${f.accent}18` }}
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path
@@ -150,7 +203,7 @@ export default function FacilitiesSection() {
   const posRef    = useRef(0);
   const pausedRef = useRef(false);
 
-  const CARD_W = 290 + 20;
+  const CARD_W = 280 + 20;
   const TOTAL  = CARD_W * facilities.length;
 
   useEffect(() => {
@@ -174,112 +227,100 @@ export default function FacilitiesSection() {
   }, [TOTAL]);
 
   return (
-    <section className="overflow-hidden" style={{ background: '#f5d5ab' }}>
+    <section className="relative overflow-hidden" style={{ background: '#f0ebe0' }}>
 
-      {/* ── Purple header ── */}
-      <div className="relative px-8 md:px-16 pt-16 pb-16 overflow-hidden">
+      {/* ── Watercolor blobs — same as ProgramsSection ── */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1440 700"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <filter id="fac-lg"><feGaussianBlur stdDeviation="30"/></filter>
+          <filter id="fac-md"><feGaussianBlur stdDeviation="14"/></filter>
+          <filter id="fac-sm"><feGaussianBlur stdDeviation="7"/></filter>
+        </defs>
+        <ellipse cx="80"   cy="80"  rx="260" ry="180" fill="#fdebd0" opacity="0.28" filter="url(#fac-lg)"/>
+        <ellipse cx="1380" cy="110" rx="230" ry="160" fill="#f6d7a7" opacity="0.22" filter="url(#fac-lg)"/>
+        <ellipse cx="700"  cy="640" rx="420" ry="120" fill="#e9dfcf" opacity="0.16" filter="url(#fac-lg)"/>
+        <ellipse cx="200"  cy="600" rx="230" ry="140" fill="#f8efe2" opacity="0.18" filter="url(#fac-lg)"/>
+        <ellipse cx="1250" cy="580" rx="200" ry="150" fill="#e7ecef" opacity="0.15" filter="url(#fac-lg)"/>
+        <path d="M60 380 Q260 340 480 380 Q660 415 840 370"
+          stroke="#e67e22" strokeWidth="5" fill="none" opacity="0.05"
+          strokeLinecap="round" filter="url(#fac-sm)"/>
+        <path d="M600 620 Q820 585 1060 620 Q1240 648 1400 610"
+          stroke="#f39c12" strokeWidth="5" fill="none" opacity="0.06"
+          strokeLinecap="round" filter="url(#fac-sm)"/>
+        <circle cx="460" cy="60"  r="20" fill="#f39c12" opacity="0.09" filter="url(#fac-md)"/>
+        <circle cx="960" cy="50"  r="16" fill="#1C3A47" opacity="0.08" filter="url(#fac-md)"/>
+        <circle cx="80"  cy="650" r="18" fill="#e67e22" opacity="0.09" filter="url(#fac-md)"/>
+      </svg>
 
-        {/* Deco circles */}
-        <div className="absolute pointer-events-none" style={{
-          width: 340, height: 340, borderRadius: '50%',
-          background: 'rgba(135,14,5,0.10)', top: -100, right: -80,
-        }}/>
-        <div className="absolute pointer-events-none" style={{
-          width: 180, height: 180, borderRadius: '50%',
-          background: 'rgba(135,14,5,0.06)', bottom: 60, left: '30%',
-        }}/>
-        <div className="absolute pointer-events-none" style={{
-          width: 90, height: 90, borderRadius: '50%',
-          background: 'rgba(135,14,5,0.14)', bottom: 90, right: '28%',
-        }}/>
-        <div className="absolute pointer-events-none" style={{
-          width: 50, height: 50, borderRadius: '50%',
-          background: 'rgba(135,14,5,0.08)', top: 40, left: '18%',
-        }}/>
-
-        <div className="mb-5">
-          <span
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase"
-            style={{
-              background: 'rgba(135,14,5,0.08)',
-              border: '1px solid rgba(135,14,5,0.18)',
-              color: '#870e05',
-            }}
-          >
-            <span className="w-2 h-2 rounded-full inline-block" style={{ background: '#870e05' }} />
-            Infrastructure
-          </span>
-        </div>
-
-        <h2
-          className="font-black leading-none mb-5"
+      {/* ── Header ── */}
+      <div className="relative z-10 px-6 pt-16 pb-8 text-center">
+        <span
+          className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-3"
           style={{
-            fontSize: 'clamp(36px, 6vw, 68px)',
-            letterSpacing: '-0.03em',
-            maxWidth: 720,
-            color: '#870e05',
+            background: 'rgba(243,156,18,0.12)',
+            border: '1px solid rgba(243,156,18,0.3)',
+            color: '#c0580a',
           }}
         >
-          A school built for<br />
-          <span style={{ color: '#870e05' }}>your child's best.</span>
-        </h2>
-        <p
-          className="text-sm leading-relaxed max-w-md"
-          style={{ color: 'rgba(135,14,5,0.72)' }}
+          <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e67e22' }} />
+          Infrastructure
+        </span>
+
+        <h2
+          className="font-black leading-none mb-3"
+          style={{ fontSize: 'clamp(28px, 4.5vw, 52px)', letterSpacing: '-0.02em', color: '#1a3a5c' }}
         >
+          A school built for{' '}
+          <span style={{ color: '#e67e22' }}>your child's best.</span>
+        </h2>
+
+        <p className="text-sm leading-relaxed max-w-md mx-auto" style={{ color: '#7a6a55' }}>
           State-of-the-art facilities designed so every student can learn, grow, play, and thrive every single day.
         </p>
       </div>
 
-      {/* ── Continuous scroll track — still on purple ── */}
+      {/* ── Scrolling track ── */}
       <div
-        className="overflow-hidden relative"
+        className="relative z-10 overflow-hidden"
         onMouseEnter={() => { pausedRef.current = true; }}
         onMouseLeave={() => { pausedRef.current = false; }}
-        style={{ paddingBottom: 48 }}
+        style={{ paddingBottom: 40 }}
       >
         <div
           ref={trackRef}
           className="flex gap-5 will-change-transform"
-          style={{
-            paddingLeft: 32,
-            paddingTop: 8,
-            paddingBottom: 16,
-            width: 'max-content',
-          }}
+          style={{ paddingLeft: 32, paddingTop: 8, paddingBottom: 16, width: 'max-content' }}
         >
           {looped.map((f, i) => (
             <FacilityCard key={`${f.id}-${i}`} f={f} />
           ))}
         </div>
 
-        {/* Fade edges — purple */}
         <div
-          className="absolute inset-y-0 left-0 w-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, #f5d5ab, transparent)' }}
+          className="absolute inset-y-0 left-0 w-20 pointer-events-none z-10"
+          style={{ background: 'linear-gradient(to right, #f0ebe0, transparent)' }}
         />
         <div
-          className="absolute inset-y-0 right-0 w-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, #f5d5ab, transparent)' }}
+          className="absolute inset-y-0 right-0 w-20 pointer-events-none z-10"
+          style={{ background: 'linear-gradient(to left, #f0ebe0, transparent)' }}
         />
       </div>
 
-      {/* ── View all — gold on purple ── */}
-      <div className="text-center pb-14">
+      {/* ── CTA ── */}
+      <div className="relative z-10 text-center pb-14">
         <Link
           href="/about"
           className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-bold transition-all hover:opacity-90 hover:scale-105"
-          style={{ background: '#870e05', color: '#f5d5ab' }}
+          style={{ background: '#e67e22', color: 'white', boxShadow: '0 4px 20px rgba(230,126,34,0.28)' }}
         >
           View All Facilities
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path
-              d="M3 8h10M8 3l5 5-5 5"
-              stroke="#f5d5ab"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <path d="M3 8h10M8 3l5 5-5 5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </Link>
       </div>

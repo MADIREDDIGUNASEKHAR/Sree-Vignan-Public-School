@@ -38,30 +38,25 @@ export function Header() {
       <div className="h-[4px] w-full bg-gradient-to-r from-red-700 via-yellow-500 to-green-600" />
 
       {/* NAVBAR */}
-      <nav className="h-[72px] flex items-center justify-between px-4 sm:px-6 lg:px-10">
+      <nav className="relative h-[72px] flex items-center justify-between px-4 sm:px-6 lg:px-10">
 
         {/* LOGO */}
         <Link href="/#home" className="flex items-center gap-3">
           <img
             src="/gallery/LOGO.png"
             alt="logo"
-            className={`transition-all ${scrolled ? 'w-10 h-10' : 'w-12 h-12'}`}
+            className={`transition-all ${scrolled ? 'w-14 h-14' : 'w-16 h-16'}`}
           />
-          <div className="leading-tight">
-  <h1 className="text-[#9c0b0b] font-bold">Sree Vignan School</h1>
-
-  <div className="flex items-center gap-2 whitespace-nowrap">
-    <p className="text-xs">English Medium</p>
-
-    <span className="text-[10px] px-2 py-[2px] rounded-full bg-[#9c0b0b]/10 text-[#9c0b0b] border border-[#9c0b0b]/20 shrink-0">
-      Est. 1992
-    </span>
-  </div>
-</div>
+          <div className="flex items-center gap-2 leading-tight whitespace-nowrap">
+            <h1 className="text-[#9c0b0b] font-bold text-2xl sm:text-3xl">Sree Vignan School</h1>
+            <span className="text-[10px] px-2 py-[6px] rounded-full bg-[#9c0b0b]/10 text-[#9c0b0b] border border-[#9c0b0b]/20 shrink-0">
+              Est. 1992
+            </span>
+          </div>
         </Link>
 
         {/* DESKTOP NAV */}
-        <div className="hidden md:flex items-center gap-6 text-sm font-semibold">
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-sm font-semibold">
 
           {navItems.map((item) => (
             <Link key={item.label} href={item.href} className="relative group cursor-pointer">

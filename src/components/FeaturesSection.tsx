@@ -37,25 +37,8 @@ export default function FeaturesSection() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ background: '#6B21E8' }}
+      style={{ background: '#fdf6e8' }}
     >
-      {/* Blobs */}
-      <div className="absolute pointer-events-none" style={{
-        width: 380, height: 380, borderRadius: '50%',
-        background: 'rgba(91, 33, 182, 0.6)',
-        top: '-120px', left: '-70px',
-      }} />
-      <div className="absolute pointer-events-none" style={{
-        width: 460, height: 460, borderRadius: '50%',
-        background: 'rgba(109, 40, 217, 0.5)',
-        top: '-160px', right: '-90px',
-      }} />
-      <div className="absolute pointer-events-none" style={{
-        width: 220, height: 220, borderRadius: '50%',
-        background: 'rgba(76, 29, 149, 0.55)',
-        bottom: '-60px', right: '15%',
-      }} />
-
       {/* Grid texture */}
       <div className="absolute inset-0 pointer-events-none" style={{
         backgroundImage: `
@@ -71,25 +54,25 @@ export default function FeaturesSection() {
           <span
             className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6"
             style={{
-              background: 'rgba(212,175,55,0.15)',
-              border: '1px solid rgba(212,175,55,0.3)',
-              color: '#D4AF37',
+              background: 'rgba(255,255,255,0.85)',
+              border: '1px solid #d8c4f0',
+              color: '#6b21a8',
             }}
           >
             <span
               className="w-1.5 h-1.5 rounded-full inline-block"
-              style={{ background: '#D4AF37' }}
+              style={{ background: '#7C3AED' }}
             />
             Quick Links
           </span>
           <h2
-            className="font-black text-white leading-tight mb-4"
-            style={{ fontSize: 'clamp(28px, 4vw, 48px)', letterSpacing: '-0.03em' }}
+            className="font-black leading-tight mb-4"
+            style={{ fontSize: 'clamp(28px, 4vw, 48px)', letterSpacing: '-0.03em', color: '#111827' }}
           >
             Explore More{' '}
-            <span style={{ color: '#D4AF37' }}>Features</span>
+            <span style={{ color: '#7C3AED' }}>Features</span>
           </h2>
-          <p className="text-white/45 text-base max-w-lg mx-auto leading-relaxed">
+          <p className="text-base max-w-lg mx-auto leading-relaxed" style={{ color: '#6b7280' }}>
             Discover our comprehensive online services designed for parents and students
           </p>
         </div>
@@ -103,11 +86,11 @@ export default function FeaturesSection() {
               className="group flex flex-col"
               style={{
                 background: '#ffffff',
-                border: '1px solid rgba(0,0,0,0.06)',
+                border: '1.5px solid rgba(124,58,237,0.12)',
                 borderRadius: 20,
                 padding: '28px 24px',
-                backdropFilter: 'blur(12px)',
                 transition: 'background 0.2s, transform 0.2s',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.background = '#f5f3ff';
@@ -120,17 +103,17 @@ export default function FeaturesSection() {
             >
               <div className="text-4xl mb-5">{feature.icon}</div>
               <h3
-                className="text-gray-900 font-black text-lg mb-2"
-                style={{ letterSpacing: '-0.02em' }}
+                className="font-black text-lg mb-2"
+                style={{ letterSpacing: '-0.02em', color: '#111827' }}
               >
                 {feature.title}
               </h3>
-              <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-6">
+              <p className="text-sm leading-relaxed flex-1 mb-6" style={{ color: '#6b7280' }}>
                 {feature.description}
               </p>
               <span
                 className="inline-flex items-center gap-1.5 text-sm font-bold"
-                style={{ color: '#D4AF37' }}
+                style={{ color: '#7C3AED' }}
               >
                 {feature.btnText} →
               </span>
