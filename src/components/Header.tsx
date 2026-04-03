@@ -47,11 +47,11 @@ export function Header() {
             alt="logo"
             className={`transition-all ${scrolled ? 'w-14 h-14' : 'w-16 h-16'}`}
           />
-          <div className="flex items-center gap-2 leading-tight whitespace-nowrap">
-            <h1 className="text-[#9c0b0b] font-bold text-2xl sm:text-3xl">Sree Vignan School</h1>
-            <span className="text-[10px] px-2 py-[6px] rounded-full bg-[#9c0b0b]/10 text-[#9c0b0b] border border-[#9c0b0b]/20 shrink-0">
-              Est. 1992
-            </span>
+          <div className="flex flex-col leading-tight">
+            <h1 className="text-[#9c0b0b] font-bold text-2xl sm:text-3xl whitespace-nowrap">Sree Vignan School</h1>
+            <p className="pl-5 sm:pl-7 text-[11px] sm:text-xs text-[#9c0b0b]/80 font-medium">
+              Where Legacy meets Excellence Est.1992
+            </p>
           </div>
         </Link>
 

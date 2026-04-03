@@ -14,6 +14,7 @@ import ClassXResultsSection from '@/components/Classxresultssection';
 import CTASection from '@/components/CTASection';
 import FeaturesSection from '@/components/FeaturesSection';
 import WhyChooseSection from '@/components/WhyChooseSection';
+import LeadershipSection from '@/components/LeadershipSection';
 
 export const metadata: Metadata = {
   title: 'Home | Sree Vignan Public School',
@@ -43,11 +44,54 @@ const iconMap: { [key: string]: React.ReactNode } = {
 // About Section
 function AboutSection() {
   return (
-    <section id="about" className="section-padding bg-white">
-      <div className="container-safe">
+    <section
+      id="about"
+      className="section-padding relative overflow-hidden"
+      style={{ background: '#f0ebe0' }}
+    >
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: '-140px',
+          right: '-120px',
+          width: 360,
+          height: 360,
+          borderRadius: '50%',
+          border: '1.5px solid rgba(243,156,18,0.14)',
+        }}
+      />
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: '-120px',
+          left: '-120px',
+          width: 300,
+          height: 300,
+          borderRadius: '50%',
+          border: '1.5px solid rgba(26,58,92,0.08)',
+        }}
+      />
+      <div className="container-safe relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-heading-lg mb-4">About Sree Vignan Public School</h2>
-          <p className="text-subheading text-gray-600">
+          <span
+            className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
+            style={{
+              background: 'rgba(243,156,18,0.12)',
+              border: '1px solid rgba(243,156,18,0.3)',
+              color: '#c0580a',
+            }}
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full inline-block"
+              style={{ background: '#e67e22' }}
+            />
+            About Us
+          </span>
+          <h2 className="text-heading-lg mb-4" style={{ color: '#1a3a5c' }}>
+            About Sree Vignan{' '}
+            <span style={{ color: '#e67e22' }}>Public School</span>
+          </h2>
+          <p className="text-subheading" style={{ color: '#7a6a55' }}>
             Founded in {SCHOOL.foundedYear}, we have been providing quality education with emphasis on academic excellence, discipline, and character development.
           </p>
         </div>
@@ -58,9 +102,17 @@ function AboutSection() {
             { number: '50+', label: 'Dedicated Teachers' },
             { number: '34+', label: 'Years of Excellence' },
           ].map((stat, i) => (
-            <div key={i} className="card-premium text-center">
-              <p className="text-4xl font-bold text-primary-purple mb-2">{stat.number}</p>
-              <p className="text-gray-600 font-medium">{stat.label}</p>
+            <div
+              key={i}
+              className="text-center rounded-2xl p-8"
+              style={{
+                background: '#ffffff',
+                border: '1px solid rgba(26,58,92,0.07)',
+                boxShadow: '0 16px 40px rgba(26,58,92,0.08)',
+              }}
+            >
+              <p className="text-4xl font-bold mb-2" style={{ color: '#e67e22' }}>{stat.number}</p>
+              <p className="font-medium" style={{ color: '#7a6a55' }}>{stat.label}</p>
             </div>
           ))}
         </div>
@@ -215,6 +267,7 @@ export default function HomePage() {
     <>
       <HeroSlider />
       <StatsSection />
+      <LeadershipSection preview />
       <ClassXResultsSection />
       <ProgramsSection />
       <FacilitiesSection />
