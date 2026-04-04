@@ -15,6 +15,7 @@ import CTASection from '@/components/CTASection';
 import FeaturesSection from '@/components/FeaturesSection';
 import WhyChooseSection from '@/components/WhyChooseSection';
 import LeadershipSection from '@/components/LeadershipSection';
+import FAQSection from '@/components/FAQSection';
 
 export const metadata: Metadata = {
   title: 'Home | Sree Vignan Public School',
@@ -267,15 +268,16 @@ export default function HomePage() {
     <>
       <HeroSlider />
       <StatsSection />
-      <LeadershipSection preview />
       <ClassXResultsSection />
       <ProgramsSection />
       <FacilitiesSection />
       <WhyChooseSection />
       <GallerySection />
+      <LeadershipSection/>
       <TestimonialsSection />
       <FeaturesSection />
       <LocationSection />
+      <FAQSection />
       <CTASection />
       
     </>
