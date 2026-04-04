@@ -21,9 +21,9 @@ function useCountUp(target: number, duration = 2000, start = false) {
 }
 
 const stats = [
-  { id: 'students', num: 1000, suffix: '+', label: 'Students Enrolled',  sub: 'Growing family across all grades',    accent: '#9c0b0b', dur: 2000 },
-  { id: 'pass',     num: 100,  suffix: '%', label: 'Board Pass Rate',     sub: 'Class 10 & 12 excellence',            accent: '#b5921e', dur: 1800 },
-  { id: 'teachers', num: 50,   suffix: '+', label: 'Dedicated Teachers',  sub: 'Committed to every child',            accent: '#9c0b0b', dur: 1600 },
+  { id: 'students', num: 1000, suffix: '+', label: 'Students Enrolled',  sub: 'Growing family across all grades',    accent: '#e67e22', dur: 2000 },
+  { id: 'pass',     num: 100,  suffix: '%', label: 'Board Pass Rate',     sub: 'Class 10 & 12 excellence',            accent: '#f39c12', dur: 1800 },
+  { id: 'teachers', num: 50,   suffix: '+', label: 'Dedicated Teachers',  sub: 'Committed to every child',            accent: '#e67e22', dur: 1600 },
   { id: 'years',    num: 34,   suffix: '+', label: 'Years of Excellence', sub: 'Serving Chodavaram since 1992',       accent: '#1C3A47', dur: 1400 },
 ];
 
@@ -37,11 +37,9 @@ function StatCard({
     <div
       className="relative rounded-md p-5 overflow-hidden"
       style={{
-        background: 'rgba(255,255,255,0.88)',
-        border: '1px solid rgba(156,11,11,0.15)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        boxShadow: '0 2px 12px rgba(156,11,11,0.07)',
+        background: '#ffffff',
+        border: '1px solid rgba(26,58,92,0.07)',
+        boxShadow: '0 16px 40px rgba(26,58,92,0.08)',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(24px)',
         transition: `opacity 0.65s ease ${index * 120}ms, transform 0.65s ease ${index * 120}ms`,
@@ -52,8 +50,8 @@ function StatCard({
       <p className="font-black leading-none mb-1" style={{ fontSize: 32, letterSpacing: '-0.02em', color: stat.accent }}>
         {count}{stat.suffix}
       </p>
-      <p className="text-xs font-bold uppercase tracking-wider text-gray-800 mb-1">{stat.label}</p>
-      <p className="text-xs text-gray-400 leading-snug">{stat.sub}</p>
+      <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: '#1a3a5c' }}>{stat.label}</p>
+      <p className="text-xs leading-snug" style={{ color: '#7a6a55' }}>{stat.sub}</p>
     </div>
   );
 }
@@ -74,7 +72,7 @@ export default function StatsSection() {
   return (
     <section
       className="relative overflow-hidden section-padding"
-      style={{ background: '#fffbcc' }}
+      style={{ background: '#f0ebe0' }}
     >
       {/* ── Watercolor wash background ── */}
       <svg
@@ -88,17 +86,17 @@ export default function StatsSection() {
           <filter id="wc-md"><feGaussianBlur stdDeviation="14"/></filter>
           <filter id="wc-sm"><feGaussianBlur stdDeviation="8"/></filter>
         </defs>
-        <ellipse cx="120" cy="120" rx="260" ry="180" fill="#c4b5fd" opacity="0.18" filter="url(#wc-lg)"/>
-        <ellipse cx="200" cy="460" rx="280" ry="150" fill="#fde68a" opacity="0.20" filter="url(#wc-lg)"/>
-        <ellipse cx="720" cy="560" rx="380" ry="120" fill="#ddd6fe" opacity="0.14" filter="url(#wc-lg)"/>
-        <ellipse cx="1340" cy="100" rx="220" ry="150" fill="#fef9c3" opacity="0.22" filter="url(#wc-lg)"/>
-        <ellipse cx="1260" cy="500" rx="200" ry="140" fill="#ede9fe" opacity="0.18" filter="url(#wc-lg)"/>
-        <path d="M 40 240 Q 200 200 380 240 Q 520 275 640 225" stroke="#7C3AED" strokeWidth="5" fill="none" opacity="0.07" strokeLinecap="round" filter="url(#wc-sm)"/>
-        <path d="M 40 500 Q 240 465 420 510 Q 560 545 680 500" stroke="#D4AF37" strokeWidth="6" fill="none" opacity="0.09" strokeLinecap="round" filter="url(#wc-sm)"/>
-        <circle cx="440" cy="70" r="22" fill="#D4AF37" opacity="0.12" filter="url(#wc-md)"/>
-        <circle cx="580" cy="540" r="28" fill="#7C3AED" opacity="0.10" filter="url(#wc-md)"/>
-        <circle cx="70" cy="560" r="18" fill="#9333EA" opacity="0.13" filter="url(#wc-md)"/>
-        <circle cx="500" cy="320" r="12" fill="#D4AF37" opacity="0.08" filter="url(#wc-md)"/>
+        <ellipse cx="120" cy="120" rx="260" ry="180" fill="#fdebd0" opacity="0.35" filter="url(#wc-lg)"/>
+        <ellipse cx="200" cy="460" rx="280" ry="150" fill="#f6d7a7" opacity="0.24" filter="url(#wc-lg)"/>
+        <ellipse cx="720" cy="560" rx="380" ry="120" fill="#e9dfcf" opacity="0.24" filter="url(#wc-lg)"/>
+        <ellipse cx="1340" cy="100" rx="220" ry="150" fill="#f8efe2" opacity="0.28" filter="url(#wc-lg)"/>
+        <ellipse cx="1260" cy="500" rx="200" ry="140" fill="#eadfcb" opacity="0.22" filter="url(#wc-lg)"/>
+        <path d="M 40 240 Q 200 200 380 240 Q 520 275 640 225" stroke="#e67e22" strokeWidth="5" fill="none" opacity="0.07" strokeLinecap="round" filter="url(#wc-sm)"/>
+        <path d="M 40 500 Q 240 465 420 510 Q 560 545 680 500" stroke="#f39c12" strokeWidth="6" fill="none" opacity="0.09" strokeLinecap="round" filter="url(#wc-sm)"/>
+        <circle cx="440" cy="70" r="22" fill="#f39c12" opacity="0.12" filter="url(#wc-md)"/>
+        <circle cx="580" cy="540" r="28" fill="#1C3A47" opacity="0.08" filter="url(#wc-md)"/>
+        <circle cx="70" cy="560" r="18" fill="#e67e22" opacity="0.10" filter="url(#wc-md)"/>
+        <circle cx="500" cy="320" r="12" fill="#f39c12" opacity="0.08" filter="url(#wc-md)"/>
       </svg>
 
       {/* ── School doodle illustration ── */}
@@ -199,28 +197,28 @@ export default function StatsSection() {
               <span
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
                 style={{
-                  background: '#9c0b0b',
-                  color: '#fffbcc',
-                  border: '1px solid rgba(156,11,11,0.3)',
+                  background: 'rgba(243,156,18,0.12)',
+                  color: '#c0580a',
+                  border: '1px solid rgba(243,156,18,0.3)',
                 }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fffbcc] inline-block" />
+                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e67e22' }} />
                 Our Impact in Numbers
               </span>
 
               {/* Heading — mirrors header's school name style */}
-              <h2 className="text-heading-lg font-bold text-gray-900 mb-2">
+              <h2 className="text-heading-lg font-bold mb-2" style={{ color: '#1a3a5c' }}>
                 Sree Vignan{' '}
-                <span style={{ color: '#9c0b0b' }}>Over the Years</span>
+                <span style={{ color: '#e67e22' }}>Over the Years</span>
               </h2>
 
               {/* Divider line — echoes header's top strip gradient */}
               <div
                 className="h-[3px] w-16 rounded-full mb-3"
-                style={{ background: 'linear-gradient(to right, #b91c1c, #ca8a04, #16a34a)' }}
+                style={{ background: 'linear-gradient(to right, #f39c12, #e67e22)' }}
               />
 
-              <p className="text-gray-600 text-sm leading-relaxed max-w-md">
+              <p className="text-sm leading-relaxed max-w-md" style={{ color: '#7a6a55' }}>
                 A decade of nurturing young minds in Chodavaram — with results that speak louder than words.
               </p>
             </div>
@@ -235,9 +233,9 @@ export default function StatsSection() {
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 w-fit px-6 py-2 rounded-md text-white text-xs font-bold tracking-widest uppercase hover:scale-105 transition"
-              style={{ background: '#9c0b0b' }}
+              style={{ background: '#e67e22' }}
             >
-              <span className="w-2 h-2 rounded-full bg-[#fffbcc] animate-pulse inline-block" />
+              <span className="w-2 h-2 rounded-full animate-pulse inline-block" style={{ background: '#fff8ee' }} />
               Enrolling Now — 2026-27
             </Link>
           </div>

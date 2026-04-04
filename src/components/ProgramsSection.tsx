@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
 
 const programs = [
@@ -13,7 +13,7 @@ const programs = [
     accent: '#EC4899',
     light: '#FDF2F8',
     bg: '#FFF0F9',
-    cta: '/admission',
+    cta: '/academics',
     doodle: (
       <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
         {/* Sun */}
@@ -206,39 +206,26 @@ const programs = [
 ];
 
 export default function ProgramsSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const mobileTrackRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const checkScroll = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  };
-
-  const scroll = (dir: 'left' | 'right') => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir === 'right' ? 380 : -380, behavior: 'smooth' });
+  const scrollMobileCards = (direction: 'left' | 'right') => {
+    const track = mobileTrackRef.current;
+    if (!track) return;
+    track.scrollBy({
+      left: direction === 'right' ? 300 : -300,
+      behavior: 'smooth',
+    });
   };
 
   return (
     <section
       id="academics"
-      className="relative overflow-hidden scroll-mt-28"
-      style={{ background: '#fdf6e8', paddingTop: '80px', paddingBottom: '80px' }}
+      className="relative overflow-hidden scroll-mt-28 lg:min-h-[calc(100vh-108px)]"
+      style={{
+        background: '#fdf6e8',
+        paddingTop: '24px',
+        paddingBottom: '16px',
+      }}
     >
       {/* Watercolor wash background */}
       <svg
@@ -264,18 +251,18 @@ export default function ProgramsSection() {
         <circle cx="80"  cy="650" r="18" fill="#EC4899" opacity="0.10" filter="url(#prog-md2)"/>
       </svg>
 
-      <div className="relative z-10">
+      <div className="relative z-10 lg:flex lg:min-h-[calc(100vh-148px)] lg:flex-col">
 
         {/* Header */}
-        <div className="text-center mb-12 px-6">
+        <div className="text-center mb-4 px-6">
           <span
-            className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5"
+            className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-3"
             style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid #d8c4f0', color: '#6b21a8' }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-primary-purple inline-block" />
             What We Offer
           </span>
-          <h2 className="text-heading-lg text-gray-900 mb-4">
+          <h2 className="text-heading-lg text-gray-900 mb-2">
             Our <span className="text-primary-purple">Programs</span>
           </h2>
           <p className="text-subheading text-gray-500 max-w-xl mx-auto">
@@ -283,73 +270,141 @@ export default function ProgramsSection() {
           </p>
         </div>
 
-        {/* Scroll controls */}
-        <div className="flex justify-end gap-2 px-6 md:px-12 mb-6">
-          <button
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-30"
+        <div className="block sm:hidden">
+          <div className="mt-3 flex items-center justify-end gap-2 px-6">
+            <button
+              type="button"
+              aria-label="Previous program"
+              onClick={() => scrollMobileCards('left')}
+              className="flex h-10 w-10 items-center justify-center rounded-full border transition-all"
+              style={{
+                background: 'rgba(255,255,255,0.92)',
+                borderColor: 'rgba(124,58,237,0.18)',
+                color: '#7C3AED',
+                boxShadow: '0 6px 16px rgba(124,58,237,0.10)',
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Next program"
+              onClick={() => scrollMobileCards('right')}
+              className="flex h-10 w-10 items-center justify-center rounded-full border transition-all"
+              style={{
+                background: 'rgba(255,255,255,0.92)',
+                borderColor: 'rgba(124,58,237,0.18)',
+                color: '#7C3AED',
+                boxShadow: '0 6px 16px rgba(124,58,237,0.10)',
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <div
+            ref={mobileTrackRef}
+            className="mt-3 overflow-x-auto px-6 pb-2"
             style={{
-              background: canScrollLeft ? '#7C3AED' : 'rgba(255,255,255,0.8)',
-              color: canScrollLeft ? 'white' : '#9ca3af',
-              border: '1px solid rgba(124,58,237,0.2)',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch',
+              scrollSnapType: 'x mandatory',
             }}
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <button
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-30"
-            style={{
-              background: canScrollRight ? '#7C3AED' : 'rgba(255,255,255,0.8)',
-              color: canScrollRight ? 'white' : '#9ca3af',
-              border: '1px solid rgba(124,58,237,0.2)',
-            }}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+            <div className="flex w-max gap-4">
+              {programs.map((program, i) => (
+                <div
+                  key={program.id}
+                  className="rounded-3xl overflow-hidden flex flex-col group cursor-pointer shrink-0"
+                  style={{
+                    width: 'calc(100vw - 48px)',
+                    maxWidth: 360,
+                    background: program.bg,
+                    border: `1.5px solid ${program.accent}22`,
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+                    scrollSnapAlign: 'start',
+                  }}
+                >
+                  <div
+                    className="relative flex items-center justify-center overflow-hidden"
+                    style={{
+                      height: 180,
+                      background: `radial-gradient(circle at 60% 40%, ${program.light} 0%, ${program.bg} 70%)`,
+                      borderBottom: `1.5px dashed ${program.accent}30`,
+                    }}
+                  >
+                    <div
+                      className="absolute top-4 left-4 w-7 h-7 rounded-full flex items-center justify-center text-xs font-black"
+                      style={{ background: program.light, color: program.accent, border: `1.5px solid ${program.accent}40` }}
+                    >
+                      {i + 1}
+                    </div>
+
+                    <div className="flex h-full w-full items-center justify-center px-3 py-2 transition-transform duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
+                      {program.doodle}
+                    </div>
+                  </div>
+
+                  <div className="px-5 py-4">
+                    <span
+                      className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 w-fit"
+                      style={{ background: `${program.tagColor}18`, color: program.tagColor }}
+                    >
+                      {program.tag}
+                    </span>
+
+                    <h3
+                      className="font-black text-gray-900 mb-2"
+                      style={{ fontSize: 17, lineHeight: 1.15 }}
+                    >
+                      {program.name}
+                    </h3>
+                    <p className="text-gray-500 text-[12px] leading-relaxed">
+                      {program.description}
+                    </p>
+
+                    <Link
+                      href={program.cta}
+                      className="mt-3 inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-xs font-bold transition-all duration-200 group-hover:gap-3"
+                      style={{
+                        background: program.accent,
+                        color: 'white',
+                        boxShadow: `0 4px 14px ${program.accent}44`,
+                      }}
+                    >
+                      Explore Program
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M3 7h8M7 3l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Scrollable track */}
-        <div
-          ref={(el) => {
-            (scrollRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
-            if (el) { el.addEventListener('scroll', checkScroll); checkScroll(); }
-          }}
-          className="programs-scroll flex gap-5 overflow-x-auto pb-6 px-6 md:px-12 xl:justify-center"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch',
-          }}
-        >
-          <style>{`.programs-scroll::-webkit-scrollbar { display: none; }`}</style>
-
+        <div className="hidden mt-3 gap-4 px-6 sm:grid sm:grid-cols-2 xl:grid-cols-4 md:px-12 lg:mt-5">
           {programs.map((program, i) => (
             <div
               key={program.id}
-              ref={i === 0 ? ref : undefined}
-              className="flex-shrink-0 rounded-3xl overflow-hidden flex flex-col group cursor-pointer"
+              className="rounded-3xl overflow-hidden flex flex-col group cursor-pointer"
               style={{
-                width: 320,
                 background: program.bg,
                 border: `1.5px solid ${program.accent}22`,
                 boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-                opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0) scale(1)' : 'translateY(32px) scale(0.96)',
-                transition: `opacity 0.65s ease ${i * 130}ms, transform 0.65s ease ${i * 130}ms`,
               }}
             >
               {/* Doodle illustration zone */}
               <div
                 className="relative flex items-center justify-center overflow-hidden"
                 style={{
-                  height: 200,
+                  height: 180,
                   background: `radial-gradient(circle at 60% 40%, ${program.light} 0%, ${program.bg} 70%)`,
                   borderBottom: `1.5px dashed ${program.accent}30`,
                 }}
@@ -363,34 +418,34 @@ export default function ProgramsSection() {
                 </div>
 
                 {/* Big doodle centered */}
-                <div className="transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-1">
+                <div className="flex h-full w-full items-center justify-center px-3 py-2 transition-transform duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
                   {program.doodle}
                 </div>
               </div>
 
               {/* Content */}
-              <div className="px-6 py-6 flex flex-col flex-1">
+              <div className="px-5 py-4">
                 {/* Tag */}
                 <span
-                  className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 w-fit"
+                  className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 w-fit"
                   style={{ background: `${program.tagColor}18`, color: program.tagColor }}
                 >
                   {program.tag}
                 </span>
 
                 <h3
-                  className="font-black text-gray-900 mb-3"
-                  style={{ fontSize: 20, lineHeight: 1.25 }}
+                  className="font-black text-gray-900 mb-2"
+                  style={{ fontSize: 17, lineHeight: 1.15 }}
                 >
                   {program.name}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-1">
+                <p className="text-gray-500 text-[12px] leading-relaxed">
                   {program.description}
                 </p>
 
                 <Link
                   href={program.cta}
-                  className="inline-flex items-center gap-2 mt-5 text-sm font-bold px-5 py-2.5 rounded-full transition-all duration-200 w-fit group-hover:gap-3"
+                  className="mt-3 inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-xs font-bold transition-all duration-200 group-hover:gap-3"
                   style={{
                     background: program.accent,
                     color: 'white',
@@ -404,17 +459,6 @@ export default function ProgramsSection() {
                 </Link>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Scroll dots indicator */}
-        <div className="flex justify-center gap-2 mt-4">
-          {programs.map((p, i) => (
-            <div
-              key={i}
-              className="rounded-full transition-all duration-300"
-              style={{ width: 8, height: 8, background: p.accent, opacity: 0.3 }}
-            />
           ))}
         </div>
 

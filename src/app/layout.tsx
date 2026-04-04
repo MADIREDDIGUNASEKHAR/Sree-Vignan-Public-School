@@ -56,7 +56,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#1565C0" />
         <link rel="icon" href="/gallery/LOGO.jpeg" />
       </head>
-      <body className="bg-white">
+      <body className="bg-white" suppressHydrationWarning>
         <Header />
         <AnnouncementTicker />
         <main className="pt-[108px]">{children}</main>

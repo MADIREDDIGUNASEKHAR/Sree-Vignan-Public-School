@@ -15,7 +15,7 @@ const slides = [
   },
   {
     id: 2,
-    image: '/gallery/HERO/image8.jpg',
+    image: '/gallery/HERO/image2.jpeg',
     headline: 'Excellence in Academics',
     subline: '100% results — nurturing future leaders every year',
     cta: { label: 'Our Programs', href: '/academics' },
@@ -101,12 +101,12 @@ export default function HeroSlider() {
       ))}
 
       {/* Branding block */}
-      <div className="absolute bottom-0 left-0 z-20 bg-[#9c0b0b] px-4 py-4 min-w-[180px] md:px-8 md:py-6 md:min-w-[260px]">
-        <p className="text-[#fffbcc] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-1">
+      <div className="absolute bottom-0 left-0 z-20 bg-[#9c0b0b] px-4 py-4 min-w-[190px] md:px-8 md:py-6 md:min-w-[280px]">
+        <p className="text-[#fffbcc] text-xl md:text-3xl font-black tracking-[0.08em] uppercase leading-none mb-1">
           Sree Vignan
         </p>
-        <p className="text-white text-xl md:text-3xl font-black leading-none tracking-tight">
-          school
+        <p className="text-white text-base md:text-xl font-extrabold leading-none tracking-[0.12em] uppercase">
+          School
         </p>
        
       </div>

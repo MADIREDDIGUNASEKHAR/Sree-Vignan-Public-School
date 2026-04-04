@@ -1,50 +1,82 @@
 'use client';
 
+
 import React, { useState, FormEvent } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { SCHOOL } from '@/lib/constants';
-import { Button } from './Button';
+
 
 interface FormData {
   name: string;
-  email: string;
+  place: string;
   phone: string;
   message: string;
 }
 
+
 export function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    email: '',
+    place: '',
     phone: '',
     message: '',
   });
+
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSfzHo2kvUCq600HcnvqdeG8RttuokvSpwDDwMODtWRoCDIyyg/formResponse",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            "entry.324039919": formData.name,
+            "entry.1425696747": formData.place,
+            "entry.813299521": formData.phone,
+            "entry.1168776430": formData.message,
+          }),
+        }
+      );
+
+
       setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      setFormData({ name: '', place: '', phone: '', message: '' });
+
+
       setTimeout(() => setSubmitted(false), 5000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
     } finally {
       setLoading(false);
     }
   };
 
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+     
       {/* Form */}
       <form onSubmit={handleSubmit} className="card-premium-lg space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+
 
         {submitted && (
           <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -52,13 +84,14 @@ export function ContactForm() {
           </div>
         )}
 
+
+        {/* Name */}
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
+          <label className="block text-sm font-semibold text-gray-900 mb-2">
             Full Name *
           </label>
           <input
             type="text"
-            id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
@@ -68,45 +101,47 @@ export function ContactForm() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-              Email *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg"
-              placeholder="your@email.com"
-            />
-          </div>
-          <div>
-            <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-              Phone *
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg"
-              placeholder="+91 XXXXXXXXXX"
-            />
-          </div>
+
+        {/* Place */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-900 mb-2">
+            Place *
+          </label>
+          <input
+            type="text"
+            name="place"
+            value={formData.place}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+            placeholder="Your place"
+          />
         </div>
 
+
+        {/* Phone */}
         <div>
-          <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
+          <label className="block text-sm font-semibold text-gray-900 mb-2">
+            Phone *
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+            placeholder="+91 XXXXXXXXXX"
+          />
+        </div>
+
+
+        {/* Message */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-900 mb-2">
             Message *
           </label>
           <textarea
-            id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
@@ -117,6 +152,8 @@ export function ContactForm() {
           />
         </div>
 
+
+        {/* Submit */}
         <button
           type="submit"
           disabled={loading}
@@ -126,13 +163,15 @@ export function ContactForm() {
         </button>
       </form>
 
-      {/* Contact Info */}
+
+      {/* Contact Info (unchanged) */}
       <div className="space-y-6">
         <h2 className="text-2xl font-bold text-gray-900">Get In Touch</h2>
 
+
         <div className="space-y-4">
           <div className="flex gap-4">
-            <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
               <Phone className="text-primary-purple" size={24} />
             </div>
             <div>
@@ -140,12 +179,12 @@ export function ContactForm() {
               <a href={`tel:${SCHOOL.phone}`} className="text-primary-purple font-semibold hover:underline">
                 {SCHOOL.phone}
               </a>
-              <p className="text-sm text-gray-600 mt-1">Available during working hours</p>
             </div>
           </div>
 
+
           <div className="flex gap-4">
-            <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
               <Mail className="text-primary-purple" size={24} />
             </div>
             <div>
@@ -153,37 +192,24 @@ export function ContactForm() {
               <a href={`mailto:${SCHOOL.email}`} className="text-primary-purple font-semibold hover:underline">
                 {SCHOOL.email}
               </a>
-              <p className="text-sm text-gray-600 mt-1">We respond within 24 hours</p>
             </div>
           </div>
 
+
           <div className="flex gap-4">
-            <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
               <MapPin className="text-primary-purple" size={24} />
             </div>
             <div>
               <p className="font-semibold text-gray-900 mb-1">Address</p>
-              <p className="text-gray-700 text-sm leading-relaxed">{SCHOOL.address.fullAddress}</p>
+              <p className="text-gray-700 text-sm">{SCHOOL.address.fullAddress}</p>
             </div>
           </div>
         </div>
-
-        {/* Quick Actions */}
-        <div className="border-t border-gray-200 pt-6 space-y-3">
-          <p className="text-sm font-semibold text-gray-900">Quick Actions:</p>
-          <a href={`tel:${SCHOOL.phone}`} className="btn-primary block text-center w-full">
-            Call Now
-          </a>
-          <a
-            href={`https://wa.me/${SCHOOL.whatsapp}?text=${encodeURIComponent('Hello Sree Vignan Public School, I would like to inquire about admissions.')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary block text-center w-full"
-          >
-            WhatsApp Us
-          </a>
-        </div>
       </div>
+
+
     </div>
   );
 }
+
