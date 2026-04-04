@@ -7,7 +7,7 @@ import React from "react";
 interface Founder {
   name: string;
   role: string;
-  badge: string;
+  qualification: string;
   bio: string[];
   imgSrc: string;
   imgAlt: string;
@@ -24,57 +24,53 @@ interface Leader {
 
 const founders: Founder[] = [
   {
-    name: "Dr. Alistair Vance",
-    role: "Co-Founder & Director",
-    badge: "Visionary",
-    imgSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDc1mMIUxlWuwh3ScPCF3vccFT7NZtkXTYYoY-HBL2xNhDxP95-Adhbmb5gbOF97B4CvNxT17TfQjJCtymeIZtMUTBlH4x0stKj4yoANQGAJRwI_jfBFo3nb7W5fEW0QRIRnAT8y8egFCjxAIY50y1iNVPC437JGUj81KO02fNxIXPBSB07cxERd4T2nUCafJVRxbXzXAtyaXiiU7rBSfEQNXqMX8CUAdq00UXlk7t3ui3jcTyjk8nNQ_fC7v-uGo6Es8NKTOYT64k",
+    name: "Mr.M.Murali krishnam Raju",
+    role: "Director",
+    qualification: "AMIE",
+    imgSrc: "/gallery/faculty/Director.jpg",
     imgAlt:
-      "Distinguished older man in a navy blue suit with silver hair, looking confidently into the camera",
+      "Director Image Loading",
     bio: [
-      "With over 30 years in international education, Dr. Vance founded Academic Vanguard to bridge the gap between traditional theory and practical global leadership.",
-      "His research in cognitive learning pathways remains the foundation of our unique curriculum.",
+      "Sree Vignan stands as a result of years of unwavering dedication, perseverance, and a deep belief in the power of education. Every step of its growth reflects hard work, sacrifice, and a commitment to excellence. We continue to move forward with the same vision—to provide quality education and shape responsible, successful individuals.",
     ],
   },
   {
-    name: "Elena Moretti",
-    role: "Co-Founder & Director",
-    badge: "Strategist",
-    imgSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCxwLE3KvLUPoM3ASnoiJCJvS1MU89I8A2UopRlYLqr7cCyjE5QC0ciDVzsxJWDZKw2ucpG6viPX2uePH39KX9BJux_ZePUkmO4oTC9XjQM0ynla3ndAzfYTDhgKxt3Xw0dGdc8buIT5XFo1E6_GPxv4rhcz65jZURrJ9CBBOZud53g6qAJASjC2cMEytw6a5AJwojP1yd2Y4YJfFBcM-nc38a95N0w0sBMM7vMLpiqv-aVpWtss4Px0whwVK9HYyhff5eUZsW2yD4",
+    name: "Mrs. Jnaneswari",
+    role: "Principal",
+    qualification: "B.A., B.Ed.",
+    imgSrc: "/gallery/faculty/Principal.jpg",
     imgAlt:
       "Professional woman with dark hair wearing a tailored ivory blazer, sitting in a glass-walled conference room",
     bio: [
-      "Elena oversees the institute's strategic growth and industry partnerships, ensuring every student has access to top-tier mentorship.",
-      "She previously served as a senior advisor for global educational standard boards across Europe and Asia.",
+      "Sree Vignan is not just a place of learning, but a space built with dedication, care, and purpose. Every child we guide is a step towards building a better future, and that responsibility continues to inspire us every day.",
     ],
   },
 ];
 
 const leaders: Leader[] = [
   {
-    name: "Julian Thorne",
+    name: "ATKINSON SIR",
     title: "Academic Dean",
     imgSrc:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuChWnTvZsaKHWAQo8xLmPhm13jTBHR_rJToECjBOX6HjIJrRzd-PnG19KGcicxZdsl7P0GnXK33MLQy23V0MA2nHwdb-uOyPIvIYARXgtvuzUR1778-guou24k1AwDliO2x5sIeaUMrQQGMzkpAGbXb06dOq2lJ_O0XbW5lFusXLN1x_mGZQGNFOUByVyGj7CFBgksZizCvgS2B1bJq3vQgP6hgKJN_iE7RaLG-48zzCjW1P8Ed3PuT7NBqeu5efb3Py9CLl8DM9L8",
     imgAlt: "Portrait of a man in professional attire against a neutral architectural background",
   },
   {
-    name: "Sarah Jenkins",
+    name: "FRANCIS D'COSTA SIR",
     title: "Director of Admissions",
     imgSrc:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCvpoFVmg8Pmz8K8oUuyTEWuJIAk26KV23VMOymuXYNiNufwszJN_V8WUnszRx9RfEJA0OmzKUYPUAfucBWbw09rw-UrW3ZXK6vkxEX8ozMC2UOSqR4YiWdZNK4z-IH_tmwe5_fSdPbCkmL4fBDzLVs-3iNTdbBr-TYvjdrhgArX7UGVr5AVa_J8PosrFlqw1eYzvebSB-Ptq5q14ayjIFmAGpRIKdebgyc3C6C0L-vWVDLPAcR_kne9rxA2gB_pZfqDjon4Kng_zc",
     imgAlt: "Portrait of a confident woman in a business casual outfit, smiling warmly",
   },
   {
-    name: "Marcus Reed",
+    name: "D SATYA PRASAD SIR",
     title: "Head of Research",
     imgSrc:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDy5-ZTHJ3IA57RNDk684Bfwl54gA1G4rZJQUJSrJ6tbSjoQHCzCDNNHMzGtuRPmU4YOFbg-SmmofuoV5kEijQutX42wnES4IjS4rdmG76cZfTvEFhNk_6dyo4rNN8zaYCAqnAZMprzlvR688Cxzn95M8kGgnsJcxVm9m94Se4Oh1VNInwqUEPXU4lTPk1-falTiCyUGInUv20Z6MUW9S_sCAceK9Br1GunV24MDPtOD4S41Z-WPErgJybe2SB1mrfkbSX1XlMs-FQ",
     imgAlt: "Close-up headshot of a middle-aged man with glasses, looking thoughtful",
   },
   {
-    name: "Dr. Linda Chen",
+    name: "KRISHNA MASTER SIR",
     title: "Dean of Students",
     imgSrc:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBXBaHb2hdC9hd-r-_9LACS0lrd-3z850ARZIr9Xj5EupDuBHHXsNRqExj_Ry6UTemeWr-COJcy7P_0VJ5ZJc5zyWuxPrT5jy6BVOBAQUiZ-KrJjIO-z4OqSvNZB3a41V_8IR1p6AirkLmSPGhdgnInKyL2nS3qtmL5DEpKb1H-sZ2dT-Ppx4eExIwJfITR50-qn90uepbwxM_ZSr03ZIY8xqxEk_-5wEUstH0o0Pe55cqLOWdAtgzwffjSRsX8P9_nLTKVd0kX5TQ",
@@ -86,32 +82,36 @@ const leaders: Leader[] = [
 
 function FounderCard({ founder }: { founder: Founder }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-xl">
+    <div className="bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-xl max-w-[600px] lg:max-w-[624px] mx-auto">
       {/* Image */}
-      <div className="md:w-1/2 relative h-[400px] md:h-auto">
+      <div className="md:w-[50%] relative h-[210px] md:h-auto">
         <img
           src={founder.imgSrc}
           alt={founder.imgAlt}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
         />
-        <span className="absolute top-4 left-4 bg-[#ffd709]/90 backdrop-blur-md px-4 py-1 rounded-full text-[#5b4b00] font-bold text-xs tracking-widest uppercase">
-          {founder.badge}
-        </span>
       </div>
 
       {/* Content */}
-      <div className="md:w-1/2 p-8 flex flex-col justify-center">
-        <h3 className="font-headline text-3xl font-bold text-[#375c91] mb-1">
+      <div className="md:w-[50%] p-4 flex flex-col justify-center">
+        <h3 className="font-headline text-[1.45rem] md:text-[1.55rem] font-bold text-[#375c91] mb-1">
           {founder.name}
         </h3>
-        <p className="text-[#6c5a00] font-semibold tracking-wide uppercase text-sm mb-6">
+        <p
+          className={`text-[11px] text-[#6b7280] mb-2 ${
+            founder.role === "Director" ? "text-right pr-8" : "text-right"
+          }`}
+        >
+          - {founder.qualification}
+        </p>
+        <p className="text-[#6c5a00] font-semibold tracking-wide uppercase text-xs mb-3">
           {founder.role}
         </p>
         {founder.bio.map((paragraph, i) => (
           <p
             key={i}
             className={`text-[#595c5d] leading-relaxed ${
-              i === 0 ? "text-lg mb-4" : ""
+              i === 0 ? "text-[13px] mb-2" : "text-[12px]"
             }`}
           >
             {paragraph}
@@ -144,7 +144,7 @@ export default function FoundersPage() {
   return (
     <main className="bg-[#f5f6f7] text-[#2c2f30] font-sans selection:bg-[#ffd709]">
       {/* ── Hero ── */}
-      <section className="relative h-[614px] flex items-center justify-center overflow-hidden bg-[#2a5084]">
+      <section className="relative h-[310px] md:h-[335px] flex items-center justify-center overflow-hidden bg-[#2a5084]">
         {/* Background overlay image */}
         <div className="absolute inset-0 opacity-20">
           <img
@@ -154,12 +154,12 @@ export default function FoundersPage() {
           />
         </div>
 
-        <div className="relative z-10 text-center px-6">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-4 uppercase leading-tight">
+        <div className="relative z-10 text-center px-6 pt-0 max-w-4xl mx-auto">
+          <h1 className="text-[1.9rem] md:text-[2.8rem] font-extrabold text-white tracking-tight mb-2 uppercase leading-tight">
             The Visionaries{" "}
             <span className="text-[#ffd709]">Behind Our Legacy</span>
           </h1>
-          <p className="text-xl text-[#eff2ff] max-w-2xl mx-auto opacity-90 leading-relaxed">
+          <p className="text-xs md:text-[14px] text-[#eff2ff] max-w-lg mx-auto opacity-90 leading-relaxed">
             Merging decades of pedagogical expertise with a forward-thinking
             approach to student excellence and global leadership.
           </p>
@@ -167,8 +167,8 @@ export default function FoundersPage() {
       </section>
 
       {/* ── Founders ── */}
-      <section className="max-w-7xl mx-auto px-6 -mt-32 relative z-20 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <section className="max-w-[78rem] mx-auto px-6 -mt-8 md:-mt-10 relative z-20 pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {founders.map((founder) => (
             <FounderCard key={founder.name} founder={founder} />
           ))}
@@ -204,9 +204,7 @@ export default function FoundersPage() {
               OUR <span className="text-[#f97316]">MISSION</span>
             </h2>
             <p className="text-white/90 text-lg leading-relaxed max-w-lg mx-auto">
-              We will inspire and challenge every student to flourish and achieve
-              their full potential, both now and in the future, and instill a
-              passion for lifelong learning.
+              TO PROVIDE A STRUCTURED AND SUPPORTIVE LEARNING ENVIRONMENT THAT ENABLES EVERY STUDENT TO ACHIEVE THEIR HIGHEST POTENTIAL....
             </p>
           </div>
 
@@ -216,9 +214,7 @@ export default function FoundersPage() {
               OUR <span className="text-[#f97316]">VISION</span>
             </h2>
             <p className="text-white/90 text-lg leading-relaxed max-w-lg mx-auto">
-              TISB strives to be a globally leading innovative international
-              school that fosters a culture of aspiration, empowerment and strong
-              community values - making it the first school of choice.
+             THREE DECADES OF EXCELLENCE,SHAPING ACHIEVERS AND LEADING EVERY RESULT.
             </p>
           </div>
         </div>
@@ -243,10 +239,11 @@ export default function FoundersPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Respect</h3>
+                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Excellence</h3>
                 <p className="text-gray-600 leading-relaxed text-sm">
-                  TISB believes in respect towards students, staff and the
-                  school, and fosters relationships based on fun and friendship.
+                  We strive for the highest standards in academics and overall development.
+We continuously encourage students to perform at their best and achieve outstanding results through dedication, focus, and consistent effort.
+
                 </p>
               </div>
             </div>
@@ -260,11 +257,12 @@ export default function FoundersPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Acceptance &amp; Equality</h3>
+                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Discipline
+</h3>
                 <p className="text-gray-600 leading-relaxed text-sm">
-                  TISB prides itself on student equality and fairness regardless
-                  of age, background or ability. Diversity is accepted and valued
-                  so no one feels excluded or less important.
+                 We believe discipline is the foundation of success.
+Our school fosters a structured environment where students develop self-control, responsibility, and respect for rules—essential qualities for lifelong achievement.
+
                 </p>
               </div>
             </div>
@@ -278,12 +276,11 @@ export default function FoundersPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Collaboration &amp; Camaraderie</h3>
+                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Commitment</h3>
                 <p className="text-gray-600 leading-relaxed text-sm">
-                  TISB&apos;s community spirit and friendly atmosphere allow
-                  individual personalities to develop, and our student-led
-                  events and activities foster a supportive, nurturing and caring
-                  community.
+                  We are dedicated to continuous growth and student success.
+Our teachers and students work together with determination and perseverance to achieve academic excellence and personal development.
+
                 </p>
               </div>
             </div>
@@ -297,10 +294,11 @@ export default function FoundersPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Honesty</h3>
+                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Student-Centered Learning</h3>
                 <p className="text-gray-600 leading-relaxed text-sm">
-                  We feel proud to be part of our school community with a desire
-                  to excel and to do the best we can with integrity and honesty.
+                  We focus on the unique potential of every student.
+We provide guidance and support to help each learner grow academically and personally.
+
                 </p>
               </div>
             </div>
