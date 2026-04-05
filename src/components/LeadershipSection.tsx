@@ -233,12 +233,15 @@ function FounderCard({ founder }: { founder: Founder }) {
     <div className="bg-white rounded-xl overflow-hidden shadow-xl max-w-[600px] lg:max-w-[624px] mx-auto w-full">
 
       {/* ── Mobile layout ── */}
-      <div className="flex flex-col md:hidden">
+      <div className="flex flex-col md:hidden overflow-hidden">
         <img
           src={founder.imgSrc}
           alt={founder.imgAlt}
-          className="w-full object-cover object-top"
-          style={{ maxHeight: 340 }}
+          className="w-full h-full object-cover"
+          style={{
+            maxHeight: 420,
+            objectPosition: founder.role === "Principal" ? "center top" : "center",
+          }}
         />
         <div className="px-5 pt-4 pb-1">
           <h3 className="font-headline text-[1.3rem] font-bold text-[#375c91] mb-0.5">
@@ -277,16 +280,16 @@ function FounderCard({ founder }: { founder: Founder }) {
       </div>
 
       {/* ── Desktop layout ── */}
-      <div className="hidden md:flex flex-row">
-        <div className="w-[50%] relative h-[210px]">
+      <div className="hidden md:flex md:flex-col lg:flex-row items-stretch">
+        <div className="w-full lg:w-[48%] relative min-h-[420px] lg:min-h-[460px] overflow-hidden bg-[#f9fafb]">
           <img
             src={founder.imgSrc}
             alt={founder.imgAlt}
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-center"
           />
         </div>
-        <div className="w-[50%] p-4 flex flex-col justify-center">
-          <h3 className="font-headline text-[1.55rem] font-bold text-[#375c91] mb-1">
+        <div className="w-full lg:w-[52%] p-5 lg:p-6 flex flex-col justify-center">
+          <h3 className="font-headline text-[1.45rem] lg:text-[1.55rem] font-bold text-[#375c91] mb-1">
             {founder.name}
           </h3>
           <p className={`text-[11px] text-[#6b7280] mb-2 ${founder.role === "Director" ? "text-right pr-8" : "text-right"}`}>

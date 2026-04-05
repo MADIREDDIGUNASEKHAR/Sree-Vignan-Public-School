@@ -41,22 +41,22 @@ export function Header() {
       <nav className="relative h-[72px] flex items-center justify-between px-4 sm:px-6 lg:px-10">
 
         {/* LOGO */}
-        <Link href="/#home" className="flex items-center gap-3">
+        <Link href="/#home" className="flex items-center gap-3 min-w-0">
           <img
             src="/gallery/LOGO.png"
             alt="logo"
             className={`transition-all ${scrolled ? 'w-14 h-14' : 'w-16 h-16'}`}
           />
-          <div className="flex flex-col leading-tight">
-            <h1 className="text-[#9c0b0b] font-bold text-2xl sm:text-3xl whitespace-nowrap">Sree Vignan School</h1>
-            <p className="pl-5 sm:pl-7 text-[11px] sm:text-xs text-[#9c0b0b]/80 font-medium">
+          <div className="flex-1 min-w-0 flex flex-col leading-tight">
+            <h1 className="text-[#9c0b0b] font-bold text-2xl sm:text-3xl break-words">Sree Vignan School</h1>
+            <p className="mt-1 text-[11px] sm:text-xs text-[#9c0b0b]/80 font-medium leading-tight">
               Where Legacy meets Excellence Est.1992
             </p>
           </div>
         </Link>
 
         {/* DESKTOP NAV */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-sm font-semibold">
+        <div className="hidden xl:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-sm font-semibold">
 
           {navItems.map((item) => (
             <Link key={item.label} href={item.href} className="relative group cursor-pointer">
@@ -87,21 +87,21 @@ export function Header() {
         </div>
 
         {/* APPLY BUTTON */}
-        <div className="hidden md:flex gap-3">
+        <div className="hidden xl:flex gap-3">
           <Link href="/contact" className="bg-[#9c0b0b] text-white px-4 py-2 rounded-md hover:scale-105 transition">
             APPLY NOW
           </Link>
         </div>
 
         {/* MOBILE BUTTON */}
-        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="xl:hidden" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X /> : <Menu />}
         </button>
       </nav>
 
       {/* 🔥 MOBILE MENU */}
       {menuOpen && (
-        <div className="md:hidden bg-[#fffbcc] px-4 pb-4 space-y-3 border-t">
+        <div className="xl:hidden bg-[#fffbcc] px-4 pb-4 space-y-3 border-t">
 
           {navItems.map((item) => (
             <Link
