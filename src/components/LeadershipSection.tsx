@@ -102,7 +102,6 @@ function LeaderCarousel() {
   const handleNext = () => goTo((current + 1) % leaders.length, "next");
   const handlePrev = () => goTo((current - 1 + leaders.length) % leaders.length, "prev");
 
-  // Auto-advance
   useEffect(() => {
     autoRef.current = setInterval(() => {
       goTo((current + 1) % leaders.length, "next");
@@ -157,18 +156,15 @@ function LeaderCarousel() {
       `}</style>
 
       <div className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto select-none">
-        {/* Counter */}
         <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#6c5a00]">
           {current + 1} / {leaders.length}
         </p>
 
-        {/* Flipping card */}
         <div
           key={current}
           className={`w-full bg-white rounded-2xl overflow-hidden ${flipClass}`}
           style={{ boxShadow: "0 -4px 16px rgba(0,0,0,0.18), 0 8px 32px rgba(0,0,0,0.12)" }}
         >
-          {/* Image */}
           <div className="w-full aspect-[4/3] overflow-hidden">
             <img
               src={leader.imgSrc}
@@ -177,7 +173,6 @@ function LeaderCarousel() {
             />
           </div>
 
-          {/* Body */}
           <div className="px-6 py-5 border-t-4 border-[#ffd709]">
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#375c91] mb-1">
               {leader.title}
@@ -187,7 +182,6 @@ function LeaderCarousel() {
             </h4>
           </div>
 
-          {/* Dot strip */}
           <div className="bg-[#375c91] px-6 py-2 flex justify-between items-center">
             {leaders.map((_, i) => (
               <button
@@ -202,7 +196,6 @@ function LeaderCarousel() {
           </div>
         </div>
 
-        {/* Arrow controls */}
         <div className="flex items-center gap-4">
           <button
             onClick={handlePrev}
@@ -241,15 +234,12 @@ function FounderCard({ founder }: { founder: Founder }) {
 
       {/* ── Mobile layout ── */}
       <div className="flex flex-col md:hidden">
-        {/* Full image, uncropped */}
         <img
           src={founder.imgSrc}
           alt={founder.imgAlt}
           className="w-full object-cover object-top"
           style={{ maxHeight: 340 }}
         />
-
-        {/* Always-visible: name, qualification, role */}
         <div className="px-5 pt-4 pb-1">
           <h3 className="font-headline text-[1.3rem] font-bold text-[#375c91] mb-0.5">
             {founder.name}
@@ -261,8 +251,6 @@ function FounderCard({ founder }: { founder: Founder }) {
             {founder.role}
           </p>
         </div>
-
-        {/* Read more toggle */}
         <div className="px-5 pb-5">
           <button
             onClick={() => setExpanded((v) => !v)}
@@ -277,8 +265,6 @@ function FounderCard({ founder }: { founder: Founder }) {
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </button>
-
-          {/* Collapsible bio */}
           <div
             className="overflow-hidden transition-all duration-500 ease-in-out"
             style={{ maxHeight: expanded ? 300 : 0, opacity: expanded ? 1 : 0 }}
@@ -290,7 +276,7 @@ function FounderCard({ founder }: { founder: Founder }) {
         </div>
       </div>
 
-      {/* ── Desktop layout (original, unchanged) ── */}
+      {/* ── Desktop layout ── */}
       <div className="hidden md:flex flex-row">
         <div className="w-[50%] relative h-[210px]">
           <img
@@ -335,6 +321,64 @@ function LeaderCard({ leader }: { leader: Leader }) {
       </div>
       <h4 className="text-xl font-bold text-[#2c2f30] mb-1">{leader.name}</h4>
       <p className="text-[#595c5d] text-sm font-medium">{leader.title}</p>
+    </div>
+  );
+}
+
+// ─── Value Card ───────────────────────────────────────────────────────────────
+
+function ValueCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="bg-white rounded-2xl p-6 flex items-start gap-5">
+      <div className="shrink-0 w-14 h-14 rounded-full bg-[#1e2a6e] flex items-center justify-center">
+        {icon}
+      </div>
+      <div className="flex-1">
+
+        {/* Mobile: title + chevron toggle */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setExpanded((v) => !v)}
+            className="flex items-center justify-between w-full focus:outline-none"
+          >
+            <h3 className="text-lg font-bold text-[#1e2a6e] text-left">{title}</h3>
+            <svg
+              viewBox="0 0 24 24"
+              className={`w-4 h-4 shrink-0 ml-2 text-[#1e2a6e] transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div
+            className="overflow-hidden transition-all duration-500 ease-in-out"
+            style={{ maxHeight: expanded ? 200 : 0, opacity: expanded ? 1 : 0 }}
+          >
+            <p className="text-gray-600 leading-relaxed text-sm mt-2">{description}</p>
+          </div>
+        </div>
+
+        {/* Desktop: always visible, unchanged */}
+        <div className="hidden md:block">
+          <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">{title}</h3>
+          <p className="text-gray-600 leading-relaxed text-sm">{description}</p>
+        </div>
+
+      </div>
     </div>
   );
 }
@@ -431,72 +475,45 @@ export default function FoundersPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            {/* Excellence */}
-            <div className="bg-white rounded-2xl p-6 flex items-start gap-5">
-              <div className="shrink-0 w-14 h-14 rounded-full bg-[#1e2a6e] flex items-center justify-center">
+            <ValueCard
+              title="Excellence"
+              description="We strive for the highest standards in academics and overall development. We continuously encourage students to perform at their best and achieve outstanding results through dedication, focus, and consistent effort."
+              icon={
                 <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M11 6.5A2.5 2.5 0 0 1 13.5 4H16l3 3-1.5 1.5L16 7h-2.5A.5.5 0 0 0 13 7.5V9h-2V7.5A2.5 2.5 0 0 1 11 6.5zM4 10l1.5-1.5 3 3L10 10l1 1-1.5 1.5 1 1L12 12l1 1-4 4-5-5 1-1-1-1zM17 10l1 1-4 4-1-1 4-4z"/>
                 </svg>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Excellence</h3>
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  We strive for the highest standards in academics and overall development.
-                  We continuously encourage students to perform at their best and achieve outstanding
-                  results through dedication, focus, and consistent effort.
-                </p>
-              </div>
-            </div>
+              }
+            />
 
-            {/* Discipline */}
-            <div className="bg-white rounded-2xl p-6 flex items-start gap-5">
-              <div className="shrink-0 w-14 h-14 rounded-full bg-[#1e2a6e] flex items-center justify-center">
+            <ValueCard
+              title="Discipline"
+              description="We believe discipline is the foundation of success. Our school fosters a structured environment where students develop self-control, responsibility, and respect for rules—essential qualities for lifelong achievement."
+              icon={
                 <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M2 20h2a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1H2v9zm18.83-7.12A2 2 0 0 0 19 10h-5V7a3 3 0 0 0-3-3l-1 6-2 2v8h10.28a2 2 0 0 0 1.98-1.69l1-7a2 2 0 0 0-.43-1.43z"/>
                 </svg>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Discipline</h3>
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  We believe discipline is the foundation of success.
-                  Our school fosters a structured environment where students develop self-control,
-                  responsibility, and respect for rules—essential qualities for lifelong achievement.
-                </p>
-              </div>
-            </div>
+              }
+            />
 
-            {/* Commitment */}
-            <div className="bg-white rounded-2xl p-6 flex items-start gap-5">
-              <div className="shrink-0 w-14 h-14 rounded-full bg-[#1e2a6e] flex items-center justify-center">
+            <ValueCard
+              title="Commitment"
+              description="We are dedicated to continuous growth and student success. Our teachers and students work together with determination and perseverance to achieve academic excellence and personal development."
+              icon={
                 <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                 </svg>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Commitment</h3>
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  We are dedicated to continuous growth and student success.
-                  Our teachers and students work together with determination and perseverance
-                  to achieve academic excellence and personal development.
-                </p>
-              </div>
-            </div>
+              }
+            />
 
-            {/* Student-Centered Learning */}
-            <div className="bg-white rounded-2xl p-6 flex items-start gap-5">
-              <div className="shrink-0 w-14 h-14 rounded-full bg-[#1e2a6e] flex items-center justify-center">
+            <ValueCard
+              title="Student-Centered Learning"
+              description="We focus on the unique potential of every student. We provide guidance and support to help each learner grow academically and personally."
+              icon={
                 <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">Student-Centered Learning</h3>
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  We focus on the unique potential of every student.
-                  We provide guidance and support to help each learner grow academically and personally.
-                </p>
-              </div>
-            </div>
+              }
+            />
 
           </div>
         </div>

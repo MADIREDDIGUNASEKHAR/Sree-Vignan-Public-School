@@ -23,7 +23,6 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
-            // Fallback gradient backgrounds per category
             const el = e.currentTarget as HTMLImageElement;
             el.style.display = "none";
           }}
@@ -32,7 +31,7 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
         <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[10px] font-bold tracking-[0.15em] text-slate-700 px-3 py-1.5 rounded-full uppercase z-10">
           {post.tag}
         </span>
-        {/* Fallback gradient shown when image errors */}
+        {/* Fallback gradient */}
         <div
           className="absolute inset-0 -z-10"
           style={{
@@ -75,12 +74,7 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
           className="inline-flex items-center gap-2 text-indigo-600 text-sm font-semibold tracking-wide hover:gap-3 transition-all duration-200"
         >
           READ MORE
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </Link>
@@ -94,8 +88,6 @@ export default function BlogPage() {
   const filtered = getBlogPostsByCategory(activeCategory);
   const featured = filtered.find((p) => p.featured);
   const rest = filtered.filter((p) => !p.featured || activeCategory !== "All");
-
-  const displayPosts = activeCategory === "All" ? filtered : filtered;
 
   return (
     <div className="min-h-screen" style={{ background: "#f0f2f5" }}>
@@ -130,7 +122,7 @@ export default function BlogPage() {
 
       {/* Posts Grid */}
       <div className="max-w-7xl mx-auto px-6 pb-16">
-        {displayPosts.length === 0 ? (
+        {filtered.length === 0 ? (
           <div className="text-center py-24 text-slate-400">
             <p className="text-lg">No articles in this category yet.</p>
           </div>
@@ -143,11 +135,22 @@ export default function BlogPage() {
               </div>
             )}
 
-            {/* Regular grid */}
+            {/* Regular grid
+                Mobile "All":      featured already shown above = 1, show 1 more → mobileLimit = 1
+                Mobile category:   no featured card, show 2                       → mobileLimit = 2
+                Desktop:           always show all via "hidden md:block" override            */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(activeCategory === "All" ? rest : displayPosts).map((post) => (
-                <BlogCard key={post.slug} post={post} />
-              ))}
+              {(activeCategory === "All" ? rest : filtered).map((post, index) => {
+                const mobileLimit = activeCategory === "All" ? 1 : 2;
+                return (
+                  <div
+                    key={post.slug}
+                    className={index >= mobileLimit ? "hidden md:block" : ""}
+                  >
+                    <BlogCard post={post} />
+                  </div>
+                );
+              })}
             </div>
           </>
         )}
