@@ -10,12 +10,13 @@ import ProgramsSection from '@/components/ProgramsSection';
 import FacilitiesSection from '@/components/FacilitiesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import GallerySection from '@/app/gallery/page';
-import ClassXResultsSection from '@/components/Classxresultssection';
 import CTASection from '@/components/CTASection';
 import FeaturesSection from '@/components/FeaturesSection';
 import WhyChooseSection from '@/components/WhyChooseSection';
 import LeadershipSection from '@/components/LeadershipSection';
 import FAQSection from '@/components/FAQSection';
+import BlogPage from './blog/page';
+import AcademicResultsPoster from '@/components/Academicresultsposter';
 
 export const metadata: Metadata = {
   title: 'Home | Sree Vignan Public School',
@@ -268,7 +269,7 @@ export default function HomePage() {
     <>
       <HeroSlider />
       <StatsSection />
-      <ClassXResultsSection />
+      <AcademicResultsPoster />
       <ProgramsSection />
       <FacilitiesSection />
       <WhyChooseSection />
@@ -277,6 +278,7 @@ export default function HomePage() {
       <TestimonialsSection />
       <FeaturesSection />
       <LocationSection />
+      <BlogPage />
       <FAQSection />
       <CTASection />
       

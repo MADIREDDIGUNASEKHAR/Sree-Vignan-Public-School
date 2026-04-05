@@ -39,7 +39,27 @@ module.exports = {
           '100%': { transform: 'translateX(-50%)' },
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': '#475569',
+            '--tw-prose-headings': '#0f172a',
+            '--tw-prose-links': '#7C3AED',
+            '--tw-prose-bold': '#0f172a',
+            '--tw-prose-counters': '#94a3b8',
+            '--tw-prose-bullets': '#cbd5e1',
+            '--tw-prose-hr': '#e2e8f0',
+            '--tw-prose-quotes': '#1e293b',
+            '--tw-prose-quote-borders': '#7C3AED',
+            '--tw-prose-code': '#7C3AED',
+            '--tw-prose-pre-bg': '#f8fafc',
+            maxWidth: 'none',
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
