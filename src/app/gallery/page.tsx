@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { galleryItems } from '@/lib/galleryData';
@@ -197,9 +197,29 @@ function GalleryCard({
 
 export default function GallerySection() {
   const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const prev = () => setActive(i => (i - 1 + total) % total);
   const next = () => setActive(i => (i + 1) % total);
+
+  useEffect(() => {
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+
+    updateIsMobile();
+    window.addEventListener('resize', updateIsMobile);
+
+    return () => window.removeEventListener('resize', updateIsMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const intervalId = window.setInterval(() => {
+      setActive(i => (i + 1) % total);
+    }, 2000);
+
+    return () => window.clearInterval(intervalId);
+  }, [isMobile]);
 
   const getOffset = (index: number) => {
     let offset = index - active;
@@ -212,43 +232,8 @@ export default function GallerySection() {
     <section
       id="gallery"
       className="relative overflow-hidden scroll-mt-[108px]"
-      style={{ background: '#6B21E8' }}
+      style={{ background: '#fffacd' }}
     >
-      {/* Blob decorations */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: 340,
-          height: 340,
-          borderRadius: '50%',
-          background: 'rgba(109, 40, 217, 0.7)',
-          top: '-80px',
-          left: '-60px',
-        }}
-      />
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: 520,
-          height: 520,
-          borderRadius: '50%',
-          background: 'rgba(91, 33, 182, 0.55)',
-          top: '-140px',
-          right: '-100px',
-        }}
-      />
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: 240,
-          height: 240,
-          borderRadius: '50%',
-          background: 'rgba(76, 29, 149, 0.65)',
-          top: '28%',
-          right: '6%',
-        }}
-      />
-
       {/* Subtle glow behind center card */}
       <div
         className="absolute pointer-events-none"
@@ -281,13 +266,13 @@ export default function GallerySection() {
           School Gallery
         </span>
         <h2
-          className="font-black text-white leading-tight mb-3"
+          className="font-black text-black leading-tight mb-3"
           style={{ fontSize: 'clamp(32px, 5vw, 52px)', letterSpacing: '-0.03em' }}
         >
           Every Moment,{' '}
-          <span style={{ color: '#D4AF37' }}>Every Memory.</span>
+          <span style={{ color: '#000000' }}>Every Memory.</span>
         </h2>
-        <p className="text-white/45 text-base max-w-lg mx-auto leading-relaxed">
+        <p className="text-black text-base max-w-lg mx-auto leading-relaxed">
           Click the side cards to navigate — explore every photo from each special event
         </p>
       </div>

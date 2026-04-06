@@ -52,11 +52,11 @@ export default function FeaturesSection() {
         }}
       />
 
-      <div className="relative z-10 container-safe py-20">
+      <div className="relative z-10 container-safe py-12 md:py-20 px-4 md:px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <span
-            className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6"
+            className="inline-flex items-center gap-2 px-4 md:px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4 md:mb-6"
             style={{
               background: 'rgba(255,255,255,0.85)',
               border: '1px solid #d8c4f0',
@@ -70,9 +70,9 @@ export default function FeaturesSection() {
             Quick Links
           </span>
           <h2
-            className="font-black leading-tight mb-4"
+            className="font-black leading-tight mb-3 md:mb-4"
             style={{
-              fontSize: 'clamp(28px, 4vw, 48px)',
+              fontSize: 'clamp(24px, 5vw, 48px)',
               letterSpacing: '-0.03em',
               color: '#111827',
             }}
@@ -80,29 +80,33 @@ export default function FeaturesSection() {
             Explore More <span style={{ color: '#7C3AED' }}>Features</span>
           </h2>
           <p
-            className="text-base max-w-lg mx-auto leading-relaxed"
+            className="text-sm md:text-base max-w-lg mx-auto leading-relaxed"
             style={{ color: '#6b7280' }}
           >
             Discover our comprehensive online services designed for parents and students
           </p>
         </div>
 
-        {/* Bento Grid */}
+        {/* ── Mobile layout (< md) ── */}
+        <div className="flex flex-col gap-3 md:hidden">
+          <NewsCard feature={features[0]} latestPost={latestPost} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <BentoCard feature={features[1]} />
+            <BentoCard feature={features[2]} />
+          </div>
+        </div>
+
+        {/* ── Desktop layout (md+) ── */}
         <div
-          className="grid gap-4"
-          style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}
+          className="hidden md:grid gap-4"
+          style={{ gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'auto auto' }}
         >
-          {/* Hero card — 2 cols, 2 rows */}
-          <HeroNewsCard
+          <NewsCard
             feature={features[0]}
             latestPost={latestPost}
             style={{ gridColumn: '1 / 3', gridRow: '1 / 3', minHeight: 320 }}
           />
-
-          {/* Admission */}
           <BentoCard feature={features[1]} style={{ gridColumn: '3', gridRow: '1' }} />
-
-          {/* Faculty */}
           <BentoCard feature={features[2]} style={{ gridColumn: '3', gridRow: '2' }} />
         </div>
       </div>
@@ -110,8 +114,8 @@ export default function FeaturesSection() {
   );
 }
 
-/* ── Hero News Card ── */
-function HeroNewsCard({
+/* ── News Card (used in both mobile and desktop) ── */
+function NewsCard({
   feature,
   latestPost,
   style,
@@ -127,7 +131,7 @@ function HeroNewsCard({
         background: '#ffffff',
         border: '1.5px solid rgba(124,58,237,0.12)',
         borderRadius: 20,
-        padding: '36px 32px',
+        padding: '24px 20px',
         boxShadow: '0 8px 32px rgba(0,0,0,0.07)',
         ...style,
       }}
@@ -136,26 +140,26 @@ function HeroNewsCard({
       <div
         className="absolute top-0 right-0 pointer-events-none"
         style={{
-          width: 160,
-          height: 160,
+          width: 140,
+          height: 140,
           background:
             'radial-gradient(circle at top right, rgba(124,58,237,0.08) 0%, transparent 70%)',
           borderRadius: '0 20px 0 0',
         }}
       />
 
-      <div style={{ fontSize: 48, marginBottom: 16, lineHeight: 1 }}>
+      <div style={{ fontSize: 40, marginBottom: 12, lineHeight: 1 }}>
         {feature.icon}
       </div>
       <h3
-        className="font-black text-2xl mb-1"
+        className="font-black text-xl md:text-2xl mb-1"
         style={{ letterSpacing: '-0.02em', color: '#111827' }}
       >
         {feature.title}
       </h3>
       <p
-        className="leading-relaxed"
-        style={{ fontSize: '1rem', color: '#6b7280', marginBottom: 20 }}
+        className="leading-relaxed text-sm md:text-base"
+        style={{ color: '#6b7280', marginBottom: 16 }}
       >
         {feature.description}
       </p>
@@ -164,7 +168,7 @@ function HeroNewsCard({
       {latestPost ? (
         <Link
           href="/news"
-          className="flex flex-col rounded-2xl overflow-hidden mb-6"
+          className="flex flex-col rounded-2xl overflow-hidden mb-5"
           style={{
             border: '1px solid rgba(124,58,237,0.12)',
             background: '#faf8ff',
@@ -182,26 +186,33 @@ function HeroNewsCard({
           }}
         >
           {/* Thumbnail */}
-          <div style={{ width: '100%', height: 140, overflow: 'hidden', flexShrink: 0 }}>
+          <div style={{ width: '100%', height: 120, overflow: 'hidden', flexShrink: 0 }}>
             {latestPost.image ? (
               <img
                 src={latestPost.image}
                 alt={latestPost.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
               />
             ) : (
               <div
                 className="w-full h-full flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #ede9fe 0%, #c4b5fd 100%)' }}
+                style={{
+                  background: 'linear-gradient(135deg, #ede9fe 0%, #c4b5fd 100%)',
+                }}
               >
-                <span style={{ fontSize: 40, opacity: 0.5 }}>📰</span>
+                <span style={{ fontSize: 36, opacity: 0.5 }}>📰</span>
               </div>
             )}
           </div>
 
           {/* Details */}
-          <div className="p-4">
-            <div className="flex justify-end mb-2">
+          <div className="p-3 md:p-4">
+            <div className="flex justify-end mb-1.5">
               <span
                 className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold"
                 style={{ background: 'rgba(124,58,237,0.1)', color: '#6b21a8' }}
@@ -209,23 +220,24 @@ function HeroNewsCard({
                 {latestPost.category}
               </span>
             </div>
-
             <h4
               className="font-bold leading-snug mb-1 text-right"
-              style={{ fontSize: '0.95rem', color: '#111827', letterSpacing: '-0.01em' }}
+              style={{
+                fontSize: '0.9rem',
+                color: '#111827',
+                letterSpacing: '-0.01em',
+              }}
             >
               {latestPost.title}
             </h4>
-
             <p
-              className="leading-snug mb-3 text-right line-clamp-2"
-              style={{ fontSize: '0.8rem', color: '#6b7280' }}
+              className="leading-snug mb-2 text-right line-clamp-2"
+              style={{ fontSize: '0.78rem', color: '#6b7280' }}
             >
               {latestPost.excerpt}
             </p>
-
             <div className="flex items-center justify-end gap-1.5">
-              <Calendar size={12} style={{ color: '#9ca3af' }} />
+              <Calendar size={11} style={{ color: '#9ca3af' }} />
               <span className="text-xs" style={{ color: '#9ca3af' }}>
                 {new Date(latestPost.date).toLocaleDateString('en-US', {
                   month: 'long',
@@ -238,9 +250,9 @@ function HeroNewsCard({
         </Link>
       ) : (
         <div
-          className="rounded-2xl flex items-center justify-center mb-6"
+          className="rounded-2xl flex items-center justify-center mb-5"
           style={{
-            height: 100,
+            height: 80,
             border: '1px dashed rgba(124,58,237,0.2)',
             background: '#faf8ff',
           }}
@@ -251,7 +263,6 @@ function HeroNewsCard({
         </div>
       )}
 
-      {/* CTA */}
       <Link
         href={feature.href}
         className="inline-flex items-center gap-1.5 text-sm font-bold mt-auto group/link"
@@ -282,7 +293,7 @@ function BentoCard({
         background: '#ffffff',
         border: '1.5px solid rgba(124,58,237,0.12)',
         borderRadius: 20,
-        padding: '24px',
+        padding: '20px',
         boxShadow: '0 8px 32px rgba(0,0,0,0.07)',
         transition: 'box-shadow 0.25s, transform 0.25s, background 0.2s',
         ...style,
@@ -300,18 +311,18 @@ function BentoCard({
         el.style.boxShadow = '0 8px 32px rgba(0,0,0,0.07)';
       }}
     >
-      <div style={{ fontSize: 36, marginBottom: 16, lineHeight: 1 }}>
+      <div style={{ fontSize: 32, marginBottom: 12, lineHeight: 1 }}>
         {feature.icon}
       </div>
       <h3
-        className="font-black text-lg mb-2"
+        className="font-black text-base md:text-lg mb-1.5"
         style={{ letterSpacing: '-0.02em', color: '#111827' }}
       >
         {feature.title}
       </h3>
       <p
-        className="leading-relaxed flex-1"
-        style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: 20 }}
+        className="leading-relaxed flex-1 text-sm"
+        style={{ color: '#6b7280', marginBottom: 16 }}
       >
         {feature.description}
       </p>

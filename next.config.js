@@ -9,8 +9,7 @@ const nextConfig = {
     ],
     formats: ['image/avif', 'image/webp'],
   },
-  swcMinify: true,
-  reactStrictMode: true,
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;

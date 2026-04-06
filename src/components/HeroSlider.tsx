@@ -43,7 +43,7 @@ const slides = [
   },
   {
     id: 6,
-    image:  '/gallery/HERO/image6.jpeg',
+    image:  '/gallery/HERO/image6.jpg',
     headline: 'A Campus Built for Learners',
     subline: 'State-of-the-art facilities designed for modern education',
     cta: { label: 'Explore More', href: '/about' },
