@@ -50,25 +50,25 @@ const leaders: Leader[] = [
     name: "ATKINSON SIR",
     title: "Academic Dean",
     imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuChWnTvZsaKHWAQo8xLmPhm13jTBHR_rJToECjBOX6HjIJrRzd-PnG19KGcicxZdsl7P0GnXK33MLQy23V0MA2nHwdb-uOyPIvIYARXgtvuzUR1778-guou24k1AwDliO2x5sIeaUMrQQGMzkpAGbXb06dOq2lJ_O0XbW5lFusXLN1x_mGZQGNFOUByVyGj7CFBgksZizCvgS2B1bJq3vQgP6hgKJN_iE7RaLG-48zzCjW1P8Ed3PuT7NBqeu5efb3Py9CLl8DM9L8",
-    imgAlt: "Portrait of a man in professional attire against a neutral architectural background",
+    imgAlt: "Atkinson sir",
   },
   {
     name: "FRANCIS D'COSTA SIR",
     title: "Director of Admissions",
     imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuCvpoFVmg8Pmz8K8oUuyTEWuJIAk26KV23VMOymuXYNiNufwszJN_V8WUnszRx9RfEJA0OmzKUYPUAfucBWbw09rw-UrW3ZXK6vkxEX8ozMC2UOSqR4YiWdZNK4z-IH_tmwe5_fSdPbCkmL4fBDzLVs-3iNTdbBr-TYvjdrhgArX7UGVr5AVa_J8PosrFlqw1eYzvebSB-Ptq5q14ayjIFmAGpRIKdebgyc3C6C0L-vWVDLPAcR_kne9rxA2gB_pZfqDjon4Kng_zc",
-    imgAlt: "Portrait of a confident woman in a business casual outfit, smiling warmly",
+    imgAlt: "Francis D'costa Sir",
   },
   {
-    name: "D SATYA PRASAD SIR",
+    name: "D SATYA PRASAD GARU",
     title: "Head of Research",
     imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuDy5-ZTHJ3IA57RNDk684Bfwl54gA1G4rZJQUJSrJ6tbSjoQHCzCDNNHMzGtuRPmU4YOFbg-SmmofuoV5kEijQutX42wnES4IjS4rdmG76cZfTvEFhNk_6dyo4rNN8zaYCAqnAZMprzlvR688Cxzn95M8kGgnsJcxVm9m94Se4Oh1VNInwqUEPXU4lTPk1-falTiCyUGInUv20Z6MUW9S_sCAceK9Br1GunV24MDPtOD4S41Z-WPErgJybe2SB1mrfkbSX1XlMs-FQ",
-    imgAlt: "Close-up headshot of a middle-aged man with glasses, looking thoughtful",
+    imgAlt: "D satya prasad garu",
   },
   {
-    name: "KRISHNA MASTER SIR",
+    name: "KRISHNA MASTER",
     title: "Dean of Students",
     imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXBaHb2hdC9hd-r-_9LACS0lrd-3z850ARZIr9Xj5EupDuBHHXsNRqExj_Ry6UTemeWr-COJcy7P_0VJ5ZJc5zyWuxPrT5jy6BVOBAQUiZ-KrJjIO-z4OqSvNZB3a41V_8IR1p6AirkLmSPGhdgnInKyL2nS3qtmL5DEpKb1H-sZ2dT-Ppx4eExIwJfITR50-qn90uepbwxM_ZSr03ZIY8xqxEk_-5wEUstH0o0Pe55cqLOWdAtgzwffjSRsX8P9_nLTKVd0kX5TQ",
-    imgAlt: "Smiling woman with glasses and short hair, wearing a navy sweater",
+    imgAlt: "Krishna Master",
   },
 ];
 
@@ -84,15 +84,25 @@ function LeaderCarousel() {
   const [flipping, setFlipping] = useState(false);
   const [direction, setDirection] = useState<FlipDirection>(null);
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const t1 = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const t2 = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const currentRef = useRef(0);
+  const flippingRef = useRef(false);
+
+  useEffect(() => {
+    currentRef.current = current;
+  }, [current]);
+
+  useEffect(() => {
+    flippingRef.current = flipping;
+  }, [flipping]);
 
   const goTo = (next: number, dir: FlipDirection) => {
-    if (flipping) return;
+    if (flippingRef.current || next === currentRef.current) return;
     setDirection(dir);
     setFlipping(true);
-    t1.current = setTimeout(() => setDisplayed(next), FLIP_MS / 2);
-    t2.current = setTimeout(() => {
+    setDisplayed(next);
+
+    timeoutRef.current = setTimeout(() => {
       setCurrent(next);
       setFlipping(false);
       setDirection(null);
@@ -103,20 +113,19 @@ function LeaderCarousel() {
   const handlePrev = () => goTo((current - 1 + leaders.length) % leaders.length, "prev");
 
   useEffect(() => {
-    autoRef.current = setInterval(() => {
-      goTo((current + 1) % leaders.length, "next");
-    }, 3500);
-    return () => {
-      if (autoRef.current) clearInterval(autoRef.current);
+    const autoFlip = () => {
+      if (flippingRef.current) {
+        timeoutRef.current = setTimeout(autoFlip, 100);
+        return;
+      }
+      goTo((currentRef.current + 1) % leaders.length, "next");
+      timeoutRef.current = setTimeout(autoFlip, 2000);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, flipping]);
 
-  useEffect(() => {
+    timeoutRef.current = setTimeout(autoFlip, 2000);
+
     return () => {
-      if (t1.current) clearTimeout(t1.current);
-      if (t2.current) clearTimeout(t2.current);
-      if (autoRef.current) clearInterval(autoRef.current);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
@@ -130,28 +139,6 @@ function LeaderCarousel() {
 
   return (
     <>
-      <style>{`
-        @keyframes flipNext {
-          0%   { transform: translateY(0); opacity: 1; }
-          49%  { transform: translateY(-12px); opacity: 0; }
-          50%  { transform: translateY(12px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes flipPrev {
-          0%   { transform: translateY(0); opacity: 1; }
-          49%  { transform: translateY(12px); opacity: 0; }
-          50%  { transform: translateY(-12px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
-        }
-        .leader-flip-next {
-          animation: flipNext ${FLIP_MS}ms cubic-bezier(0.4,0,0.2,1) forwards;
-          will-change: transform, opacity;
-        }
-        .leader-flip-prev {
-          animation: flipPrev ${FLIP_MS}ms cubic-bezier(0.4,0,0.2,1) forwards;
-          will-change: transform, opacity;
-        }
-      `}</style>
 
       <div className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto select-none">
         <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#6c5a00]">
@@ -159,7 +146,6 @@ function LeaderCarousel() {
         </p>
 
         <div
-          key={current}
           className={`w-full bg-white rounded-2xl overflow-hidden ${flipClass}`}
           style={{ boxShadow: "0 -4px 16px rgba(0,0,0,0.18), 0 8px 32px rgba(0,0,0,0.12)" }}
         >
@@ -172,9 +158,6 @@ function LeaderCarousel() {
           </div>
 
           <div className="px-6 py-5 border-t-4 border-[#ffd709]">
-            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#375c91] mb-1">
-              {leader.title}
-            </p>
             <h4 className="text-xl font-extrabold text-[#2c2f30] tracking-tight">
               {leader.name}
             </h4>
@@ -321,9 +304,44 @@ function LeaderCard({ leader }: { leader: Leader }) {
         />
       </div>
       <h4 className="text-xl font-bold text-[#2c2f30] mb-1">{leader.name}</h4>
-      <p className="text-[#595c5d] text-sm font-medium">{leader.title}</p>
     </div>
   );
+}
+
+function WordByWordTypewriter({ text, delay = 280 }: { text: string; delay?: number }) {
+  const [visibleText, setVisibleText] = useState("");
+  const timeoutsRef = useRef<Array<ReturnType<typeof setTimeout>>>([]);
+
+  useEffect(() => {
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+
+    const words = text.split(" ");
+    const pauseAfter = 500;
+
+    const scheduleCycle = (startMs = 0) => {
+      words.forEach((word, index) => {
+        const timeout = setTimeout(() => {
+          setVisibleText((prev) => (prev ? `${prev} ${word}` : word));
+        }, startMs + delay * index);
+        timeoutsRef.current.push(timeout);
+      });
+
+      const finishTimeout = setTimeout(() => {
+        setVisibleText("");
+        scheduleCycle(startMs + delay * words.length + pauseAfter);
+      }, startMs + delay * words.length + pauseAfter);
+      timeoutsRef.current.push(finishTimeout);
+    };
+
+    scheduleCycle();
+
+    return () => {
+      timeoutsRef.current.forEach(clearTimeout);
+    };
+  }, [text, delay]);
+
+  return <span>{visibleText}</span>;
 }
 
 // ─── Value Card ───────────────────────────────────────────────────────────────
@@ -414,12 +432,9 @@ export default function FoundersPage() {
       <section className="bg-[#eff1f2] py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 md:mb-16">
-            <span className="text-[#6c5a00] font-bold tracking-[0.2em] uppercase text-sm">
-              Our Backbone
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#375c91] mt-2">
-              The Leadership Team
-            </h2>
+            <p className="text-2xl md:text-3xl font-bold text-[#375c91] leading-snug max-w-3xl mx-auto">
+              <WordByWordTypewriter text="With heartfelt gratitude to those who believed in us and stood by our side from the very beginning." />
+            </p>
           </div>
 
           {/* Desktop: 4-column grid */}

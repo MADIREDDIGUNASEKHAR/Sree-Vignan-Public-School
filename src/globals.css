@@ -117,3 +117,25 @@ textarea:focus {
   animation: ticker 30s linear infinite;
   will-change: transform;
 }
+
+/* ===== Leader Carousel Flip Animations ===== */
+@keyframes flipNext {
+  0%   { transform: translateY(0); opacity: 1; }
+  49%  { transform: translateY(-12px); opacity: 0; }
+  50%  { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes flipPrev {
+  0%   { transform: translateY(0); opacity: 1; }
+  49%  { transform: translateY(12px); opacity: 0; }
+  50%  { transform: translateY(-12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.leader-flip-next {
+  animation: flipNext 1000ms cubic-bezier(0.4,0,0.2,1) forwards;
+  will-change: transform, opacity;
+}
+.leader-flip-prev {
+  animation: flipPrev 1000ms cubic-bezier(0.4,0,0.2,1) forwards;
+  will-change: transform, opacity;
+}

@@ -4,13 +4,13 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 
 const facilities = [
   {
-    id: "labs",
+    id: "School Bus",
     type: "featured",
     badge: "Featured Space",
-    icon: "biotech",
-    title: "Science Labs",
-    desc: "Advanced research environments equipped with precision instruments, fostering a culture of empirical inquiry and breakthrough discovery.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCiiIzaGUTx6HPdKzeGLbK1x6j92dhJxWZtUG3MZQ8b6aVn9kS7VoKXTV8NmmPzrl20ehaY2ePZlz6ADSjILGPoUUJoL0LfT8nQUlRc8_oPm10ZKHpu6TT8TCD5TjJhtmHfcPxG8T75rqHG_jCfuxsem-s_IBC1aZbjyqrcywh-igEIeASxKf_Mhak1ixLoeO3MlTa6n3HO8_6O1DTzVDN-IvMskKNYUB_38RF1OjPQxlxL4bkuh9mRg0hS2F4szH8HrzGHWJGN1M8",
+    icon: "directions_bus",
+    title: "School Bus Facility",
+    desc: "We provide bus facility within a 15 km radius across all villages in Chodavaram Mandal.",
+    img: "/gallery/Facilities/Schoolbuses.png",
     accentColor: "#375c91",
   },
   {
@@ -22,11 +22,11 @@ const facilities = [
     accentColor: "#375c91",
   },
   {
-    id: "auditorium",
-    type: "auditorium",
-    title: "Modern Auditorium",
-    desc: "A 1,200-seat theatrical venue with professional acoustics and 4K projection for global symposiums.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDdhY8QJyqFVMYKiW_NVpmi78oKzQQH-GNhy8OLj1fhlF1PkB0Tuyhg_U7KGrEdEDomVgbGmsP6HF4bZHcBHk3xxYe875NTwmWQ-Zt0Na51BDKaOvg5q1tPeveYzRyfUjJhRZCA-wOXWzCEDudz_ngT-tP02ogs_s754VFx-Vof9GsP-F-fTU2iSYTi_uc0Kee0WjqqAxZZqmhwICOTWxYREQF_91hfW8hN7fvnWLZ-s3nyryP0Km5w_Pngf1koB3CONpbjQfZd5MU",
+    id: "computer-lab",
+    type: "computer_lab",
+    title: "Computer Lab",
+    desc: "A fully equipped computer lab providing modern PCs, high-speed internet, and software for digital learning and coding.",
+    img: "/gallery/Facilities/ComputerLab.png",
     accentColor: "#375c91",
   },
   {
@@ -35,7 +35,9 @@ const facilities = [
     icon: "sports_soccer",
     tag: "Olympic Spec",
     title: "Sports Arena",
-    desc: "Multi-disciplinary athletic complex featuring an indoor heated pool and FIFA-approved turf.",
+    desc: "Multi-disciplinary athletic complex featuring an indoor heated pool, FIFA-approved turf, and",
+    highlight: "2Acre sports ground.",
+    img: "/gallery/Facilities/SportsGround.png",
     accentColor: "#ffd709",
   },
   {
@@ -51,6 +53,7 @@ const facilities = [
     icon: "settings_input_component",
     title: "Smart Classrooms",
     desc: "Collaborative spaces featuring AI-integrated interactive boards and ergonomic modular seating.",
+    img: "/gallery/Facilities/DigitalClassRoom.png",
     accentColor: "#375c91",
   },
 ];
@@ -172,13 +175,12 @@ const FacilitiesSection: React.FC = () => {
           transition: box-shadow 0.3s ease;
         }
         .card-featured:hover { box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
-        .card-featured:hover img.facility-img { filter: grayscale(0); }
 
         .facility-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: grayscale(100%);
+          filter: none;
           transition: filter 0.7s ease;
         }
 
@@ -294,10 +296,28 @@ const FacilitiesSection: React.FC = () => {
           border-radius: 0.75rem;
           position: relative;
           overflow: hidden;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 360px;
+          display: flex;
+          align-items: flex-end;
         }
-        .card-auditorium-title { font-family: 'Lexend', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
-        .card-auditorium-desc { color: rgba(239,242,255,0.8); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
-        .card-auditorium-img { width: 100%; height: 8rem; object-fit: cover; border-radius: 0.5rem; opacity: 0.4; }
+        .card-auditorium::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0.76));
+          pointer-events: none;
+        }
+        .card-auditorium-overlay {
+          position: relative;
+          z-index: 1;
+          padding: 1rem;
+        }
+        .card-auditorium-title { font-family: 'Lexend', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: #ffffff; }
+        .card-auditorium-desc { color: rgba(255,255,255,0.92); font-size: 0.95rem; line-height: 1.6; max-width: 32rem; }
+        .card-auditorium-img { display: none; }
 
         .row-bottom {
           grid-column: span 12;
@@ -332,7 +352,10 @@ const FacilitiesSection: React.FC = () => {
         }
 
         .card-sports-title { font-family: 'Lexend', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: #2c2f30; }
-        .card-sports-desc { color: #595c5d; font-size: 0.95rem; line-height: 1.6; }
+        .card-sports-desc { color: #595c5d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+        .card-sports-img,
+        .mc-sports-img { width: 100%; max-height: 7rem; object-fit: cover; border-radius: 0.75rem; margin-top: 0.75rem; }
+        .sports-highlight { font-weight: 700; color: #375c91; }
 
         .card-arts { background-color: #e0e3e4; padding: 2rem; border-radius: 0.75rem; overflow: hidden; transform: translateY(3rem); }
         .card-arts-title { font-family: 'Lexend', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: #2c2f30; }
@@ -351,21 +374,44 @@ const FacilitiesSection: React.FC = () => {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 340px;
+          position: relative;
+        }
+        .card-smart::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.56));
+          border-radius: 0.75rem;
+          pointer-events: none;
         }
         .card-smart:hover { transform: translateY(-8px); }
-        .card-smart-title { font-family: 'Lexend', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: #2c2f30; }
-        .card-smart-desc { color: #595c5d; font-size: 0.95rem; line-height: 1.6; }
+        .card-smart-overlay {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 100%;
+        }
+        .card-smart-title { font-family: 'Lexend', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: #ffffff; }
+        .card-smart-desc { color: rgba(255,255,255,0.9); font-size: 0.95rem; line-height: 1.6; }
 
         .card-smart-footer {
           margin-top: 2rem;
           padding-top: 1.5rem;
-          border-top: 1px solid rgba(117,119,120,0.2);
+          border-top: 1px solid rgba(255,255,255,0.2);
           display: flex;
           align-items: center;
           justify-content: space-between;
+          position: relative;
+          z-index: 1;
         }
-        .tag-next-gen { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; color: #375c91; }
-        .icon-bolt { font-size: 1rem; color: #375c91; }
+        .tag-next-gen { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; color: #ffffff; }
+        .icon-bolt { font-size: 1rem; color: #ffffff; }
 
         /* ── Mobile Carousel ── */
         .mobile-carousel-wrap {
@@ -383,7 +429,7 @@ const FacilitiesSection: React.FC = () => {
 
         /* card type: featured */
         .mc-featured { background: #ffffff; }
-        .mc-featured-img { width: 100%; height: 180px; object-fit: cover; filter: grayscale(30%); display: block; }
+        .mc-featured-img { width: 100%; height: 180px; object-fit: cover; filter: none; display: block; }
         .mc-featured-body { padding: 1.25rem 1.5rem 1.5rem; }
         .mc-featured-icon-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
         .mc-featured-title { font-family: 'Lexend', sans-serif; font-size: 1.4rem; font-weight: 700; color: #2c2f30; }
@@ -409,10 +455,34 @@ const FacilitiesSection: React.FC = () => {
         .mc-lib-desc { color: #595c5d; font-size: 0.9rem; line-height: 1.65; }
 
         /* card type: auditorium */
-        .mc-auditorium { background: #375c91; color: #eff2ff; padding: 1.75rem 1.5rem; }
-        .mc-aud-title { font-family: 'Lexend', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .mc-aud-desc { color: rgba(239,242,255,0.8); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.25rem; }
-        .mc-aud-img { width: 100%; height: 7rem; object-fit: cover; border-radius: 0.5rem; opacity: 0.45; }
+        .mc-auditorium {
+          position: relative;
+          background: #375c91;
+          color: #eff2ff;
+          padding: 1.75rem 1.5rem;
+          border-radius: 0.75rem;
+          overflow: hidden;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 260px;
+          display: flex;
+          align-items: flex-end;
+        }
+        .mc-auditorium::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0.72));
+          pointer-events: none;
+        }
+        .mc-aud-overlay {
+          position: relative;
+          z-index: 1;
+        }
+        .mc-aud-title { font-family: 'Lexend', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; color: #ffffff; }
+        .mc-aud-desc { color: rgba(255,255,255,0.92); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.25rem; }
+        .mc-aud-img { width: 100%; height: 7rem; object-fit: cover; border-radius: 0.5rem; opacity: 0.45; display: block; }
 
         /* card type: sports */
         .mc-sports { background: #ffffff; padding: 1.75rem 1.5rem; border-left: 5px solid #ffd709; }
@@ -426,10 +496,33 @@ const FacilitiesSection: React.FC = () => {
         .mc-arts-desc { color: #595c5d; font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.25rem; }
 
         /* card type: smart */
-        .mc-smart { background: #ffffff; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; justify-content: space-between; }
-        .mc-smart-title { font-family: 'Lexend', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.6rem; color: #2c2f30; }
-        .mc-smart-desc { color: #595c5d; font-size: 0.9rem; line-height: 1.65; }
-        .mc-smart-footer { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(117,119,120,0.2); display: flex; align-items: center; justify-content: space-between; }
+        .mc-smart {
+          position: relative;
+          background: #ffffff;
+          padding: 1.75rem 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 260px;
+          overflow: hidden;
+        }
+        .mc-smart::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0.68));
+          pointer-events: none;
+        }
+        .mc-smart-overlay {
+          position: relative;
+          z-index: 1;
+        }
+        .mc-smart-title { font-family: 'Lexend', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.6rem; color: #ffffff; }
+        .mc-smart-desc { color: rgba(255,255,255,0.92); font-size: 0.9rem; line-height: 1.65; }
+        .mc-smart-footer { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
 
         /* Arrow buttons */
         .carousel-controls {
@@ -527,16 +620,15 @@ const FacilitiesSection: React.FC = () => {
           <div className="facilities-grid">
             <div className="card-featured">
               <div className="card-featured-img-wrapper">
-                <img className="facility-img" src={facilities[0].img} alt="Modern high-tech science laboratory" />
+                <img className="facility-img" src={facilities[0].img} alt={facilities[0].title} />
               </div>
               <div className="card-featured-body">
                 <div className="card-featured-icon-row">
-                  <span className="material-symbols-outlined icon-secondary">biotech</span>
-                  <h2 className="card-featured-title">Science Labs</h2>
+                  <span className="material-symbols-outlined icon-secondary">{facilities[0].icon}</span>
+                  <h2 className="card-featured-title">{facilities[0].title}</h2>
                 </div>
-                <p className="card-featured-desc">Advanced research environments equipped with precision instruments, fostering a culture of empirical inquiry and breakthrough discovery.</p>
+                <p className="card-featured-desc">{facilities[0].desc}</p>
               </div>
-              <div className="glass-badge">Featured Space</div>
             </div>
 
             <div className="col-side">
@@ -548,10 +640,16 @@ const FacilitiesSection: React.FC = () => {
                 </div>
                 <span className="material-symbols-outlined card-library-bg-icon">auto_stories</span>
               </div>
-              <div className="card-auditorium">
-                <h3 className="card-auditorium-title">Modern Auditorium</h3>
-                <p className="card-auditorium-desc">A 1,200-seat theatrical venue with professional acoustics and 4K projection for global symposiums.</p>
-                <img className="card-auditorium-img" src={facilities[2].img} alt="Grand modern auditorium" />
+              <div
+                className="card-auditorium"
+                style={{
+                  backgroundImage: `url(${facilities[2].img})`,
+                }}
+              >
+                <div className="card-auditorium-overlay">
+                  <h3 className="card-auditorium-title">{facilities[2].title}</h3>
+                  <p className="card-auditorium-desc">{facilities[2].desc}</p>
+                </div>
               </div>
             </div>
 
@@ -562,7 +660,10 @@ const FacilitiesSection: React.FC = () => {
                   <span className="tag-badge">Olympic Spec</span>
                 </div>
                 <h3 className="card-sports-title">Sports Arena</h3>
-                <p className="card-sports-desc">Multi-disciplinary athletic complex featuring an indoor heated pool and FIFA-approved turf.</p>
+                <p className="card-sports-desc">
+                  {facilities[3].desc} <span className="sports-highlight">{facilities[3].highlight}</span>
+                </p>
+                {facilities[3].img && <img className="card-sports-img" src={facilities[3].img} alt="Sports ground" />}
               </div>
               <div className="card-arts">
                 <h3 className="card-arts-title">Arts &amp; Design Studio</h3>
@@ -572,15 +673,20 @@ const FacilitiesSection: React.FC = () => {
                   <div><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3tL1y6aypPxjZuRgeKmZ5rAivV1aWARBohqtA46tk1EY4kPi3FCRashsok4q1msuI06bCEVfB74bdK3RBw6SwKLJ4CdwxDTA9Ts4f_U2TnPwL9ofJSxaXs9i1F4f5XDoCGKQhHjRAbNW2rdzBscz4MrT5eVpz7e3LFta1oX4CJTEZumJ_Sf-V7OJpWMhVfhyXZtGTcp7s1nV6oK5P0BvshWyozngJgq3IxK3kW3__c379SjLRF4BSjNmrWvj63FRmQ0i-P3ecl1E" alt="Digital design" /></div>
                 </div>
               </div>
-              <div className="card-smart">
-                <div>
-                  <span className="material-symbols-outlined icon-primary">settings_input_component</span>
-                  <h3 className="card-smart-title">Smart Classrooms</h3>
-                  <p className="card-smart-desc">Collaborative spaces featuring AI-integrated interactive boards and ergonomic modular seating.</p>
-                </div>
-                <div className="card-smart-footer">
-                  <span className="tag-next-gen">Next-Gen Tech</span>
-                  <span className="material-symbols-outlined icon-bolt">bolt</span>
+              <div
+                className="card-smart"
+                style={{ backgroundImage: `url(${facilities[5].img})` }}
+              >
+                <div className="card-smart-overlay">
+                  <div>
+                    <span className="material-symbols-outlined icon-primary">settings_input_component</span>
+                    <h3 className="card-smart-title">Smart Classrooms</h3>
+                    <p className="card-smart-desc">Collaborative spaces featuring AI-integrated interactive boards and ergonomic modular seating.</p>
+                  </div>
+                  <div className="card-smart-footer">
+                    <span className="tag-next-gen">Next-Gen Tech</span>
+                    <span className="material-symbols-outlined icon-bolt">bolt</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -662,7 +768,7 @@ const MobileCarousel: React.FC<CarouselProps> = ({
         {f.type === "featured" && (
           <div className="mc-featured">
             <img className="mc-featured-img" src={f.img} alt={f.title} />
-            <div className="mc-glass-badge">Featured Space</div>
+            
             <div className="mc-featured-body">
               <div className="mc-featured-icon-row">
                 <span className="material-symbols-outlined icon-secondary" style={{ fontSize: "1.75rem" }}>{f.icon}</span>
@@ -682,11 +788,18 @@ const MobileCarousel: React.FC<CarouselProps> = ({
           </div>
         )}
 
-        {f.type === "auditorium" && (
-          <div className="mc-auditorium">
-            <h3 className="mc-aud-title">{f.title}</h3>
-            <p className="mc-aud-desc">{f.desc}</p>
-            <img className="mc-aud-img" src={f.img} alt={f.title} />
+        {(f.type === "auditorium" || f.type === "computer_lab") && (
+          <div
+            className="mc-auditorium"
+            style={f.type === "computer_lab" ? { backgroundImage: `url(${f.img})` } : undefined}
+          >
+            <div className="mc-aud-overlay">
+              <h3 className="mc-aud-title">{f.title}</h3>
+              <p className="mc-aud-desc">{f.desc}</p>
+            </div>
+            {f.type === "auditorium" && (
+              <img className="mc-aud-img" src={f.img} alt={f.title} />
+            )}
           </div>
         )}
 
@@ -697,7 +810,27 @@ const MobileCarousel: React.FC<CarouselProps> = ({
               <span className="tag-badge">{f.tag}</span>
             </div>
             <h3 className="mc-sports-title">{f.title}</h3>
-            <p className="mc-sports-desc">{f.desc}</p>
+            <p className="mc-sports-desc">
+              {f.desc} <span className="sports-highlight">{f.highlight}</span>
+            </p>
+            {f.img && <img className="mc-sports-img" src={f.img} alt={f.title} />}
+          </div>
+        )}
+
+        {f.type === "smart" && (
+          <div
+            className="mc-smart"
+            style={{ backgroundImage: f.img ? `url(${f.img})` : undefined }}
+          >
+            <div className="mc-smart-overlay">
+              <span className="material-symbols-outlined icon-primary" style={{ fontSize: "2.5rem" }}>{f.icon}</span>
+              <h3 className="mc-smart-title">{f.title}</h3>
+              <p className="mc-smart-desc">{f.desc}</p>
+              <div className="mc-smart-footer">
+                <span className="tag-next-gen">Next-Gen Tech</span>
+                <span className="material-symbols-outlined icon-bolt">bolt</span>
+              </div>
+            </div>
           </div>
         )}
 
@@ -708,20 +841,6 @@ const MobileCarousel: React.FC<CarouselProps> = ({
             <div className="avatar-stack">
               <div><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh31W2d-UWopfusxSZF7qRmD7AXswdm99k-LI57SsGLMC6S-RQaL6jiLmuPYWf9Xg7MNKe3s0KjPbFExGEdumVVg7J9v_mlbCSc9uXNQ6JRhlqOtnNXQVgi3Cr4_xtrMkmOUaY-g5eqMzcCXfDQMIi1uXNTflgO9kdDu7it1rg4jtFW0YP_EZanX_3wGF9oiAv0XPHKyH2ao6sdHwxm0f2DDy1nzOztZZzBqjOBuzukL8Q1GpnXDpl2ZYWiGlapDbwhvSPzmpqMaU" alt="" /></div>
               <div><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3tL1y6aypPxjZuRgeKmZ5rAivV1aWARBohqtA46tk1EY4kPi3FCRashsok4q1msuI06bCEVfB74bdK3RBw6SwKLJ4CdwxDTA9Ts4f_U2TnPwL9ofJSxaXs9i1F4f5XDoCGKQhHjRAbNW2rdzBscz4MrT5eVpz7e3LFta1oX4CJTEZumJ_Sf-V7OJpWMhVfhyXZtGTcp7s1nV6oK5P0BvshWyozngJgq3IxK3kW3__c379SjLRF4BSjNmrWvj63FRmQ0i-P3ecl1E" alt="" /></div>
-            </div>
-          </div>
-        )}
-
-        {f.type === "smart" && (
-          <div className="mc-smart">
-            <div>
-              <span className="material-symbols-outlined icon-primary" style={{ fontSize: "2.5rem" }}>{f.icon}</span>
-              <h3 className="mc-smart-title">{f.title}</h3>
-              <p className="mc-smart-desc">{f.desc}</p>
-            </div>
-            <div className="mc-smart-footer">
-              <span className="tag-next-gen">Next-Gen Tech</span>
-              <span className="material-symbols-outlined icon-bolt">bolt</span>
             </div>
           </div>
         )}
