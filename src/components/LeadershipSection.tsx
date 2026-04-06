@@ -27,7 +27,7 @@ const founders: Founder[] = [
     name: "Mr.M.Murali krishnam Raju",
     role: "Director",
     qualification: "AMIE",
-    imgSrc: "/gallery/faculty/Director.jpg",
+    imgSrc: "/gallery/Faculty/Director.jpg",
     imgAlt: "Director Image Loading",
     bio: [
       "Sree Vignan stands as a result of years of unwavering dedication, perseverance, and a deep belief in the power of education. Every step of its growth reflects hard work, sacrifice, and a commitment to excellence. We continue to move forward with the same vision—to provide quality education and shape responsible, successful individuals.",
@@ -37,8 +37,8 @@ const founders: Founder[] = [
     name: "Mrs. Jnaneswari",
     role: "Principal",
     qualification: "B.A., B.Ed.",
-    imgSrc: "/gallery/faculty/Principal.jpg",
-    imgAlt: "Professional woman with dark hair wearing a tailored ivory blazer",
+    imgSrc: "/gallery/Faculty/Principal.jpg",
+    imgAlt: "Principal Image Loading",
     bio: [
       "Sree Vignan is not just a place of learning, but a space built with dedication, care, and purpose. Every child we guide is a step towards building a better future, and that responsibility continues to inspire us every day.",
     ],
