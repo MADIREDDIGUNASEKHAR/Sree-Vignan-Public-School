@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { MobileBottomBar } from '@/components/MobileBottomBar';
 import AnnouncementTicker from '@/components/AnnouncementTicker';
 import { generateSchoolSchema } from '@/lib/seo';
 import '@/globals.css';
@@ -61,6 +62,7 @@ export default function RootLayout({
         <AnnouncementTicker />
         <main className="pt-[108px]">{children}</main>
         <Footer />
+        <MobileBottomBar />
         <WhatsAppButton />
       </body>
     </html>

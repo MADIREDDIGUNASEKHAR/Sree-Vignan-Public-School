@@ -13,8 +13,13 @@ export function Header() {
       setScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: menuOpen }));
+  }, [menuOpen]);
 
   const exploreItems = [
     { label: 'News & Updates', href: '/news' },
@@ -132,9 +137,6 @@ export function Header() {
             ))}
           </div>
 
-          <Link href="/contact" className="block w-full mt-3 bg-[#9c0b0b] text-white py-2 rounded text-center" onClick={() => setMenuOpen(false)}>
-            APPLY NOW
-          </Link>
         </div>
       )}
     </header>

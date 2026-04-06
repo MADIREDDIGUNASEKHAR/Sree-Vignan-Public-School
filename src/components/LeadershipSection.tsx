@@ -132,25 +132,23 @@ function LeaderCarousel() {
     <>
       <style>{`
         @keyframes flipNext {
-          0%   { transform: perspective(800px) rotateX(0deg);   opacity: 1; }
-          50%  { transform: perspective(800px) rotateX(-90deg); opacity: 0; }
-          51%  { transform: perspective(800px) rotateX(90deg);  opacity: 0; }
-          100% { transform: perspective(800px) rotateX(0deg);   opacity: 1; }
+          0%   { transform: translateY(0); opacity: 1; }
+          49%  { transform: translateY(-12px); opacity: 0; }
+          50%  { transform: translateY(12px); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
         }
         @keyframes flipPrev {
-          0%   { transform: perspective(800px) rotateX(0deg);  opacity: 1; }
-          50%  { transform: perspective(800px) rotateX(90deg); opacity: 0; }
-          51%  { transform: perspective(800px) rotateX(-90deg);opacity: 0; }
-          100% { transform: perspective(800px) rotateX(0deg);  opacity: 1; }
+          0%   { transform: translateY(0); opacity: 1; }
+          49%  { transform: translateY(12px); opacity: 0; }
+          50%  { transform: translateY(-12px); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
         }
         .leader-flip-next {
           animation: flipNext ${FLIP_MS}ms cubic-bezier(0.4,0,0.2,1) forwards;
-          transform-origin: center center;
           will-change: transform, opacity;
         }
         .leader-flip-prev {
           animation: flipPrev ${FLIP_MS}ms cubic-bezier(0.4,0,0.2,1) forwards;
-          transform-origin: center center;
           will-change: transform, opacity;
         }
       `}</style>
@@ -342,47 +340,37 @@ function ValueCard({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-white rounded-2xl p-6 flex items-start gap-5">
+    <button
+      type="button"
+      onClick={() => setExpanded((v) => !v)}
+      className="w-full bg-white rounded-2xl p-6 flex items-start gap-5 text-left transition-shadow hover:shadow-lg focus:outline-none"
+    >
       <div className="shrink-0 w-14 h-14 rounded-full bg-[#1e2a6e] flex items-center justify-center">
         {icon}
       </div>
       <div className="flex-1">
-
-        {/* Mobile: title + chevron toggle */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setExpanded((v) => !v)}
-            className="flex items-center justify-between w-full focus:outline-none"
+        <div className="flex items-center justify-between w-full">
+          <h3 className="text-lg font-bold text-[#1e2a6e]">{title}</h3>
+          <svg
+            viewBox="0 0 24 24"
+            className={`w-4 h-4 shrink-0 ml-2 text-[#1e2a6e] transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <h3 className="text-lg font-bold text-[#1e2a6e] text-left">{title}</h3>
-            <svg
-              viewBox="0 0 24 24"
-              className={`w-4 h-4 shrink-0 ml-2 text-[#1e2a6e] transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </button>
-          <div
-            className="overflow-hidden transition-all duration-500 ease-in-out"
-            style={{ maxHeight: expanded ? 200 : 0, opacity: expanded ? 1 : 0 }}
-          >
-            <p className="text-gray-600 leading-relaxed text-sm mt-2">{description}</p>
-          </div>
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
         </div>
-
-        {/* Desktop: always visible, unchanged */}
-        <div className="hidden md:block">
-          <h3 className="text-lg font-bold text-[#1e2a6e] mb-2">{title}</h3>
-          <p className="text-gray-600 leading-relaxed text-sm">{description}</p>
+        <div
+          className="overflow-hidden transition-all duration-500 ease-in-out"
+          style={{ maxHeight: expanded ? 220 : 0, opacity: expanded ? 1 : 0 }}
+        >
+          <p className="text-gray-600 leading-relaxed text-sm mt-2">{description}</p>
         </div>
-
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -471,7 +459,7 @@ export default function FoundersPage() {
       </section>
 
       {/* ── Our Values ── */}
-      <section className="bg-[#1e2a6e] pb-24 px-6">
+      <section className="bg-[#1e2a6e] -mt-px pb-24 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-extrabold text-white uppercase text-center mb-12">
             OUR <span className="text-[#f97316]">VALUES</span>

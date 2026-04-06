@@ -108,7 +108,7 @@ const FacilitiesSection: React.FC = () => {
           padding-top: 8rem;
           padding-bottom: 6rem;
           overflow: hidden;
-          background-color: #f5f6f7;
+          background-color: #fffacc;
           font-family: 'Work Sans', sans-serif;
           color: #2c2f30;
         }
@@ -518,8 +518,8 @@ const FacilitiesSection: React.FC = () => {
           <header className="facilities-header">
             <span className="facilities-eyebrow">World-Class Infrastructure</span>
             <h1 className="facilities-title">
-              Built for <br />
-              <span>Excellence.</span>
+              Built for Excellence
+              <span></span>
             </h1>
           </header>
 
