@@ -14,7 +14,7 @@ const CALLOUT = {
   count:      "16",
   label:      "Students Above",
   highlight:  "580",
-  sublabel:   "All India Ranks",
+  sublabel:   "Highest in Chodavaram Mandal",
   badge:      "Highest among all Institutes",
 };
 
@@ -25,21 +25,21 @@ const DEFAULT_BATCH    = "2025";
 // ── Top 3 performers ──────────────────────────────────────────────────────────
 const TOP_PERFORMERS = [
   {
-    air:         1,
-    name:        "Y MONISHA",
-    score:       "597/600",
-    courseType:  "Classroom Course",
-    percentile:  "Overall 100 Percentile",
-    image:       "/gallery/Results/Y MONISHA.jpeg",
-    isCenter:    false,
-  },
-  {
     air:         2,
     name:        "P DOLA HARINI",
     score:       "595/600",
     courseType:  "Classroom Course",
     percentile:  "Overall 100 Percentile",
     image:       "/gallery/Results/P DOLA HARINI.jpeg",
+    isCenter:    false,
+  },
+  {
+    air:         1,
+    name:        "Y MONISHA",
+    score:       "597/600",
+    courseType:  "Classroom Course",
+    percentile:  "Overall 100 Percentile",
+    image:       "/gallery/Results/Y MONISHA.jpeg",
     isCenter:    true,
   },
   {
@@ -55,19 +55,19 @@ const TOP_PERFORMERS = [
 
 // ── All rank students ─────────────────────────────────────────────────────────
 const ALL_RANKS: RankStudent[] = [
-  { air: 4,  name: "K PAVAN KUMAR NAIDU",      score: "591/600", detail: "100 Percentile", image: "/gallery/Results/K PAVAN KUMAR NAIDU.jpeg" },
-  { air: 5,  name: "D GREESHMA",               score: "589/600", detail: "100 Percentile", image: "/gallery/Results/D GREESHMA.jpeg" },
-  { air: 6,  name: "K TEJA SRI",               score: "587/600", detail: "100 Percentile", image: "/gallery/Results/K TEJA SRI.jpeg" },
-  { air: 7,  name: "M SAI SEERSHIKA",          score: "586/600", detail: "100 Percentile", image: "/gallery/Results/M SAI SEERSHIKA.jpeg" },
-  { air: 8,  name: "P BHUVANA SREE",           score: "585/600", detail: "100 Percentile", image: "/gallery/Results/P BHUVANA SREE.jpeg" },
-  { air: 9,  name: "G ALEKHYA",                score: "584/600", detail: "100 Percentile", image: "/gallery/Results/G ALEKHYA.jpeg" },
-  { air: 10, name: "N SRI DHATHRI",            score: "583/600", detail: "100 Percentile", image: "/gallery/Results/N SRI DHATHRI.jpeg" },
-  { air: 11, name: "V PRABHA SURYA VAISHNAVI", score: "582/600", detail: "100 Percentile", image: "/gallery/Results/V PRABHA SURYA VAISHNAVI.jpeg" },
-  { air: 12, name: "U BALA SREEDHAR",          score: "581/600", detail: "100 Percentile", image: "/gallery/Results/U BALA SREEDHAR.jpeg" },
-  { air: 13, name: "A LIKHITHA",               score: "581/600", detail: "100 Percentile", image: "/gallery/Results/A LIKHITHA.jpeg" },
-  { air: 14, name: "V TEJA",                   score: "580/600", detail: "100 Percentile", image: "/gallery/Results/V TEJA.jpeg" },
-  { air: 34, name: "G BHAGYA SREE",            score: "567/600", detail: "Classroom",      image: "/gallery/Results/G BHAGYA SREE.jpeg" },
-  { air: 35, name: "K KEERTHIKA SREE",         score: "565/600", detail: "Classroom",      image: "/gallery/Results/K KEERTHIKA SREE.jpeg" },
+  { air: 4,  name: "K PAVAN KUMAR NAIDU",      score: "592/600", detail: "100 Percentile", image: "/gallery/Results/K PAVAN KUMAR NAIDU.jpeg" },
+  { air: 5,  name: "D GREESHMA",               score: "590/600", detail: "100 Percentile", image: "/gallery/Results/D GREESHMA.jpeg" },
+  { air: 6,  name: "K TEJA SRI",               score: "589/600", detail: "100 Percentile", image: "/gallery/Results/K TEJA SRI.jpeg" },
+  { air: 7,  name: "M SAI SEERSHIKA",          score: "589/600", detail: "100 Percentile", image: "/gallery/Results/M SAI SEERSHIKA.jpeg" },
+  { air: 8,  name: "P BHUVANA SREE",           score: "588/600", detail: "100 Percentile", image: "/gallery/Results/P BHUVANA SREE.jpeg" },
+  { air: 9,  name: "G ALEKHYA",                score: "587/600", detail: "100 Percentile", image: "/gallery/Results/G ALEKHYA.jpeg" },
+  { air: 10, name: "N SRI DHATHRI",            score: "586/600", detail: "100 Percentile", image: "/gallery/Results/N SRI DHATHRI.jpeg" },
+  { air: 11, name: "V PRABHA SURYA VAISHNAVI", score: "583/600", detail: "100 Percentile", image: "/gallery/Results/V PRABHA SURYA VAISHNAVI.jpeg" },
+  { air: 12, name: "U BALA SREEDHAR",          score: "583/600", detail: "100 Percentile", image: "/gallery/Results/U BALA SREEDHAR.jpeg" },
+  { air: 13, name: "A LIKHITHA",               score: "583/600", detail: "100 Percentile", image: "/gallery/Results/A LIKHITHA.jpeg" },
+  { air: 14, name: "V TEJA",                   score: "582/600", detail: "100 Percentile", image: "/gallery/Results/V TEJA.jpeg" },
+  { air: 34, name: "G BHAGYA SREE",            score: "582/600", detail: "Classroom",      image: "/gallery/Results/G BHAGYA SREE.jpeg" },
+  { air: 35, name: "K KEERTHIKA SREE",         score: "580/600", detail: "Classroom",      image: "/gallery/Results/K KEERTHIKA SREE.jpeg" },
 ];
 
 // =============================================================================
@@ -279,7 +279,7 @@ const SimpleMarksBadge: React.FC<{ score: string; id: string }> = ({ score, id }
 // ─── Batch Dropdown ───────────────────────────────────────────────────────────
 const BatchDropdown: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string[]>([DEFAULT_BATCH]);
+  const [selected, setSelected] = useState<string>(DEFAULT_BATCH);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -291,16 +291,9 @@ const BatchDropdown: React.FC = () => {
   }, []);
 
   const toggle = (batch: string) =>
-    setSelected((prev) =>
-      prev.includes(batch) ? prev.filter((b) => b !== batch) : [...prev, batch]
-    );
+    setSelected((prev) => (prev === batch ? "" : batch));
 
-  const label =
-    selected.length === 0
-      ? "Select Batch"
-      : selected.length === 1
-      ? `BATCH OF ${selected[0]}`
-      : `${selected.length} BATCHES`;
+  const label = selected ? `BATCH OF ${selected}` : "Select Batch";
 
   return (
     <div className="relative" ref={ref}>
@@ -340,7 +333,7 @@ const BatchDropdown: React.FC = () => {
             Select Batches
           </p>
           {BATCHES.map((batch) => {
-            const checked = selected.includes(batch);
+            const checked = selected === batch;
             return (
               <button
                 key={batch}
@@ -364,12 +357,12 @@ const BatchDropdown: React.FC = () => {
           })}
           <div style={{ padding: "10px 16px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
             <button
-              onClick={() => setSelected([])}
+              onClick={() => setSelected("")}
               style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.5)", fontSize: 10, padding: 0 }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.85)")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.5)")}
             >
-              Clear all
+              Clear selection
             </button>
           </div>
         </div>
@@ -381,7 +374,7 @@ const BatchDropdown: React.FC = () => {
 // ─── Header Bar ───────────────────────────────────────────────────────────────
 const HeaderBar: React.FC = () => (
   <div className="w-full flex items-center justify-between px-6 md:px-10 py-3">
-    <div style={{ background: "#ffffff", padding: 6, borderRadius: 8, boxShadow: "0 4px 12px rgba(0,0,0,0.1)", display: "inline-flex" }}>
+    <div style={{ padding: 6, borderRadius: 8, display: "inline-flex" }}>
       <Image
         src={SCHOOL_LOGO}
         alt={SCHOOL_NAME}
@@ -413,6 +406,7 @@ const TopPerformerCard: React.FC<{ performer: TopPerformer }> = ({ performer }) 
             style={{
               height: imgH,
               clipPath: "ellipse(45% 50% at 50% 50%)",
+              objectPosition: isCenter ? "center 18%" : "center",
               transform: isCenter ? "scale(1.06)" : "scale(1)",
             }}
           />

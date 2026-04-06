@@ -55,7 +55,7 @@ export function Header() {
           <div className="flex-1 min-w-0 flex flex-col leading-tight">
             <h1 className="text-[#9c0b0b] font-bold text-2xl sm:text-3xl break-words">Sree Vignan School</h1>
             <p className="mt-1 text-[11px] sm:text-xs text-[#9c0b0b]/80 font-medium leading-tight">
-              Where Legacy meets Excellence Est.1992
+              {"\u00A0\u00A0\u00A0\u00A0"}Where Legacy meets Excellence-Est.1992
             </p>
           </div>
         </Link>
