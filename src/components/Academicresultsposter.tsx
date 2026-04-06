@@ -48,7 +48,7 @@ const TOP_PERFORMERS = [
     score:       "594/600",
     courseType:  "Classroom Course",
     percentile:  "Overall 100 Percentile",
-    image:       "/gallery/Results/B Balaji.jpeg",
+    image:       "/gallery/Results/B BALAJI.jpeg",
     isCenter:    false,
   },
 ];
