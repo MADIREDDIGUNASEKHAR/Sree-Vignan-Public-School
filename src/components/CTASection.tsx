@@ -15,7 +15,7 @@ export default function CTASection() {
       {/* ── School photo ── */}
       <div className="absolute inset-0">
         <Image
-          src="/gallery/Hero/image2.jpeg"
+          src="/gallery/HERO/image2.jpeg"
           alt="Sree Vignan Public School"
           fill
           className="object-cover"
