@@ -21,9 +21,9 @@ function useCountUp(target: number, duration = 2000, start = false) {
 }
 
 const stats = [
-  { id: 'students', num: 1000, suffix: '+', label: 'Students Enrolled',  sub: 'Growing family across all grades',    accent: '#e67e22', dur: 2000 },
-  { id: 'pass',     num: 100,  suffix: '%', label: 'Board Pass Rate',     sub: 'Class 10 & 12 excellence',            accent: '#f39c12', dur: 1800 },
-  { id: 'teachers', num: 50,   suffix: '+', label: 'Dedicated Teachers',  sub: 'Committed to every child',            accent: '#e67e22', dur: 1600 },
+  { id: 'students', num: 16000, suffix: '+', label: 'Students Enrolled',  sub: 'Growing family across all grades',    accent: '#e67e22', dur: 2000 },
+  { id: 'pass',     num: 99.99,  suffix: '%', label: 'Board Pass Rate',     sub: 'Class 10 & 12 excellence',            accent: '#f39c12', dur: 1800 },
+  { id: 'teachers', num: 300,   suffix: '+', label: 'Dedicated Teachers',  sub: 'Committed to every child',            accent: '#e67e22', dur: 1600 },
   { id: 'years',    num: 34,   suffix: '+', label: 'Years of Excellence', sub: 'Serving Chodavaram since 1992',       accent: '#1C3A47', dur: 1400 },
 ];
 

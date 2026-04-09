@@ -15,8 +15,24 @@ const CALLOUT = {
   label:      "Students Above",
   highlight:  "580",
   sublabel:   "Highest in Chodavaram Mandal",
-  badge:      "Highest among all Institutes",
 };
+
+const RESULT_SUMMARY = [
+  ["Appeared", "157"],
+  ["550 Above", "76"],
+  ["501 - 549", "44"],
+  ["400 - 500", "29"],
+  ["Below 399", "8"],
+];
+
+const SUBJECT_MARKS = [
+  ["TEL", "5", "22", "24"],
+  ["HIN", "3", "18", "10"],
+  ["ENG", "1", "1", "1"],
+  ["MATHS", "19", "6", "14"],
+  ["SCI", "8", "14", "11"],
+  ["SOC", "5", "10", "5"],
+];
 
 // ── Batch years ───────────────────────────────────────────────────────────────
 const BATCHES          = ["2025", "2024", "2023", "2022", "2021"];
@@ -28,8 +44,6 @@ const TOP_PERFORMERS = [
     air:         2,
     name:        "P DOLA HARINI",
     score:       "595/600",
-    courseType:  "Classroom Course",
-    percentile:  "Overall 100 Percentile",
     image:       "/gallery/Results/P DOLA HARINI.jpeg",
     isCenter:    false,
   },
@@ -37,8 +51,6 @@ const TOP_PERFORMERS = [
     air:         1,
     name:        "Y MONISHA",
     score:       "597/600",
-    courseType:  "Classroom Course",
-    percentile:  "Overall 100 Percentile",
     image:       "/gallery/Results/Y MONISHA.jpeg",
     isCenter:    true,
   },
@@ -46,8 +58,6 @@ const TOP_PERFORMERS = [
     air:         3,
     name:        "B BALAJI",
     score:       "594/600",
-    courseType:  "Classroom Course",
-    percentile:  "Overall 100 Percentile",
     image:       "/gallery/Results/B BALAJI.jpeg",
     isCenter:    false,
   },
@@ -55,19 +65,19 @@ const TOP_PERFORMERS = [
 
 // ── All rank students ─────────────────────────────────────────────────────────
 const ALL_RANKS: RankStudent[] = [
-  { air: 4,  name: "K PAVAN KUMAR NAIDU",      score: "592/600", detail: "100 Percentile", image: "/gallery/Results/K PAVAN KUMAR NAIDU.jpeg" },
-  { air: 5,  name: "D GREESHMA",               score: "590/600", detail: "100 Percentile", image: "/gallery/Results/D GREESHMA.jpeg" },
-  { air: 6,  name: "K TEJA SRI",               score: "589/600", detail: "100 Percentile", image: "/gallery/Results/K TEJA SRI.jpeg" },
-  { air: 7,  name: "M SAI SEERSHIKA",          score: "589/600", detail: "100 Percentile", image: "/gallery/Results/M SAI SEERSHIKA.jpeg" },
-  { air: 8,  name: "P BHUVANA SREE",           score: "588/600", detail: "100 Percentile", image: "/gallery/Results/P BHUVANA SREE.jpeg" },
-  { air: 9,  name: "G ALEKHYA",                score: "587/600", detail: "100 Percentile", image: "/gallery/Results/G ALEKHYA.jpeg" },
-  { air: 10, name: "N SRI DHATHRI",            score: "586/600", detail: "100 Percentile", image: "/gallery/Results/N SRI DHATHRI.jpeg" },
-  { air: 11, name: "V PRABHA SURYA VAISHNAVI", score: "583/600", detail: "100 Percentile", image: "/gallery/Results/V PRABHA SURYA VAISHNAVI.jpeg" },
-  { air: 12, name: "U BALA SREEDHAR",          score: "583/600", detail: "100 Percentile", image: "/gallery/Results/U BALA SREEDHAR.jpeg" },
-  { air: 13, name: "A LIKHITHA",               score: "583/600", detail: "100 Percentile", image: "/gallery/Results/A LIKHITHA.jpeg" },
-  { air: 14, name: "V TEJA",                   score: "582/600", detail: "100 Percentile", image: "/gallery/Results/V TEJA.jpeg" },
-  { air: 34, name: "G BHAGYA SREE",            score: "582/600", detail: "Classroom",      image: "/gallery/Results/G BHAGYA SREE.jpeg" },
-  { air: 35, name: "K KEERTHIKA SREE",         score: "580/600", detail: "Classroom",      image: "/gallery/Results/K KEERTHIKA SREE.jpeg" },
+  { air: 4,  name: "K PAVAN KUMAR NAIDU",      score: "592/600", image: "/gallery/Results/K PAVAN KUMAR NAIDU.jpeg" },
+  { air: 5,  name: "D GREESHMA",               score: "590/600", image: "/gallery/Results/D GREESHMA.jpeg" },
+  { air: 6,  name: "K TEJA SRI",               score: "589/600", image: "/gallery/Results/K TEJA SRI.jpeg" },
+  { air: 7,  name: "M SAI SEERSHIKA",          score: "589/600", image: "/gallery/Results/M SAI SEERSHIKA.jpeg" },
+  { air: 8,  name: "P BHUVANA SREE",           score: "588/600", image: "/gallery/Results/P BHUVANA SREE.jpeg" },
+  { air: 9,  name: "G ALEKHYA",                score: "587/600", image: "/gallery/Results/G ALEKHYA.jpeg" },
+  { air: 10, name: "N SRI DHATHRI",            score: "586/600", image: "/gallery/Results/N SRI DHATHRI.jpeg" },
+  { air: 11, name: "V PRABHA SURYA VAISHNAVI", score: "583/600", image: "/gallery/Results/V PRABHA SURYA VAISHNAVI.jpeg" },
+  { air: 12, name: "U BALA SREEDHAR",          score: "583/600", image: "/gallery/Results/U BALA SREEDHAR.jpeg" },
+  { air: 13, name: "A LIKHITHA",               score: "583/600", image: "/gallery/Results/A LIKHITHA.jpeg" },
+  { air: 14, name: "V TEJA",                   score: "582/600", image: "/gallery/Results/V TEJA.jpeg" },
+  { air: 34, name: "G BHAGYA SREE",            score: "582/600", image: "/gallery/Results/G BHAGYA SREE.jpeg" },
+  { air: 35, name: "K KEERTHIKA SREE",         score: "580/600", image: "/gallery/Results/K KEERTHIKA SREE.jpeg" },
 ];
 
 // =============================================================================
@@ -78,8 +88,6 @@ interface TopPerformer {
   air: number;
   name: string;
   score: string;
-  courseType: string;
-  percentile: string;
   image: string;
   isCenter?: boolean;
 }
@@ -88,7 +96,6 @@ interface RankStudent {
   air: number;
   name: string;
   score: string;
-  detail: string;
   image: string;
 }
 
@@ -128,21 +135,20 @@ const RoyalMarksBadge: React.FC<{ score: string; id: string }> = ({ score, id })
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-      width: 110,
-      height: 44,
+      width: 154,
+      height: 62,
     }}
   >
     <svg
-      style={{ position: "absolute", top: 0, left: 0, width: 110, height: 44 }}
+      style={{ position: "absolute", top: 0, left: 0, width: 154, height: 62 }}
       viewBox="0 0 110 44"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
         <linearGradient id={`royalGrad-${id}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#FFD700" />
-          <stop offset="45%"  stopColor="#F4C430" />
-          <stop offset="100%" stopColor="#C8960C" />
+<stop offset="0%" stopColor="#FF4C4C" />
+<stop offset="100%" stopColor="#8B0000" />
         </linearGradient>
       </defs>
       {/* shadow glow */}
@@ -179,8 +185,8 @@ const RoyalMarksBadge: React.FC<{ score: string; id: string }> = ({ score, id })
         position: "absolute",
         top: 14,
         left: 6,
-        width: 98,
-        height: 24,
+        width: 137,
+        height: 34,
         zIndex: 2,
         display: "flex",
         alignItems: "center",
@@ -192,10 +198,12 @@ const RoyalMarksBadge: React.FC<{ score: string; id: string }> = ({ score, id })
         style={{
           fontFamily: "'Cinzel', 'Georgia', serif",
           fontWeight: 900,
-          fontSize: 13,
-          color: "#7a3800",
+          fontSize: 18,
+          color: "#FFFFFF",
+textShadow: "0 0 8px rgba(255,215,0,1)",
+
           letterSpacing: "0.04em",
-          textShadow: "0 1px 0 rgba(255,220,80,0.8)",
+         
           lineHeight: 1,
         }}
       >
@@ -399,7 +407,7 @@ const TopPerformerCard: React.FC<{ performer: TopPerformer }> = ({ performer }) 
         {performer.image ? (
           <Image
             src={performer.image}
-            alt={`AIR ${performer.air} – ${performer.name}`}
+            alt={performer.name}
             width={160}
             height={imgH}
             className="w-full object-cover"
@@ -433,16 +441,7 @@ const TopPerformerCard: React.FC<{ performer: TopPerformer }> = ({ performer }) 
 
       {/* marginTop clears the overlapping badge */}
       <div style={{ marginTop: 22 }}>
-        <span className="block text-[#1A365D] font-bold text-xs">AIR</span>
-        <span
-          className={`block text-[#1A365D] font-black -mt-1 ${isCenter ? "text-6xl" : "text-5xl"}`}
-        >
-          {performer.air}
-        </span>
         <p className="uppercase font-bold text-[#1A365D] text-[11px] leading-tight">{performer.name}</p>
-        <p className="text-[9px] text-[#1A365D] mt-0.5">
-          {performer.courseType}<br />{performer.percentile}
-        </p>
       </div>
     </div>
   );
@@ -451,20 +450,18 @@ const TopPerformerCard: React.FC<{ performer: TopPerformer }> = ({ performer }) 
 // ─── Small Rank Card ──────────────────────────────────────────────────────────
 const SmallRankCard: React.FC<{ student: RankStudent }> = ({ student }) => (
   <div className="text-center">
-    <p className="text-[10px] font-black text-[#1A365D] mb-1">AIR {student.air}</p>
-
     {/* Image wrapper — badge anchors to the bottom of this */}
     <div className="relative inline-block">
       {student.image ? (
         <Image
           src={student.image}
-          alt={`AIR ${student.air} – ${student.name}`}
-          width={64}
-          height={84}
-          className="w-16 h-[84px] rounded-md shadow-sm border border-gray-200 object-cover"
+          alt={student.name}
+          width={90}
+          height={118}
+          className="w-[90px] h-[118px] rounded-md shadow-sm border border-gray-200 object-cover"
         />
       ) : (
-        <Placeholder className="w-16 h-[84px] rounded-md shadow-sm border border-gray-200" />
+        <Placeholder className="w-[90px] h-[118px] rounded-md shadow-sm border border-gray-200" />
       )}
 
       {/* Simple badge overlapping the bottom of the small portrait */}
@@ -482,11 +479,72 @@ const SmallRankCard: React.FC<{ student: RankStudent }> = ({ student }) => (
     </div>
 
     {/* marginTop clears the overlapping badge */}
-    <p className="text-[8px] font-bold text-[#1A365D] leading-tight uppercase line-clamp-2 max-w-[68px] mx-auto" style={{ marginTop: 18 }}>
+    <p className="text-[8px] font-bold text-[#1A365D] leading-tight uppercase line-clamp-2 max-w-[92px] mx-auto" style={{ marginTop: 18 }}>
       {student.name}
     </p>
-    <p className="text-[7px] text-gray-600">{student.detail}</p>
   </div>
+);
+
+const StatsTables: React.FC = () => (
+  <aside className="w-full max-w-[340px] mx-auto xl:mx-0 flex flex-col gap-6">
+    <div className="bg-white/90 border-2 border-[#d9c5b0] rounded-2xl shadow-lg overflow-hidden">
+      <table className="w-full border-collapse text-[#1A365D]">
+        <thead>
+          <tr>
+            <th
+              colSpan={2}
+              className="border-b border-[#cfb9a5] px-3 py-3 text-center font-black uppercase"
+              style={{ fontSize: 17, lineHeight: 1.15 }}
+            >
+              Sree Vignan
+              <br />
+              SSC 2025 Results
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {RESULT_SUMMARY.map(([label, value]) => (
+            <tr key={label}>
+              <td className="border border-[#cfb9a5] px-3 py-2 text-sm font-black uppercase">{label}</td>
+              <td className="border border-[#cfb9a5] px-3 py-2 text-center text-sm font-black">{value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div className="bg-white/90 border-2 border-[#e4b6bc] rounded-2xl shadow-lg overflow-hidden">
+      <table className="w-full border-collapse text-[#1A365D]">
+        <thead>
+          <tr>
+            <th
+              colSpan={4}
+              className="border-b border-[#d8b1b5] px-3 py-2 text-center font-black uppercase"
+              style={{ fontSize: 14, lineHeight: 1.15 }}
+            >
+              Subjectwise Marks
+            </th>
+          </tr>
+          <tr>
+            <th className="border border-[#d8b1b5] px-2 py-1.5 text-xs font-black uppercase"></th>
+            <th className="border border-[#d8b1b5] px-2 py-1.5 text-xs font-black">100&apos;S</th>
+            <th className="border border-[#d8b1b5] px-2 py-1.5 text-xs font-black">99&apos;S</th>
+            <th className="border border-[#d8b1b5] px-2 py-1.5 text-xs font-black">98&apos;S</th>
+          </tr>
+        </thead>
+        <tbody>
+          {SUBJECT_MARKS.map(([subject, marks100, marks99, marks98]) => (
+            <tr key={subject}>
+              <td className="border border-[#d8b1b5] px-2 py-1.5 text-center text-sm font-black uppercase">{subject}</td>
+              <td className="border border-[#d8b1b5] px-2 py-1.5 text-center text-sm font-bold">{marks100}</td>
+              <td className="border border-[#d8b1b5] px-2 py-1.5 text-center text-sm font-bold">{marks99}</td>
+              <td className="border border-[#d8b1b5] px-2 py-1.5 text-center text-sm font-bold">{marks98}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </aside>
 );
 
 // ─── Main Component ───────────────────────────────────────────────────────────
@@ -498,17 +556,19 @@ const AcademicResultsPoster: React.FC = () => (
     <HeaderBar />
 
     <main className="flex-1 flex items-center justify-center">
-      <div className="w-full max-w-5xl px-6 md:px-10 pb-10">
+      <div className="w-full max-w-none px-6 md:px-10 lg:px-[10vw] pb-10">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-start">
+          <div className="min-w-0">
 
         {/* ── Top 3 + Callout ── */}
         <section className="relative z-10 grid grid-cols-12 gap-4 mb-10">
-          <div className="col-span-12 lg:col-span-8 grid grid-cols-3 gap-2 items-end max-w-lg mx-auto lg:mx-0 w-full">
+          <div className="col-span-12 md:col-span-8 grid grid-cols-3 gap-2 items-end max-w-lg mx-auto md:mx-0 w-full">
             {TOP_PERFORMERS.map((p) => (
               <TopPerformerCard key={p.air} performer={p} />
             ))}
           </div>
-          <div className="col-span-12 lg:col-span-4 flex items-center justify-center">
-            <div className="bg-white/80 p-6 rounded-3xl border-2 border-[#1A365D] text-center shadow-lg w-full">
+          <div className="col-span-12 md:col-span-4 flex items-center justify-center md:justify-end">
+            <div className="bg-white/80 p-6 rounded-3xl border-2 border-[#1A365D] text-center shadow-lg w-full max-w-[255px]">
               <div className="text-[#1A365D] font-black text-8xl leading-none">{CALLOUT.count}</div>
               <div className="text-[#1A365D] font-bold text-xl tracking-tighter uppercase">{CALLOUT.label}</div>
               <div
@@ -518,16 +578,13 @@ const AcademicResultsPoster: React.FC = () => (
                 {CALLOUT.highlight}
               </div>
               <div className="text-[#1A365D] font-bold text-sm uppercase">{CALLOUT.sublabel}</div>
-              <div className="mt-4 inline-block bg-yellow-300/50 border border-[#1A365D]/30 px-3 py-1 rounded-full text-[10px] font-bold text-[#1A365D]">
-                {CALLOUT.badge}
-              </div>
             </div>
           </div>
         </section>
 
         {/* ── Ranks Grid ── */}
         <section className="relative z-10">
-          <div className="grid grid-cols-4 md:grid-cols-6 gap-y-6 gap-x-3">
+          <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-y-6 gap-x-3 md:gap-x-4 justify-items-center">
             {ALL_RANKS.map((s) => (
               <SmallRankCard key={s.air} student={s} />
             ))}
@@ -535,6 +592,13 @@ const AcademicResultsPoster: React.FC = () => (
         </section>
 
         {/* ── Footer ── */}
+          </div>
+
+          <div className="lg:pt-6">
+            <StatsTables />
+          </div>
+        </div>
+
         <footer className="mt-12 flex justify-between items-end border-t border-[#1A365D]/10 pt-4">
           <div className="text-[8px] text-[#1A365D]/60 font-medium">{FOOTER_DISCLAIMER}</div>
           <div className="bg-[#1A365D] text-white px-4 py-1 rounded text-xs font-bold uppercase tracking-widest">
