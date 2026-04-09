@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply antialiased;
+}
+
+:root {
+  --primary-purple: #7C3AED;
+  --accent-gold: #D4AF37;
+  --royal-navy: #1C3A47;
+  --cream-light: #F8F6F1;
+  font-family: 'Poppins', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-gray-900;
+}
+
+/* Premium card component */
+.card-premium {
+  @apply rounded-xl bg-white p-6 shadow-soft transition-all duration-300 hover:shadow-soft-lg hover:-translate-y-1;
+}
+
+.card-premium-lg {
+  @apply rounded-2xl bg-white p-8 shadow-soft-lg;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-primary-purple text-white hover:bg-purple-800 transition-all duration-200 no-underline active:scale-95;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 border-primary-purple text-primary-purple hover:bg-primary-purple hover:text-white transition-all duration-200;
+}
+
+.btn-accent {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-accent-gold text-royal-navy hover:bg-yellow-500 transition-all duration-200;
+}
+
+/* Text utilities */
+.text-heading-xl {
+  @apply text-4xl md:text-5xl font-bold leading-tight text-gray-900;
+}
+
+.text-heading-lg {
+  @apply text-3xl md:text-4xl font-bold leading-tight text-gray-900;
+}
+
+.text-heading-md {
+  @apply text-2xl md:text-3xl font-bold text-gray-900;
+}
+
+.text-subheading {
+  @apply text-lg md:text-xl text-gray-600 font-medium;
+}
+
+/* Container safe */
+.container-safe {
+  @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+}
+
+/* Section padding */
+.section-padding {
+  @apply py-12 md:py-20 lg:py-24;
+}
+
+/* Grid responsive */
+.grid-responsive-3 {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+}
+
+.grid-responsive-2 {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8;
+}
+
+/* Badge */
+.badge {
+  @apply inline-flex items-center px-4 py-2 rounded-full bg-purple-100 text-primary-purple font-semibold text-sm;
+}
+
+/* Fade animations */
+.fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  @apply outline-none ring-2 ring-primary-purple ring-offset-2;
+}
+
+/* ===== Announcement Ticker Animation ===== */
+@keyframes ticker {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  animation: ticker 30s linear infinite;
+  will-change: transform;
+}
+
+/* ===== Leader Carousel Flip Animations ===== */
+@keyframes flipNext {
+  0%   { transform: translateY(0); opacity: 1; }
+  49%  { transform: translateY(-12px); opacity: 0; }
+  50%  { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes flipPrev {
+  0%   { transform: translateY(0); opacity: 1; }
+  49%  { transform: translateY(12px); opacity: 0; }
+  50%  { transform: translateY(-12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.leader-flip-next {
+  animation: flipNext 1000ms cubic-bezier(0.4,0,0.2,1) forwards;
+  will-change: transform, opacity;
+}
+.leader-flip-prev {
+  animation: flipPrev 1000ms cubic-bezier(0.4,0,0.2,1) forwards;
+  will-change: transform, opacity;
+}
